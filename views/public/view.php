@@ -126,7 +126,7 @@ JS
                                     <p class="subtitle-secondary mb-1">Дата рішення ФГВ</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <div class="mb-1" id="auction-dgfDecisionDate"><?= $model->dgfDecisionDate; ?></div>
+                                    <div class="mb-1" id="auction-dgfDecisionDate"><?= date('d.m.Y', strtotime($model->dgfDecisionDate)); ?></div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
