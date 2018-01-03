@@ -1,0 +1,165 @@
+.is_debug {
+	/*font-size: 0;*/
+	/*width: 0;*/
+	/*height: 0;*/
+	/*overflow: hidden;*/
+}
+
+tr td {
+	word-break: break-word;
+}
+
+.footer.purple-back{
+	height:auto;
+	position: relative;
+}
+
+.tab-link {
+}
+
+.tab-link li {
+	display:inline-block;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+}
+
+.tab-link li:hover {
+	background: rgba(0,150,225,.6);
+}
+
+.tab-link li:hover a {
+	color:#ffffff;
+}
+
+.tab-link li a {
+	display: block;
+	position: relative;
+	height:100%;
+	padding:10px 15px;
+	color:#212121;
+	text-decoration: none;
+	font-size: 16px;
+
+}
+
+.tab-link li.active {
+	background: #0088ab;
+
+}
+
+.tab-link li.active a {
+	color:#ffffff;
+}
+
+.panel-primary > .panel-heading {
+	color: #fff;
+	background-color: #0088ab;
+	border-color: #0088ab;
+}
+
+.auctions-index>h1 {
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+	text-align: center;
+	margin-bottom: 10px;
+	color: #ffffff;
+	background-color: #0096e1;
+}
+.auctions-view>h1 {
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+	text-align: center;
+	margin-bottom: 10px;
+	color: #ffffff;
+	background-color: #0096e1;
+}
+.action-view {
+	padding: 30px;
+}
+#w0 > tbody{
+	background-color: rgba(0,150,255,.2);
+}
+
+/*Added custom styles */
+
+.grid-view {
+	padding:30px;
+}
+
+.grid-view table {
+	box-shadow:6px 6px 20px rgba(0,0,0,.2);
+}
+
+ul.pagination {
+	background-color: #0096e1;
+	width: 100%;
+	text-align: center;
+	border-radius:0;
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+ul.pagination li {
+	display: inline-block;
+	height: auto;
+	padding-top:6px;
+	padding-bottom:0;
+}
+
+table > tbody{
+	background-color: rgba(0,150,255,.2);
+}
+
+tbody{
+	background-color: rgba(0,150,255,.2);
+}
+
+table > thead{
+	background-color: rgba(0,150,255,.1);
+}
+
+button.a.button {
+	padding: 10px 20px;
+}
+
+.count{
+	background: #000;
+}
+.tab-is-first{
+	/*background: #000;*/
+}
+
+.auctions-view {
+	background: #fff;
+}
+#tab-1 > div > div:nth-child(3) > div.text-text-t.col-md-12.text-left{
+	color: #fff;
+}
+
+
+/*added by Ivakhnov 05.05.2017*/
+.info-block__list {
+	text-align:justify;
+	margin: 0;
+}
+
+.info-block__list li {
+	padding-right:20px;
+}
+li.dropdown:hover > ul.dropdown-menu {
+	display: block;
+}
+.center-block {
+	height: 180px;
+}
+.wrapper {
+	min-height: 100%!important;
+}
+
+#top-menu {
+	position: inherit;
+}
+.main-content {
+	margin-top: 0;
+}

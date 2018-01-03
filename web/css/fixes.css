@@ -1,0 +1,17 @@
+.list-view {
+    width: 100%;
+}
+
+.alert {
+    margin-bottom: 0;
+}
+.is_debug {
+    /*font-size: 0;*/
+    /*width: 0;*/
+    /*height: 0;*/
+    /*overflow: hidden;*/
+}
+.has-error .help-block{
+    color:red;
+    font-size: 14px;
+}

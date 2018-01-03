@@ -1,0 +1,7 @@
+.idea/
+runtime/
+vendor/
+composer.lock
+/.env
+tmp/
+stats/

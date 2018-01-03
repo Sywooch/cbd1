@@ -1,0 +1,27 @@
+<?php
+
+/*
+ * This file is part of the Dektrium project.
+ *
+ * (c) Dektrium project <http://github.com/dektrium>
+ *
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
+ */
+
+/**
+ * @var dektrium\user\models\User
+ */
+?>
+<?= Yii::t('user', 'Hello') ?>,
+
+<?= Yii::t('user', 'Your account on {0} has been created', Yii::$app->name) ?>.
+<?php if ($module->enableGeneratingPassword): ?>
+<?= Yii::t('user', 'We have generated a password for you') ?>:
+<?= $user->password ?>
+<?php endif ?>
+<?php $token = null; ?>
+<?php if ($token !== null): ?>
+<?php endif ?>
+
+<?= Yii::t('user', 'If you did not make this request you can ignore this email') ?>.
