@@ -8,7 +8,7 @@ use api\Auctions;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = Yii::t('app','ТОВ СЕТС');
+$this->title = Yii::t('app','Електронний торговий майданчик');
 
 $this->registerJs(<<<JS
     $('#index-form *').on('change', function(){

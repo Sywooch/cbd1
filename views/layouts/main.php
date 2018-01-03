@@ -49,18 +49,18 @@ else{
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>
+<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="d-none d-lg-inline-block logo-prozorro" src="/images/logo-prozorro.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
             <div class="col-12 col-sm-6 align-self-center text-right d-none d-sm-inline-block">
         <span class="contact-info text-left d-none d-lg-inline-block">
-              <a href="tel:+380508883298">050-888-32-98</a><br>
-              <a href="tel:+380988883298">098-888-32-98</a>
+              <a href="tel:+380000000000">0000000000</a><br>
+              <a href="tel:+380000000000">0000000000</a>
             </span>
                 <span class="contact-info text-left d-none d-lg-inline-block">
-              <a href="tel:+380443337098">044-333-70-98</a><br>
-              <a class="link-primary" href="mailto:info@sets.org.ua">info@sets.org.ua</a>
+              <a href="tel:+380000000000">000000000</a><br>
+              <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
             </span>
                 <?php if(Yii::$app->user->isGuest){?>
                     <a href="/user/login" class="btn btn-primary btn-signin">Вхід</a>
@@ -212,7 +212,7 @@ else{
     <div class="container">
         <div class="row">
             <div class="banner-footer col-12 col-lg-6 align-self-center">
-                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>
+<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
                 <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
                 <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
@@ -234,12 +234,12 @@ else{
             </div>
             <div class="col-12 col-lg-6 align-self-center text-right d-none d-lg-block">
         <span class="contact-info text-left">
-          <a href="tel:+380508883298">050-888-32-98</a><br>
-          <a href="tel:+380988883298">098-888-32-98</a>
+          <a href="tel:+380000000000">+380000000000</a><br>
+          <a href="tel:+380000000000">+380000000000</a>
         </span>
                 <span class="contact-info text-left">
-          <a href="tel:+380443337098">044-333-70-98</a><br>
-          <a class="link-primary" href="mailto:info@sets.org.ua">info@sets.org.ua</a>
+          <a href="tel:+380000000000">+380000000000</a><br>
+          <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
         </span>
             </div>
         </div>
@@ -290,10 +290,10 @@ else{
             </div>
         </nav>
         <div style="padding: 30px 0 0; border-top: 1px solid #dcdde0; border-bottom: 1px solid #dcdde0" class="contact-info-mini text-center mt-3 d-lg-none">
-            <p><a href="tel:+380443337098">044-333-70-98</a></p>
-            <p><a href="tel:+380508883298">050-888-32-98</a></p>
-            <p><a href="tel:+380988883298">098-888-32-98</a></p>
-            <p><a href="mailto:info@sets.org.ua">info@sets.org.ua</a></p>
+            <p><a href="tel:+380000000000">+380000000000</a></p>
+            <p><a href="tel:+380000000000">+380000000000</a></p>
+            <p><a href="tel:+380000000000">+380000000000</a></p>
+            <p><a href="mailto:mail@mail.ua">mail@mail.ua</a></p>
             <ul class="navbar-nav flex-row social justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
@@ -315,7 +315,7 @@ else{
         <div class="copyright mt-2">
             <div class="row">
                 <div class="col d-none d-lg-block">
-                    <p>&copy; 2017, <a class="link-copyright" href="/">sets.org.ua</a></p>
+                    <p>&copy; 2017, <a class="link-copyright" href="/">Електронний торговий майданчик</a></p>
                 </div>
                 <div class="col text-center text-lg-right">Сайт зроблено — <a href="http://reactlogic.com.ua" class="link-copyright">«React Logic»</a></div>
             </div>

@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>
+<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="logo-prozorro" src="/images/logo-prozorro.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
@@ -37,7 +37,7 @@ AppAsset::register($this);
               </span>
                 <span class="contact-info text-left">
                 <a href="tel:+380988883298">098-888-32-98</a><br>
-                <a class="link-primary" href="mailto:info@sets.org.ua">info@sets.org.ua</a>
+                <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
               </span>
                 <?php if(Yii::$app->user->isGuest): ?>
                     <a href="/user/login" class="btn btn-primary btn-signin">Вхід</a>
@@ -102,7 +102,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 align-self-center">
-                <a href="#"><img class="logo" src="/images/logo.png" alt=""></a>
+<!--                <a href="#"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="logo-prozorro" src="/images/logo-prozorro.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
@@ -113,7 +113,7 @@ AppAsset::register($this);
               </span>
                 <span class="contact-info text-left">
                 <a href="tel:+380988883298">098-888-32-98</a><br>
-                <a class="link-primary" href="mailto:info@sets.org.ua">info@sets.org.ua</a>
+                <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
               </span>
             </div>
         </div>
@@ -166,7 +166,7 @@ AppAsset::register($this);
         <div class="copyright mt-2">
             <div class="row">
                 <div class="col">
-                    <p>&copy; 2017, <a class="link-copyright" href="#">sets.org.ua</a></p>
+                    <p>&copy; 2017, <a class="link-copyright" href="/">Електронний торговий майданчик</a></p>
                 </div>
                 <div class="col text-right">Сайт зроблено — <a href="#" class="link-copyright">«React Logic»</a></div>
             </div>
