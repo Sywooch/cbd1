@@ -118,6 +118,16 @@ JS
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Рішення ФГВ</p>
                                 </div>
+                                <div class="col-md-7">
+                                    <div class="mb-1" id="auction-dgfDecisionID"><?= $model->dgfDecisionID; ?></div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-md-5">
+                                    <p class="subtitle-secondary mb-1">Дата рішення ФГВ</p>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="mb-1" id="auction-dgfDecisionDate"><?= $model->dgfDecisionDate; ?></div>
+                                </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Лоти виставляються</p>
