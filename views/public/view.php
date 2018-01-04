@@ -144,9 +144,6 @@ JS
                                     <?php if(!$model->isEnded): ?>
                                         <?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
                                     <?php endif; ?>
-                                    <?php if(YII_DEBUG): ?>
-                                        <?= Html::a('API', getenv('API_URL') . '/api/' . getenv('API_VERSION') . '/auctions/' . $model->id, ['target' => '_blank']); ?>
-                                    <?php endif; ?>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
