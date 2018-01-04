@@ -73,7 +73,7 @@ JS
                                             <p class="org-telephone"><?= $model->procuringEntity->contactPoint_telephone?></p>
                                             <p class="font-weight-bold mb-0">ЄДРПОУ:</p>
                                             <p class="org-edrpou"><?= $model->procuringEntity->identifier_id?></p>
-                                            <a href="<?=\yii\helpers\Url::to(['/public', 'Auctions' => ['organization' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони замовника</a>
+                                            <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони замовника</a>
                                         </div>
                                     </div>
                                 </div>
