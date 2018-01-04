@@ -50,8 +50,8 @@ JS
                         <span id='auction-procurementMethodType' class='is_debug'><?=$model->procurementMethodType; ?></span>
                     </div>
                     <nav class="nav nav-tabs" id="myTab" role="tablist">
-                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
-                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
+                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab1" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
+                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab1" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-auction" role="tabpanel" aria-labelledby="nav-auction-tab">
@@ -331,7 +331,7 @@ JS
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
-                        <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+                        <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
                             <?php if(count($model->questions) > 0): ?>
                                 <?php foreach($model->questions as $n => $question): $n++; ?>
                                     <div class="row">
