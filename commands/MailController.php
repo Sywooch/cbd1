@@ -25,13 +25,13 @@ class MailController extends Controller
         EmailTasks::updateAll(['process' => '1'], ['id' => $ids]);
 
         foreach($tasks as $task){
-            try{
+//            try{
                 $this->send($task);
-            } catch(\Exception $e){
-                Yii::error('Error while sending email');
-                echo $e->getMessage() . "\n";
-                // $task->updateAttributes(['process' => '0']);
-            }
+//            } catch(\Exception $e){
+//                Yii::error('Error while sending email');
+//                echo $e->getMessage() . "\n";
+//                $task->updateAttributes(['process' => '0']);
+//            }
         }
         foreach($this->checkUnanswered() as $question){
             $user = $question->organizator;
