@@ -412,7 +412,7 @@ JS;
                             <p><?=$model->value_currency?></p>
                         </div>
                     </div>
-                    <?php if($model->award): ?>
+                    <?php if($model->award || ($model->user_id == Yii::$app->user->id)): ?>
                         <div class="row">
                             <div class="col">
                                 <p>Розмір ставки</p>
