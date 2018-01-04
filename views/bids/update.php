@@ -32,41 +32,45 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
 
 ?>
+
 <div class="container">
-    <div class="bids-header">
-        <div class="row align-items-center">
-            <div class="col-lg-3">
-                <h3 class="bids-title"><?= $this->title; ?></h3>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane auctions fade show active" id="nav-auctions" role="tabpanel" aria-labelledby="nav-auctions-tab">
+            <div class="auctions-header">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
+                    </div>
+                </div>
             </div>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+
+            <?php $form = ActiveForm::begin([
+                'options' => [
+                    'enctype' => 'multipart/form-data',
+                ],
+                'action' => Url::to(['upload-document', 'id' => $model->unique_id]),
+            ]); ?>
+
+            <div class="col-md-4">
+                <?=$form->field($file, 'type')->dropDownList($file->bidDocumentTypes()); ?>
+            </div>
+            <div class="col-md-6">
+                <?=$form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
+                    'options' => [],
+                    'pluginOptions' => [
+                        'showUpload' => false,
+                        'showPreview' => false,
+                    ]
+                ]); ?>
+            </div>
+            <div class="col-md-2">
+                <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
+            </div>
+            <?php ActiveForm::end();?>
+
         </div>
     </div>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-    <?php $form = ActiveForm::begin([
-        'options' => [
-            'enctype' => 'multipart/form-data',
-        ],
-        'action' => Url::to(['upload-document', 'id' => $model->unique_id]),
-    ]); ?>
-
-    <div class="col-md-4">
-        <?=$form->field($file, 'type')->dropDownList($file->bidDocumentTypes()); ?>
-    </div>
-    <div class="col-md-6">
-        <?=$form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
-            'options' => [],
-            'pluginOptions' => [
-                'showUpload' => false,
-                'showPreview' => false,
-            ]
-        ]); ?>
-    </div>
-    <div class="col-md-2">
-        <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
-    </div>
-    <?php ActiveForm::end();?>
-
 </div>

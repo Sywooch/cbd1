@@ -16,34 +16,33 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Reupload lot document');
 
 ?>
+
 <div class="container">
-    <div class="panel panel-primary">
-        <div class="panel-body">
-            <div class="document-reupload">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <?=Html::tag('h3', Yii::t('app', 'Reupload lot document'), ['class' => ''])?>
-                    </div>
-                    <div class="col-sm-12">
-                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-                        <div class="col-sm-8">
-                            <?=$form->field($model, 'file')->widget(\kartik\file\FileInput::className(), [
-                                'options' => ['multiple' => false],
-                                'pluginOptions' => ['showUpload' => false, 'showPreview' => false],
-                            ]); ?>
-                        </div>
-                        <div class="col-sm-4">
-                            <?=Html::submitButton(Yii::t('app', 'Reupload'), ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="hidden">
-                                <?=$form->field($model, 'type')->dropDownList($model->lotDocumentTypes()); ?>
-                            </div>
-                        </div>
-                        <?php ActiveForm::end(); ?>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane auctions fade show active" id="nav-auctions" role="tabpanel" aria-labelledby="nav-auctions-tab">
+            <div class="auctions-header">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
                     </div>
                 </div>
             </div>
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+            <div class="col-sm-8">
+                <?=$form->field($model, 'file')->widget(\kartik\file\FileInput::className(), [
+                    'options' => ['multiple' => false],
+                    'pluginOptions' => ['showUpload' => false, 'showPreview' => false],
+                ]); ?>
+            </div>
+            <div class="col-sm-4">
+                <?=Html::submitButton(Yii::t('app', 'Reupload'), ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
+            </div>
+            <div class="col-sm-4">
+                <div class="hidden">
+                    <?=$form->field($model, 'type')->dropDownList($model->lotDocumentTypes()); ?>
+                </div>
+            </div>
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>
