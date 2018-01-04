@@ -247,7 +247,7 @@ JS;
                         <?php endif; ?>
                         <?=Html::a(Yii::t('app', 'Edit'), ['update', 'id' => $model->unique_id], ['class' => 'btn btn-success', 'id' => 'bid-update-btn']); ?>
                     <?php endif; ?>
-                    <?php if($model->status && (strtotime($model->apiAuction->tenderPeriod_endDate) > time()) && $model->apiAuction->procurementMethodType != 'dgfInsider'): ?>
+                    <?php if((strtotime($model->apiAuction->tenderPeriod_endDate) > time()) && ($model->apiAuction->procurementMethodType != 'dgfInsider')): ?>
                         <?= Html::a(Yii::t('app', 'Delete ID'),
                             ['delete', 'id' => $model->unique_id],
                             [
