@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\captcha\Captcha;
 use kartik\file\FileInput;
+use yii\widgets\MaskedInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\OrganizerForm */
@@ -13,22 +13,50 @@ Yii::$app->session->setFlash('success', Yii::t('app', 'Очікується пі
 
 $this->title = Yii::t('app', 'Дані про організацію');
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJS(<<<JS
+    $('input[name="Profile[org_type]"]').on('change', function(e){
+        var type = $(this).val();
+        if(type == 'individual'){
+            $('#profile-firma_full').parents('.form-group').hide();
+            $('#profile-zkpo').parents('.form-group').hide();
+            $('#profile-inn').parents('.form-group').show();
+            $('#profile-passport_number').parents('.form-group').show();
+        }
+        else{
+            $('#profile-inn').parents('.form-group').hide();
+            $('#profile-zkpo').parents('.form-group').show();
+            $('#profile-passport_number').parents('.form-group').hide();
+            $('#profile-firma_full').parents('.form-group').show();
+        }
+        if(type === 'financial'){
+            $('#profile-licensenumber').parents('.form-group').show();
+            $('input[name="Profile[document]"]').parents('.row.align-items-center').show();
+        }
+        else{
+            $('#profile-licensenumber').parents('.form-group').hide();
+            $('input[name="Profile[document]"]').parents('.row.align-items-center').hide();
+        }
+    });
+JS
+);
 ?>
 
 <section class="registration">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xl-9 registration-block">
+
+                <?php $form = ActiveForm::begin([
+                    'options' => [
+                        'enctype' => 'multipart/form-data',
+                    ],
+                    'id' => 'organizer-form',
+                    'enableAjaxValidation' => true,
+                    'enableClientValidation' => false,
+                ]); ?>
                 <div class="row justify-content-center">
                     <div class="col-9">
                         <h3 class="mb-4">Завершення реєстрації</h3>
-                        <?php $form = ActiveForm::begin([
-                            'options' => [
-                                'enctype' => 'multipart/form-data',
-                            ],
-                            'id' => 'organizer-form',
-                            'enableAjaxValidation' => true,
-                        ]); ?>
 
                         <h4>Дані про організацію</h4>
                         <div class="form-group row">
@@ -56,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <?= $form->field($model, 'firma_full', [
-                            'options' => ['class' => 'form-group row'],
+                            'options' => ['class' => 'form-group row', 'style' => $model->org_type === 'individual' ? 'display:none' : ''],
                             'labelOptions' => ['class' => 'col-md-4 col-form-label'],
                             'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>'
                         ]); ?>
@@ -123,6 +151,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'options' => ['class' => 'form-group row'],
                             'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4 col-form-label']
+                        ])->widget(MaskedInput::className(), [
+                            'mask' => '+380999999999',
                         ]); ?>
 
                         <h4>Дані представника організації</h4>
@@ -132,23 +162,34 @@ $this->params['breadcrumbs'][] = $this->title;
                             'options' => ['class' => 'form-group row'],
                             'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4 col-form-label']
+                        ])->label(Yii::t('app', 'ПІБ представника')); ?>
+
+                        <?= $form->field($model, 'licenseNumber', [
+                            'options' => ['class' => 'form-group row', 'style' => $model->org_type != 'financial' ? 'display:none' : ''],
+                            'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>',
+                            'labelOptions' => ['class' => 'col-md-4 col-form-label']
                         ]); ?>
 
                         <?= $form->field($model, 'inn', [
-                            'options' => ['class' => 'form-group row'],
+                            'options' => ['class' => 'form-group row', 'style' => $model->org_type != 'individual' ? 'display:none' : ''],
                             'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4 col-form-label']
-                        ]); ?>
+                        ])->label(Yii::t('app', 'ІПН')); ?>
 
                         <?= $form->field($model, 'passport_number', [
-                            'options' => ['class' => 'form-group row'],
+                            'options' => ['class' => 'form-group row', 'style' => $model->org_type != 'individual' ? 'display:none' : ''],
+                            'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>',
+                            'labelOptions' => ['class' => 'col-md-4 col-form-label']
+                        ])->label(Yii::t('app', 'Серія та номер паспорту')); ?>
+
+                        <?= $form->field($model, 'zkpo', [
+                            'options' => ['class' => 'form-group row', 'style' => $model->org_type != 'financial' ? 'display:none' : ''],
                             'template' => '{label}<div class="col-md-6">{input}{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4 col-form-label']
                         ]); ?>
+                        <hr>
 
-
-                        <h4>Документи (сканкопії)</h4>
-                        <div class="row align-items-center">
+                        <div class="row align-items-center" style="<?= $model->org_type == 'financial' ? '' : 'display:none'; ?>">
                             <div class="col-md-4"><p>Фінансова ліцензія</p></div>
                             <div class="col-md-6">
                                 <?= $form->field($model, 'document')->widget(FileInput::className(), [
@@ -162,20 +203,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row align-items-center">
-                            <div class="col-md-4"><p>Рішення ФГВФО про призначення аукціону</p></div>
-                            <div class="col-md-6">
-                                <?= $form->field($model, 'scan')->widget(FileInput::className(), [
-                                    'pluginOptions' => [
-                                        'showUpload' => false,
-                                        'showCancel' => false,
-                                        'showPreview' => false,
-                                    ]
-                                ])->label(false); ?>
-                            </div>
-                        </div>
-
-                        <div class="row align-items-center">
-                            <div class="col-md-4"><p>Інші документи компанії</p></div>
+                            <div class="col-md-4"><p>Інші документи</p></div>
                             <div class="col-md-6">
                                 <?= $form->field($model, 'documents[]')->widget(FileInput::className(), [
                                     'pluginOptions' => [
@@ -192,9 +220,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= Html::submitButton(Yii::t('app', 'Завершити реєстрацію'), ['class' => 'btn btn-warning']); ?>
                             </div>
                         </div>
-                        <?php $form->end(); ?>
                     </div>
                 </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
