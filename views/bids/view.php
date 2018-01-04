@@ -86,79 +86,7 @@ JS;
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <p>Статус аукціону</p>
-                        </div>
-                        <div class="col">
-                            <p><span class="text-danger font-weight-bold"><?=$model->apiAuction->statusName?></span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Дата проведення аукціону</p>
-                        </div>
-                        <div class="col">
-                            <p><?=Yii::$app->formatter->asDatetime($model->apiAuction->auctionPeriod_startDate)?></p>
-                        </div>
-                    </div>
-                    <?php if($model->participationUrl && ($model->user_id == Yii::$app->user->id)): ?>
-                        <div class="row">
-                            <div class="col">
-                                <p>Посилання для участі</p>
-                            </div>
-                            <div class="col">
-                                <p><?= Html::a($model->participationUrl, $model->participationUrl, ['target' => '_blank']); ?></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                    <div class="row">
-                        <div class="col">
-                            <p>Назва лоту</p>
-                        </div>
-                        <div class="col">
-                            <p><?=$model->apiAuction->title?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Дата публікування заявки</p>
-                        </div>
-                        <div class="col">
-                            <p><?=Yii::$app->formatter->asDatetime($model->date)?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Дата створення запису</p>
-                        </div>
-                        <div class="col">
-                            <p><?=Yii::$app->formatter->asDatetime($model->created_at)?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Валюта</p>
-                        </div>
-                        <div class="col">
-                            <p><?=$model->value_currency?></p>
-                        </div>
-                    </div>
-                    <?php if($model->award || (Yii::$app->user->id == $model->user_id)): ?>
-                        <div class="row">
-                            <div class="col">
-                                <p>Розмір ставки</p>
-                            </div>
-                            <div class="col">
-                                <p id="bids-value_amount"><?=$model->value_amount?></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
 
-                </div>
-            </div>
             <?php if(Yii::$app->user->can('admin')): ?>
                 <?php if($model->accepted == '0' && $model->status == 'draft'): ?>
                     <?=Html::a(Yii::t('app', 'Прийняти'), ['accept', 'id' => $model->unique_id], ['class' => 'btn btn-success']); ?>
@@ -377,7 +305,10 @@ JS;
 
                 <div class="well">
                     <div class="row">
-                        <h3><?=Yii::t('app', 'Upload bid documents'); ?></h3>
+                        <div class="col-md-12">
+                            <hr>
+                            <h3><?=Yii::t('app', 'Upload bid documents'); ?></h3>
+                        </div>
 
                         <?php $form = ActiveForm::begin([
                             'options' => [
@@ -408,46 +339,129 @@ JS;
                 </div>
             <?php endif; ?>
 
-            <h3 class="mb-3 mt-3">Прикладені документи</h3>
-            <?php foreach($model->documents as $document): ?>
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <?=Html::a(Files::documentType($document->type) . ' - (' .  $document->name .')',
-                                $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) .''// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']); ?>
-                            <?php if($document->file_id && (Yii::$app->user->can('org') || Yii::$app->user->can('admin') || (Yii::$app->user->id == $model->user_id))): ?>
-                                <?=Html::a(' (запасная ссылка)' . Files::documentType($document->type) . ' - (' .  $document->name .')', ['/files/download', 'id' => $document->file_id], ['id' => 'document-id']); ?>
-                            <?php endif;?>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-            <?php if($model->award): ?>
-                <?php foreach($model->award->documents as $document): ?>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="row">
                         <div class="col">
-                            <div class="row">
-                                <?=Html::a(Files::documentType($document->type) . ' - (' .  $document->name .')',
-                                    $document->url, ['id' => 'document-id']); ?>
+                            <p>Статус аукціону</p>
+                        </div>
+                        <div class="col">
+                            <p><span class="text-danger font-weight-bold"><?=$model->apiAuction->statusName?></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Дата проведення аукціону</p>
+                        </div>
+                        <div class="col">
+                            <p><?=Yii::$app->formatter->asDatetime($model->apiAuction->auctionPeriod_startDate)?></p>
+                        </div>
+                    </div>
+                    <?php if($model->participationUrl && ($model->user_id == Yii::$app->user->id)): ?>
+                        <div class="row">
+                            <div class="col">
+                                <p>Посилання для участі</p>
+                            </div>
+                            <div class="col">
+                                <p><?= Html::a($model->participationUrl, $model->participationUrl, ['target' => '_blank']); ?></p>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-            <?php if($model->memberAuctionProtocol): ?>
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <?=Html::a(Files::documentType($model->memberAuctionProtocol->type)
-                                . ' - (' .  $model->memberAuctionProtocol->name .') '
-                                . Html::tag('span', 'Завантажено переможцем торгів', ['class' => 'lead']),
-                                $model->memberAuctionProtocol->url,
-                                ['id' => 'document-id']); ?>
-
+                    <?php endif; ?>
+                    <div class="row">
+                        <div class="col">
+                            <p>Назва лоту</p>
+                        </div>
+                        <div class="col">
+                            <p><?=$model->apiAuction->title?></p>
                         </div>
                     </div>
+                    <?php if($model->award && (Yii::$app->user->id != $model->user_id)): ?>
+                        <div class="row">
+                            <div class="col">
+                                <p>Назва організації</p>
+                            </div>
+                            <div class="col">
+                                <p><?=$model->organization->name?> (Контактна особа - <?= $model->organization->contactPoint_name?>, <?= $model->organization->contactPoint_telephone?>)</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="row">
+                        <div class="col">
+                            <p>Дата публікування заявки</p>
+                        </div>
+                        <div class="col">
+                            <p><?=Yii::$app->formatter->asDatetime($model->date)?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Дата створення запису</p>
+                        </div>
+                        <div class="col">
+                            <p><?=Yii::$app->formatter->asDatetime($model->created_at)?></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Валюта</p>
+                        </div>
+                        <div class="col">
+                            <p><?=$model->value_currency?></p>
+                        </div>
+                    </div>
+                    <?php if($model->award): ?>
+                        <div class="row">
+                            <div class="col">
+                                <p>Розмір ставки</p>
+                            </div>
+                            <div class="col">
+                                <p id="bid-value_amount"><?=$model->value_amount?></p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <h3 class="mb-3 mt-3">Прикладені документи</h3>
+                    <?php foreach($model->documents as $document): ?>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <?=Html::a(Files::documentType($document->type) . ' - (' .  $document->name .')',
+                                        $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) .''// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']); ?>
+                                    <?php if($document->file_id && (Yii::$app->user->can('org') || Yii::$app->user->can('admin') || (Yii::$app->user->id == $model->user_id))): ?>
+                                        <?=Html::a(' (запасная ссылка)' . Files::documentType($document->type) . ' - (' .  $document->name .')', ['/files/download', 'id' => $document->file_id], ['id' => 'document-id']); ?>
+                                    <?php endif;?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php if($model->award): ?>
+                        <?php foreach($model->award->documents as $document): ?>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <?=Html::a(Files::documentType($document->type) . ' - (' .  $document->name .')',
+                                            $document->url, ['id' => 'document-id']); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <?php if($model->memberAuctionProtocol): ?>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <?=Html::a(Files::documentType($model->memberAuctionProtocol->type)
+                                        . ' - (' .  $model->memberAuctionProtocol->name .') '
+                                        . Html::tag('span', 'Завантажено переможцем торгів', ['class' => 'lead']),
+                                        $model->memberAuctionProtocol->url,
+                                        ['id' => 'document-id']); ?>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            </div>
         </div>
     </div>
 </main>
