@@ -366,7 +366,7 @@ JS;
                                 <p>Посилання для участі</p>
                             </div>
                             <div class="col">
-                                <p><?= Html::a($model->participationUrl, $model->participationUrl, ['target' => '_blank']); ?></p>
+                                <p><?= Html::a($model->participationUrl, $model->participationUrl, ['target' => '_blank', 'auction-url']); ?></p>
                             </div>
                         </div>
                     <?php endif; ?>
