@@ -74,8 +74,10 @@ use yii\helpers\Url;
                             <span class = 'price-calculate'><?= $model->value_amount?></span>
                             <?= Yii::t('app', $model->value_currency)?>.</p>
                     </div>
-                    <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
-                        ['class' => 'btn btn-primary mt-3'])?>
+                    <?php if((strtotime($model->tenderPeriod_endDate) > time()) && !Yii::$app->user->can('org')): ?>
+                        <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
+                            ['class' => 'btn btn-primary mt-3'])?>
+                    <?php endif; ?>
                     <?= Html::a(Yii::t('app', 'Детальніше'), ['/public/view', 'id' => $model->auctionID],
                         ['class' => 'btn link-secondary'])?>
 
