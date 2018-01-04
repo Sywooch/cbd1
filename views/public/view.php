@@ -399,7 +399,7 @@ JS
                                 }
                                 ?></p>
                         </div>
-                        <?php if(!Yii::$app->user->can('org')): ?>
+                        <?php if(!Yii::$app->user->can('org') && !$model->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
                                 ['class' => 'btn btn-primary btn-block mt-4 mb-3', 'id' => 'bid-create-btn'])?>
                         <?php endif; ?>
