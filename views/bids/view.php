@@ -407,6 +407,47 @@ JS;
                     </div>
                 </div>
             <?php endif; ?>
+
+            <h3 class="mb-3 mt-3">Прикладені документи</h3>
+            <?php foreach($model->documents as $document): ?>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <?=Html::a(Files::documentType($document->type) . ' - (' .  $document->name .')',
+                                $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) .''// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']); ?>
+                            <?php if($document->file_id && (Yii::$app->user->can('org') || Yii::$app->user->can('admin') || (Yii::$app->user->id == $model->user_id))): ?>
+                                <?=Html::a(' (запасная ссылка)' . Files::documentType($document->type) . ' - (' .  $document->name .')', ['/files/download', 'id' => $document->file_id], ['id' => 'document-id']); ?>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <?php if($model->award): ?>
+                <?php foreach($model->award->documents as $document): ?>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <?=Html::a(Files::documentType($document->type) . ' - (' .  $document->name .')',
+                                    $document->url, ['id' => 'document-id']); ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if($model->memberAuctionProtocol): ?>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <?=Html::a(Files::documentType($model->memberAuctionProtocol->type)
+                                . ' - (' .  $model->memberAuctionProtocol->name .') '
+                                . Html::tag('span', 'Завантажено переможцем торгів', ['class' => 'lead']),
+                                $model->memberAuctionProtocol->url,
+                                ['id' => 'document-id']); ?>
+
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </main>
