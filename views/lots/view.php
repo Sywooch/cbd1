@@ -82,7 +82,7 @@ else
                                             'data-method' => 'post',
                                             'confirm' => Yii::t('app', 'Are you sure you want to delete this item?')]);
                                     }
-                                    elseif(Yii::$app->user->can('member') && $model->apiAuction && !$model->apiAuction->isEnded && (strtotime($model->apiAuction->tenderPeriod_endDate) > time())){
+                                    elseif(Yii::$app->user->can('member') && $model->apiAuction && !$model->apiAuction->isEnded){
                                         echo Html::a(Yii::t('app', 'CreateBid ID'), ['/bids/create', 'id' => $model->apiAuction->unique_id], ['class' => 'nav-item nav-link auctions-control-publish', 'id' => 'create-bid-btn']);
                                     } ?>
                                 </div>
