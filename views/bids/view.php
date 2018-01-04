@@ -21,7 +21,7 @@ $file = new \app\models\Files([
 
 $documentTypes = $file->bidDocumentTypes();
 
-$procurementMethod = $model->apiAuction ? $model->apiAuction->procurementMethodType : $model->lot->procurementMethodType;
+$procurementMethodType = $model->apiAuction ? $model->apiAuction->procurementMethodType : $model->lot->procurementMethodType;
 
 $licenseRequired = $model->apiAuction ? $model->apiAuction->licenseRequired : $model->lot->procurementMethodType == 'dgfFinancialAssets';
 
@@ -346,7 +346,10 @@ JS;
                             <p>Статус аукціону</p>
                         </div>
                         <div class="col">
-                            <p><span class="text-danger font-weight-bold"><?=$model->apiAuction->statusName?></span></p>
+                            <p>
+                                <span class="text-danger font-weight-bold"><?=$model->apiAuction->statusName?></span>
+                                <span class="is_debug" id="auction-procurementMethodType"><?= $procurementMethodType; ?></span>
+                            </p>
                         </div>
                     </div>
                     <div class="row">
