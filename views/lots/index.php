@@ -58,22 +58,24 @@ JS
             <div class="auctions-header">
                 <div class="row align-items-center">
                     <div class="col-lg-3">
-                        <h3 class="auctions-title">Мої аукціони</h3>
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
                     </div>
-                    <div class="col-lg-9">
-                        <nav class="navbar navbar-expand-md sticky-top navbar-light">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#auctionsControls" aria-controls="auctionsControls" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="auctionsControls">
-                                <div class="navbar-nav">
-                                    <a class="nav-item nav-link auctions-control-edit" id = "auctions-details-btn" href="#">Редагувати</a>
-                                    <a class="nav-item nav-link auctions-control-copy" id = "auctions-copy-btn" href="#">Створити копію</a>
-                                    <a class="nav-item nav-link auctions-control-trash" id = "auctions-delete-btn" href="#">Видалити</a>
+                    <?php if(Yii::$app->user->can('org')): ?>
+                        <div class="col-lg-9">
+                            <nav class="navbar navbar-expand-md sticky-top navbar-light">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#auctionsControls" aria-controls="auctionsControls" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="auctionsControls">
+                                    <div class="navbar-nav">
+                                        <a class="nav-item nav-link auctions-control-edit" id = "auctions-details-btn" href="#">Редагувати</a>
+                                        <a class="nav-item nav-link auctions-control-copy" id = "auctions-copy-btn" href="#">Створити копію</a>
+                                        <a class="nav-item nav-link auctions-control-trash" id = "auctions-delete-btn" href="#">Видалити</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </nav>
-                    </div>
+                            </nav>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <?= GridView::widget([
@@ -183,4 +185,3 @@ JS
 
     </div>
 </div>
-</main>
