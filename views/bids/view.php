@@ -104,6 +104,16 @@ JS;
                             <p><?=Yii::$app->formatter->asDatetime($model->apiAuction->auctionPeriod_startDate)?></p>
                         </div>
                     </div>
+                    <?php if($model->participationUrl && ($model->user_id == Yii::$app->user->id)): ?>
+                        <div class="row">
+                            <div class="col">
+                                <p>Посилання для участі</p>
+                            </div>
+                            <div class="col">
+                                <p><?= Html::a($model->participationUrl, $model->participationUrl, ['target' => '_blank']); ?></p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="row">
                         <div class="col">
                             <p>Назва лоту</p>
