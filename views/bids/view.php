@@ -357,19 +357,22 @@ JS;
 
             <!--      MEMBER      -->
             <?php if(Yii::$app->user->can('member') && $model->user_id == Yii::$app->user->id): ?>
-                <?php if(!$model->award): ?> <!-- doesn`t have award -->
-                    <?php if($model->status == 'draft' && (!$model->apiAuction->isEnded) && (strtotime($model->apiAuction->tenderPeriod_endDate) > time())): ?>
-                        <?= Html::a(Yii::t('app', 'Activate'),
-                            getenv('TRICK') == '1' ? ($model->accepted == '1' ? ['activate', 'id' => $model->unique_id] : false) : ['activate', 'id' => $model->unique_id],
-                            [
-                                'class' => 'btn btn-success',
-                                'id' => 'bid-activate-btn',
-                                'disabled' => getenv('TRICK') == '1' ? ($model->accepted == '0' ? 'disabled' : false) : false,
-                                'data' => [
-                                    'method' => 'POST',
-                                ]
-                            ]);?>
-                        <?=Html::a(Yii::t('app', 'Edit'), ['update', 'id' => $model->unique_id], ['class' => 'btn btn-success']); ?>
+                <?php if(!$model->award): ?>
+                    <!-- doesn`t have award -->
+                    <?php if(!$model->apiAuction->isEnded && (strtotime($model->apiAuction->tenderPeriod_endDate) > time())): ?>
+                        <?php if($model->status == 'draft'): ?>
+                            <?= Html::a(Yii::t('app', 'Activate'),
+                                getenv('TRICK') == '1' ? ($model->accepted == '1' ? ['activate', 'id' => $model->unique_id] : false) : ['activate', 'id' => $model->unique_id],
+                                [
+                                    'class' => 'btn btn-success',
+                                    'id' => 'bid-activate-btn',
+                                    'disabled' => getenv('TRICK') == '1' ? ($model->accepted == '0' ? 'disabled' : false) : false,
+                                    'data' => [
+                                        'method' => 'POST',
+                                    ]
+                                ]);?>
+                        <?php endif; ?>
+                        <?=Html::a(Yii::t('app', 'Edit'), ['update', 'id' => $model->unique_id], ['class' => 'btn btn-success', 'id' => 'bid-update-btn']); ?>
                     <?php endif; ?>
                     <?php if($model->status && (strtotime($model->apiAuction->tenderPeriod_endDate) > time()) && $model->apiAuction->procurementMethodType != 'dgfInsider'): ?>
                         <?= Html::a(Yii::t('app', 'Delete ID'),
@@ -379,7 +382,7 @@ JS;
                                 'id' => 'bid-delete-btn',
                                 'data' => [
                                     'method' => 'post',
-                                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                                    // 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                                 ]
                             ]);?>
                     <?php endif; ?>
