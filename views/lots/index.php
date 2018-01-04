@@ -4,14 +4,12 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use api\Auctions;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\LotSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'YouLots ID');
+$this->title = Yii::$app->user->can('org') ? Yii::t('app', 'Мої аукціони') : Yii::t('app', 'Аукціони');
 $this->params['breadcrumbs'][] = $this->title;
 
 $delete = Url::to(['/lots/remove-all']);
@@ -37,7 +35,6 @@ $('#auctions-delete-btn').on('click', function(){
             type: 'POST',
             url: "$delete",
             data: {ids:rows },
-
             success: function(data){
             console.log(rows);
         }
@@ -91,9 +88,6 @@ JS
                     }
                 },
                 'columns' => [
-                    // ['class' => 'yii\grid\SerialColumn'],
-
-                    //                        'id',
                     [
                         'class' => 'yii\grid\CheckboxColumn'
                     ],
@@ -112,25 +106,8 @@ JS
                         'attribute' => 'organizerName',
                         'visible' => Yii::$app->user->can('admin'),
                     ],
-                    //'start_price',
                     'num',
-                    //'description',
-                    //'step',
-                    // 'docs_id',
-                    // 'address',
-                    //'delivery_time:datetime',
-                    // 'delivery_term',
-                    // 'requires',
-                    //'payment_term',
-                    // 'payment_order',
-                    // 'member_require',
-                    // 'member_docs',
-                    // 'requisites_id',
-                    // 'notes',
-                    // 'dogovor_id',
-                    //'date',
                     'auction_date:datetime',
-                    //'date:datetime',
                     [
                         'attribute' => 'published',
                         'format' => 'raw',
@@ -161,12 +138,12 @@ JS
                                 return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['update', 'id' => $key], ['id' => 'update-btn']);
                             },
                             'view' => function($url, $model, $key){
-                                return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['view', 'id' => $key], ['id' => 'view-btn']);
+                                return Html::a('<i class="fa fa-eye"></i>', ['view', 'id' => $key], ['id' => 'view-btn']);
                             },
                             'delete' => function($url, $model, $key){
                                 if(!Yii::$app->user->can('org') || $model->user_id != Yii::$app->user->id || $model->apiAuction) return '';
                                 return Html::a(
-                                    '<i class="glyphicon glyphicon-trash"></i>',
+                                    '<i class="fa fa-trash"></i>',
                                     ['delete', 'id' => $key],
                                     [
                                         'id' => 'delete-btn',
@@ -182,6 +159,5 @@ JS
                 ],
             ]); ?>
         </div>
-
     </div>
 </div>
