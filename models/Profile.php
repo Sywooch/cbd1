@@ -77,7 +77,7 @@ class Profile extends \dektrium\user\models\Profile
                 'required',
                 'when' => function($model){ return $model->org_type != 'individual'; },
                 'whenClient' => 'function(){return $("#profile-org_type input:checked").val() != "individual"}'],
-            ['inn', 'integer'],
+            ['inn', 'integer', 'min' => 00000001, 'max' => 999999999999],
             [['zkpo'], 'safe'],
             [['postal_code'], 'integer',],
             [['f_address'], 'string', 'max' => 500],

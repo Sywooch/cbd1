@@ -136,14 +136,16 @@ JS;
                             <p><?=$model->value_currency?></p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Розмір ставки</p>
+                    <?php if($model->award || (Yii::$app->user->id == $model->user_id)): ?>
+                        <div class="row">
+                            <div class="col">
+                                <p>Розмір ставки</p>
+                            </div>
+                            <div class="col">
+                                <p id="bids-value_amount"><?=$model->value_amount?></p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <p><?=$model->value_amount?></p>
-                        </div>
-                    </div>
+                    <?php endif; ?>
 
                     <h3 class="mb-3 mt-3">Прикладені документи</h3>
                     <?php if($model->documents

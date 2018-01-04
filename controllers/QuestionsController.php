@@ -69,9 +69,8 @@ class QuestionsController extends Controller
         if($auction->baseAuction && $auction->baseAuction->user_id == Yii::$app->user->id){
             throw new ForbiddenHttpException();
         }
-
         if((strtotime($auction->enquiryPeriod_endDate)) <= time()){
-            Yii::$app->session->setFlash('danger', Yii::t('app', 'Can add question only in enquiryPeriod'));
+            Yii::$app->session->setFlash('info', Yii::t('app', 'Can add question only in enquiryPeriod'));
             return $this->redirect(Url::previous());
         }
         if(false == ($lot = Lots::findOne(['id' => $auction->baseAuction_id]))){
@@ -114,10 +113,9 @@ class QuestionsController extends Controller
                             '/questions/answer',
                             'id' => $model->unique_id,
                         ], true)), true);
-
-
+            return $this->redirect(['/public/view', 'id' => $auction->auctionID]);
         }
-        return $this->redirect(Url::previous());
+        return $this->render('create', ['model' => $model]);
     }
 
     public function actionAnswer($id)
