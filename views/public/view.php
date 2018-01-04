@@ -141,7 +141,9 @@ JS
                                     <p class="subtitle-secondary mb-1">Посилання на аукціон</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                    <?php if(!$model->isEnded): ?>
+                                        <?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                    <?php endif; ?>
                                     <?php if(YII_DEBUG): ?>
                                         <?= Html::a('API', getenv('API_URL') . '/api/' . getenv('API_VERSION') . '/auctions/' . $model->id, ['target' => '_blank']); ?>
                                     <?php endif; ?>
