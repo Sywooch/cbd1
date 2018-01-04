@@ -418,7 +418,7 @@ JS;
                                 <p>Розмір ставки</p>
                             </div>
                             <div class="col">
-                                <p id="bid-value_amount"><?=$model->value_amount?></p>
+                                <p id="bids-value_amount"><?=$model->value_amount?></p>
                             </div>
                         </div>
                     <?php endif; ?>
