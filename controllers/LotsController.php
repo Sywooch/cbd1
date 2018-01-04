@@ -56,7 +56,7 @@ class LotsController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['org'],
+                        'roles' => ['org', 'admin'],
                     ],
                     [
                         'allow' => true,
