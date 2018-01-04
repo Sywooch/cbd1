@@ -424,6 +424,7 @@ JS;
                 <?php endif; ?> <!-- END IS AWARD -->
             <?php endif; ?>
 
+
             <?php if(($model->user_id == Yii::$app->user->id) && (strtotime($model->apiAuction->tenderPeriod_endDate) > time())): ?>
 
                 <div class="well">
@@ -436,21 +437,23 @@ JS;
                             ],
                             'action' => Url::to(['upload-document', 'id' => $model->unique_id]),
                         ]); ?>
+                        <div class="row">
 
-                        <div class="col-md-4">
-                            <?=$form->field($file, 'type')->dropDownList($documentTypes); ?>
-                        </div>
-                        <div class="col-md-6">
-                            <?=$form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
-                                'options' => [],
-                                'pluginOptions' => [
-                                    'showUpload' => false,
-                                    'showPreview' => false,
-                                ]
-                            ]); ?>
-                        </div>
-                        <div class="col-md-2">
-                            <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
+                            <div class="col-md-4">
+                                <?=$form->field($file, 'type')->dropDownList($documentTypes); ?>
+                            </div>
+                            <div class="col-md-6">
+                                <?=$form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
+                                    'options' => [],
+                                    'pluginOptions' => [
+                                        'showUpload' => false,
+                                        'showPreview' => false,
+                                    ]
+                                ]); ?>
+                            </div>
+                            <div class="col-md-2">
+                                <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
+                            </div>
                         </div>
                         <?php ActiveForm::end();?>
                     </div>
