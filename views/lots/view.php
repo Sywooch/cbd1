@@ -146,7 +146,7 @@ else
                             <p>Назва аукціону</p>
                         </div>
                         <div class="col">
-                            <p><?= $model->name?></p>
+                            <p id="lots-name"><?= $model->name?></p>
                         </div>
                     </div>
                     <div class="row">

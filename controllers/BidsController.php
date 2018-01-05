@@ -419,7 +419,7 @@ class BidsController extends Controller
                 $text = Yii::t('app', 'Організатор аукціону завантажив та підтвердив протокол аукціону. {link}', [
                     'link' => Html::a(Yii::t('app', 'View'), Url::to(['/bids/view', 'id' => $id], true)),
                 ]);
-                Yii::createObject(Messages::className())->sendMessage($bid->user_id, $text, true);
+                Yii::createObject(Messages::className())->sendMessage($model->user_id, $text, true);
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Protocol has been confirmed'));
             }
 
