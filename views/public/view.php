@@ -142,7 +142,7 @@ JS
                                 </div>
                                 <div class="col-md-7">
                                     <?php if(!$model->isEnded && $model->auctionUrl): ?>
-                                    <?php if(false == ($bid = Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
+                                    <?php if(false == ($bid = \api\Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
                                         <div class="col-md-12 text-left"><?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
                                         </div>
                                     <?php else: ?>
