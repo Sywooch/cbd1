@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use app\models\Files;
 use kartik\datetime\DateTimePicker;
@@ -419,7 +420,7 @@ JS;
                                 <p>Розмір ставки</p>
                             </div>
                             <div class="col">
-                                <p id="bids-value_amount"><?=$model->value_amount?></p>
+                                <p id="bids-value_amount"><?=$model->value_amount > 0 ? $model->value_amount : $model->apiAuction->value_amount; ?></p>
                             </div>
                         </div>
                     <?php endif; ?>
