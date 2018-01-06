@@ -10,6 +10,12 @@ use yii\web\UploadedFile;
 use yii\db\ActiveRecord;
 
 
+/**
+ * @property string $user_id
+ * @property string $bid_id
+**/
+
+
 class Files extends ActiveRecord
 {
 

@@ -25,8 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 $model->rememberMe = 1;
 ?>
 
-<?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
-
 <section class="login">
   <div class="container">
     <div class="row justify-content-center">

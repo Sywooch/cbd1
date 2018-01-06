@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use app\models\Files;
 use kartik\datetime\DateTimePicker;
@@ -245,7 +244,9 @@ JS;
                                     ]
                                 ]);?>
                         <?php endif; ?>
-                        <?=Html::a(Yii::t('app', 'Edit'), ['update', 'id' => $model->unique_id], ['class' => 'btn btn-success', 'id' => 'bid-update-btn']); ?>
+                        <?php if(strtotime($model->apiAuction->tenderPeriod_endDate) > time()): ?>
+                            <?=Html::a(Yii::t('app', 'Edit'), ['update', 'id' => $model->unique_id], ['class' => 'btn btn-success', 'id' => 'bid-update-btn']); ?>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <?php if((strtotime($model->apiAuction->tenderPeriod_endDate) > time()) && ($model->apiAuction->procurementMethodType != 'dgfInsider')): ?>
                         <?= Html::a(Yii::t('app', 'Delete ID'),
