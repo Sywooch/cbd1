@@ -141,8 +141,13 @@ JS
                                     <p class="subtitle-secondary mb-1">Посилання на аукціон</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <?php if(!$model->isEnded): ?>
-                                        <?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                    <?php if(!$model->isEnded && $model->auctionUrl): ?>
+                                    <?php if(false == ($bid = Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
+                                        <div class="col-md-12 text-left"><?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                        </div>
+                                    <?php else: ?>
+                                    <div class="col-md-12 text-left"><?= $bid->participationUrl ? Html::a($bid->participationUrl, $bid->participationUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
                                 <div class="w-100"></div>
