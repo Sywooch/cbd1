@@ -120,6 +120,7 @@ JS;
 
                 $contract = $model->contract;
                 $contract->dateSigned = date('Y-m-d H:i', strtotime($model->award->complaintPeriod_startDate));;
+                $contract->contractNumber = '1';
 
                 echo $form->field($contract, 'dateSigned')->widget(DateTimePicker::className(), [
                     'name' => 'date',
