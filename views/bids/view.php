@@ -140,9 +140,8 @@ JS;
             <?php if(Yii::$app->user->can('org') && $model->apiAuction && $model->apiAuction->lot && $model->apiAuction->lot->user_id == Yii::$app->user->id): ?>
 
                 <?php if($model->award): ?>
-                    <?php DMF(); ?>
                     <!-- VERIFICATION -->
-                    <?php if($model->award->status = 'pending.verification'): ?>
+                    <?php if($model->award->status == 'pending.verification'): ?>
                         <?php if($model->orgAuctionProtocol && !$model->apiAuction->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Confirm protocol'),
                                 ['confirm-protocol', 'id' => $model->unique_id],
@@ -160,7 +159,7 @@ JS;
                     <?php endif; ?>
                     <!-- END VERIFICATION -->
                     <!-- PAYMENT -->
-                    <?php if(in_array($model->award->status,  ['pending.payment', 'pending.verification'])): ?>
+                    <?php if($model->award->status == 'pending.payment'): ?>
                         <?= Html::a(Yii::t('app', 'Confirm payment'),
                             ['confirm-award', 'id' => $model->unique_id],
                             [
