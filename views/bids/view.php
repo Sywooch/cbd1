@@ -118,13 +118,16 @@ JS;
 
                 $messages = new \app\models\Messages();
 
-                echo $form->field($model->contract, 'dateSigned')->widget(DateTimePicker::className(), [
+                $contract = $model->contract;
+                $contract->dateSigned = date('Y-m-d H:i', strtotime($model->award->complaintPeriod_startDate));;
+
+                echo $form->field($contract, 'dateSigned')->widget(DateTimePicker::className(), [
                     'name' => 'date',
                     'options' => ['placeholder' => Yii::t('app', 'Select date of contract signing'), 'id' => 'contract-signed-input'],
                     'pluginOptions' => ['autoclose' => true],
-                ])->hint($model->contract->hint);
+                ])->hint($contract->hint);
 
-                echo $form->field($model->contract, 'contractNumber')->textInput();
+                echo $form->field($contract, 'contractNumber')->textInput();
 
                 echo Html::submitButton(Yii::t('app', 'Send ID'), ['class' => 'btn btn-primary', 'id' => 'contract-signed-submit']);
 
@@ -235,7 +238,8 @@ JS;
                                     ],
                                 ]); ?>
                         <?php endif; ?>
-                        <?php if(strtotime($model->apiAuction->tenderPeriod_endDate) > time()): ?>
+                        <?php if((strtotime($model->apiAuction->tenderPeriod_endDate) > time()) &&
+                            ($model->apiAuction->procurementMethodType != 'dgfInsider')): ?>
                             <?= Html::a(Yii::t('app', 'Edit'), ['update', 'id' => $model->unique_id], ['class' => 'btn btn-success', 'id' => 'bid-update-btn']); ?>
                         <?php endif; ?>
                     <?php endif; ?>
