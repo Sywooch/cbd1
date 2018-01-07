@@ -134,17 +134,10 @@ JS;
             } ?>
 
             <?php if(Yii::$app->user->can('org') && $model->apiAuction && $model->apiAuction->lot && $model->apiAuction->lot->user_id == Yii::$app->user->id): ?>
-                <!-- NOT PUBLISHED -->
-                <?php if(!$model->id): ?>
-                    <?php if(($model->apiAuction->procurementMethodType == 'dgfFinancialAssets') && !$model->financialLicense): ?>
-                        <p class="lead"><?= Yii::t('app', 'Waiting for uploading financial license'); ?></p>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <!-- END IS NOT PUBLISHED -->
 
                 <?php if($model->award): ?>
                     <!-- VERIFICATION -->
-                    <?php if(in_array($model->award->status, ['pending.verification', 'pending.payment'])): ?>
+                    <?php if($model->award->status = 'pending.verification'): ?>
                         <?php if($model->orgAuctionProtocol && !$model->apiAuction->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Confirm protocol'),
                                 ['confirm-protocol', 'id' => $model->unique_id],
@@ -162,16 +155,17 @@ JS;
                     <?php endif; ?>
                     <!-- END VERIFICATION -->
                     <!-- PAYMENT -->
-                    <?php if($model->award->status == 'pending.payment'): ?><?= Html::a(Yii::t('app', 'Confirm payment'),
-                        ['confirm-award', 'id' => $model->unique_id],
-                        [
-                            'class' => 'btn btn-success',
-                            'id' => 'confirm-payment-btn',
-                            'data' => [
+                    <?php if($model->award->status == 'pending.payment'): ?>
+                        <?= Html::a(Yii::t('app', 'Confirm payment'),
+                            ['confirm-award', 'id' => $model->unique_id],
+                            [
+                                'class' => 'btn btn-success',
+                                'id' => 'confirm-payment-btn',
+                                'data' => [
 //                                'confirm' => Yii::t('app', 'Are you sure?'),
-                                'method' => 'post',
-                            ],
-                        ]); ?>
+                                    'method' => 'post',
+                                ],
+                            ]); ?>
                     <?php endif; ?>
                     <!-- END PAYMENT -->
                     <!-- UNSUCCESSFUL -->
@@ -260,7 +254,7 @@ JS;
                     <!-- end doesn`t have award -->
 
                 <?php else: ?> <!-- IS AWARD -->
-                    <?php if(in_array($model->award->status, ['pending.verification', 'pending.payment'])): ?>
+                    <?php if($model->award->status = 'pending.verification'): ?>
                         <?php if(!$model->memberAuctionProtocol): ?>
                             <h3><?= Yii::t('app', 'Your bid is awarded. You can {upload} the auction protocol',
                                     [
@@ -439,7 +433,7 @@ JS;
                             <div class="col">
                                 <div class="row">
                                     <?= Html::a(Files::documentType($document->type) . ' - (' . $document->name . ')',
-                                        $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) . ''// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']);  ?>
+                                        $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) . ''// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']);   ?>
                                     <?php if($document->file_id && (Yii::$app->user->can('org') || Yii::$app->user->can('admin') || (Yii::$app->user->id == $model->user_id))): ?>
                                         <?= Html::a(' (запасная ссылка)' . Files::documentType($document->type) . ' - (' . $document->name . ')', ['/files/download', 'id' => $document->file_id], ['id' => 'document-id']); ?>
                                     <?php endif; ?>
