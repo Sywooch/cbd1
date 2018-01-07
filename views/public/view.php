@@ -141,14 +141,12 @@ JS
                                     <p class="subtitle-secondary mb-1">Посилання на аукціон</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <?php if($model->auctionUrl): ?>
-                                        <?php if(false == ($bid = \api\Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
-                                            <div class="col-md-12 text-left"><?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
-                                            </div>
-                                        <?php else: ?><?= $bid->participationUrl ? Html::a
-                                        ($bid->participationUrl, $bid->participationUrl,
-                                            ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
-                                        <?php endif; ?>
+                                    <?php if(false == ($bid = \api\Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
+                                        <div class="col-md-12 text-left"><?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                        </div>
+                                    <?php else: ?><?= $bid->participationUrl ? Html::a
+                                    ($bid->participationUrl, $bid->participationUrl,
+                                        ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
                                     <?php endif; ?>
                                 </div>
                                 <div class="w-100"></div>
@@ -298,8 +296,8 @@ JS
                                     if($modelBid->award && ($modelBid->award->status == 'unsuccessful')){
                                         $bidNumber--;
                                         $awardNumber--;
-                                        $n++;
                                     };
+                                    $n++;
                                     ?>
                                     <h3>
                                         <?=Html::a(Yii::t('app', "Учасник  № $n"),

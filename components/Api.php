@@ -173,7 +173,7 @@ class Api extends Component
         $auctionData = $auction->toArray();
 
         if(YII_DEBUG) {
-            $auctionData['procurementMethodDetails'] = 'quick, accelerator=1440';
+            $auctionData['procurementMethodDetails'] = 'quick, accelerator=28800';
             $auctionData['submissionMethodDetails'] = 'quick';
         }
 
