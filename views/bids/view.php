@@ -362,6 +362,15 @@ JS;
                             <p><?=Yii::$app->formatter->asDatetime($model->apiAuction->auctionPeriod_startDate)?></p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Закінчення прийому заявок</p>
+                        </div>
+                        <div class="col">
+                            <p id="auction-tenderPeriod_endDate"><?=Yii::$app->formatter->asDatetime
+                                ($model->apiAuction->tenderPeriod_endDate)?></p>
+                        </div>
+                    </div>
                     <?php if($model->participationUrl && ($model->user_id == Yii::$app->user->id)): ?>
                         <div class="row">
                             <div class="col">
