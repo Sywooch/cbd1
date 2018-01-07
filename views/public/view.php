@@ -294,8 +294,8 @@ JS
                                 <?php foreach ($model->bids as $n => $modelBid): ?>
                                     <?php
                                     if($modelBid->award && ($modelBid->award->status == 'unsuccessful')){
-                                        $bidNumber--;
-                                        $awardNumber--;
+                                        //$bidNumber--;
+                                        //$awardNumber--;
                                     };
                                     $n++;
                                     ?>

@@ -120,7 +120,6 @@ JS;
 
                 $contract = $model->contract;
                 $contract->dateSigned = date('Y-m-d H:i', strtotime($model->award->complaintPeriod_startDate));;
-                $contract->contractNumber = 1;
 
                 echo $form->field($contract, 'dateSigned')->widget(DateTimePicker::className(), [
                     'name' => 'date',
@@ -140,8 +139,9 @@ JS;
             <?php if(Yii::$app->user->can('org') && $model->apiAuction && $model->apiAuction->lot && $model->apiAuction->lot->user_id == Yii::$app->user->id): ?>
 
                 <?php if($model->award): ?>
+                    <?php DMF(); ?>
                     <!-- VERIFICATION -->
-                    <?php if($model->award->status == 'pending.verification'): ?>
+                    <?php if($model->award->status = 'pending.verification'): ?>
                         <?php if($model->orgAuctionProtocol && !$model->apiAuction->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Confirm protocol'),
                                 ['confirm-protocol', 'id' => $model->unique_id],
@@ -252,7 +252,6 @@ JS;
                                 'id' => 'bid-delete-btn',
                                 'data' => [
                                     'method' => 'post',
-                                    // 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                                 ],
                             ]); ?>
                     <?php endif; ?>
@@ -307,34 +306,31 @@ JS;
                             <h3><?= Yii::t('app', 'Upload bid documents'); ?></h3>
                         </div>
 
-                        <div class="col-md-12">
+                        <?php $form = ActiveForm::begin([
+                            'options' => [
+                                'enctype' => 'multipart/form-data',
+                            ],
+                            'action' => Url::to(['upload-document', 'id' => $model->unique_id]),
+                        ]); ?>
+                        <div class="row">
 
-                            <?php $form = ActiveForm::begin([
-                                'options' => [
-                                    'enctype' => 'multipart/form-data',
-                                ],
-                                'action' => Url::to(['upload-document', 'id' => $model->unique_id]),
-                            ]); ?>
-                            <div class="row">
-
-                                <div class="col-md-4">
-                                    <?= $form->field($file, 'type')->dropDownList($documentTypes); ?>
-                                </div>
-                                <div class="col-md-6">
-                                    <?= $form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
-                                        'options' => [],
-                                        'pluginOptions' => [
-                                            'showUpload' => false,
-                                            'showPreview' => false,
-                                        ],
-                                    ]); ?>
-                                </div>
-                                <div class="col-md-2">
-                                    <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
-                                </div>
+                            <div class="col-md-4">
+                                <?= $form->field($file, 'type')->dropDownList($documentTypes); ?>
                             </div>
-                            <?php ActiveForm::end(); ?>
+                            <div class="col-md-6">
+                                <?= $form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
+                                    'options' => [],
+                                    'pluginOptions' => [
+                                        'showUpload' => false,
+                                        'showPreview' => false,
+                                    ],
+                                ]); ?>
+                            </div>
+                            <div class="col-md-2">
+                                <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
+                            </div>
                         </div>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
             <?php endif; ?>
