@@ -274,7 +274,6 @@ JS;
                         <h3><?= Html::a(Yii::t('app', 'Cancel my bid'), ['cancel', 'id' => $model->unique_id], [
                                 'class' => 'btn btn-danger',
                                 'id' => 'cancel-bid-btn',
-//                                'data' => ['method' => 'post', 'confirm' => Yii::t('app', 'Are you sure you want to cancel your bid?')],
                             ]); ?></h3>
                     <?php elseif($model->award->status == 'pending.payment'): ?>
                         <h3><?= Yii::t('app', 'Waiting for payment confirm'); ?></h3>
