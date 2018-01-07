@@ -68,7 +68,10 @@ class AuctionsSearch extends Auctions
             return $dataProvider;
         }
 
-        $query->joinWith(['procuringEntity', 'items']);
+        $query->joinWith(['procuringEntity']);
+        if($this->cav || $this->region){
+            $query->joinWith(['items']);
+        }
 
         $query->andFilterWhere([
             'or',

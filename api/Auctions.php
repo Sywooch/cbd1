@@ -400,7 +400,7 @@ class Auctions extends ActiveRecord
 
     /** @returns ActiveQuery|Items[] */
     public function getItems(){
-        return $this->hasMany(Items::className(), ['api_auction_id' => 'unique_id'])->orderBy(['api_items.created_at' => SORT_ASC]);
+        return $this->hasMany(Items::className(), ['api_auction_id' => 'unique_id']);
     }
 
     public function getItemsClassifications(){
