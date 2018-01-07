@@ -349,16 +349,15 @@ JS;
                             </p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Статус заявки</p>
-                        </div>
-                        <div class="col">
-                            <p>
 
-                                <?php if($model->award): ?>
+                    <?php if($model->award): ?>
+                        <div class="row">
+                            <div class="col">
+                                <p>Статус заявки</p>
+                            </div>
+                            <div class="col">
+                                <p>
                                     <?php
-
                                     $awardsCount = \api\Awards::find()
                                         ->where(['auction_id'=> $model->award->auction_id])
                                         ->andWhere(['<', 'unique_id', $model->award->unique_id])
@@ -407,13 +406,13 @@ JS;
                                     <?=Html::tag('p', Yii::t('app', $statusName), ['class' => 'btn btn-' . $class])
                                     ; ?>
                                     <?=Html::tag('span', $model->award->status, ['class' => 'is_debug']); ?>
-                                <?php endif; ?>
-                                <?php if($model->award && $model->award->status == 'active'):?>
-                                    <span class="label label-success"><?=Yii::t('app', 'Winner'); ?></span>
-                                <?php endif; ?>
-                            </p>
+                                    <?php if($model->award && $model->award->status == 'active'):?>
+                                        <span class="label label-success"><?=Yii::t('app', 'Winner'); ?></span>
+                                    <?php endif; ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                     <div class="row">
                         <div class="col">
                             <p>Дата проведення аукціону</p>
@@ -467,71 +466,6 @@ JS;
                         </div>
                         <div class="col">
                             <p><?= Yii::$app->formatter->asDatetime($model->date) ?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Статус заявки</p>
-                        </div>
-                        <div class="col">
-                            <p>
-
-                                <?php if($model->award): ?>
-                                    <?php
-
-                                    $awardsCount = \api\Awards::find()
-                                        ->where(['auction_id'=> $model->award->auction_id])
-                                        ->andWhere(['<', 'unique_id', $model->award->unique_id])
-                                        ->count();
-                                    switch($model->award->status){
-                                        case 'pending.verification':
-                                            if($awardsCount < 2){
-                                                $class = 'success';
-                                                $statusName = 'Очікується завантаження протоколу';
-                                            }
-                                            else{
-                                                $class = 'default';
-                                                $statusName = 'Учасник, що не бере участі';
-                                            }
-                                            break;
-                                        case 'pending.payment':
-                                            $class = 'warning';
-                                            $statusName = 'Waiting for payment';
-                                            break;
-                                        case 'unsuccessful':
-                                            $class = 'danger';
-                                            $statusName = 'Disqualified';
-                                            break;
-                                        case 'active':
-                                            $class = 'success';
-                                            $statusName = 'Winner';
-                                            break;
-                                        case 'pending.waiting':
-                                            $class = 'default';
-                                            if($awardsCount < 2){
-                                                $statusName = 'Second';
-                                            }
-                                            else{
-                                                $statusName = 'Учасник, що не бере участі';
-                                            }
-                                            break;
-                                        case 'cancelled':
-                                            $class = 'default';
-                                            $statusName = 'Скасовано учасником';
-                                            break;
-                                        default:
-                                            $class = 'default';
-                                            $status = ' ';
-                                    }
-                                    ?>
-                                    <?=Html::tag('p', Yii::t('app', $statusName), ['class' => 'label label-primary'])
-                                    ; ?>
-                                    <?=Html::tag('span', $model->award->status, ['class' => 'is_debug']); ?>
-                                <?php endif; ?>
-                                <?php if($model->award && $model->award->status == 'active'):?>
-                                    <span class="label label-success"><?=Yii::t('app', 'Winner'); ?></span>
-                                <?php endif; ?>
-                            </p>
                         </div>
                     </div>
                     <div class="row">
