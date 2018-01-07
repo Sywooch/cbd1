@@ -68,7 +68,7 @@ else
                                                     'id' => 'publish-btn',
                                                 ]);
                                         }
-                                        elseif($model->apiAuction && !$model->apiAuction->isEnded){
+                                        elseif($model->apiAuction && ($model->apiAuction->status == 'active.tendering')){
                                             echo Html::a(Yii::t('app', 'Edit'), ['edit', 'id' => $model->id], ['class' => 'nav-item nav-link auctions-control-publish']);
                                         }
                                         if($model->apiAuction && !$model->apiAuction->isEnded && $model->apiAuction->status != 'active.auction'){

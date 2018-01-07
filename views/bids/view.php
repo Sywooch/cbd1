@@ -152,7 +152,7 @@ JS;
                                     ],
                                     'id' => 'confirm-protocol-btn',
                                 ]); ?>
-                        <?php else: ?>
+                        <?php elseif(!$model->apiAuction->isEnded): ?>
                             <?= Yii::t('app', 'Auction is ended. You can {upload} the auction protocol', ['upload' => Html::a(Yii::t('app', 'upload'), ['upload-protocol', 'id' => $model->unique_id], ['class' => 'btn btn-primary', 'id' => 'upload-protocol-btn'])]); ?>
                         <?php endif; ?>
                     <?php endif; ?>
