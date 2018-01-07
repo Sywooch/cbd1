@@ -299,10 +299,11 @@ JS
                                         if($modelBid->award && ($modelBid->award->status == 'unsuccessful')){
                                             $bidNumber--;
                                             $awardNumber--;
+                                            $n++;
                                         };
                                         ?>
                                         <h3>
-                                            <?=Html::a(Yii::t('app', "Учасник #$bidNumber"),
+                                            <?=Html::a(Yii::t('app', "Учасник  № $n"),
                                                 ['/bids/view', 'id' => $modelBid->unique_id], [
                                                     'id' => "bids[{$bidNumber}].link",
                                                 ]); ?>
