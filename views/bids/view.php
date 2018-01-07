@@ -120,6 +120,7 @@ JS;
 
                 $contract = $model->contract;
                 $contract->dateSigned = date('Y-m-d H:i', strtotime($model->award->complaintPeriod_startDate));;
+                $contract->contractNumber = 1;
 
                 echo $form->field($contract, 'dateSigned')->widget(DateTimePicker::className(), [
                     'name' => 'date',
@@ -140,7 +141,7 @@ JS;
 
                 <?php if($model->award): ?>
                     <!-- VERIFICATION -->
-                    <?php if($model->award->status = 'pending.verification'): ?>
+                    <?php if($model->award->status == 'pending.verification'): ?>
                         <?php if($model->orgAuctionProtocol && !$model->apiAuction->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Confirm protocol'),
                                 ['confirm-protocol', 'id' => $model->unique_id],
@@ -158,7 +159,7 @@ JS;
                     <?php endif; ?>
                     <!-- END VERIFICATION -->
                     <!-- PAYMENT -->
-                    <?php if($model->award->status == 'pending.payment'): ?>
+                    <?php if(in_array($model->award->status,  ['pending.payment', 'pending.verification'])): ?>
                         <?= Html::a(Yii::t('app', 'Confirm payment'),
                             ['confirm-award', 'id' => $model->unique_id],
                             [
