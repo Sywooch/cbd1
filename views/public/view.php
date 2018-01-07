@@ -145,8 +145,8 @@ JS
                                         <?php if(false == ($bid = \api\Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
                                             <div class="col-md-12 text-left"><?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
                                             </div>
-                                        <?php else: ?><?= $modelBid->participationUrl ? Html::a
-                                        ($modelBid->participationUrl, $modelBid->participationUrl,
+                                        <?php else: ?><?= $bid->participationUrl ? Html::a
+                                        ($bid->participationUrl, $bid->participationUrl,
                                             ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
