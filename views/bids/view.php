@@ -258,7 +258,7 @@ JS;
                     <!-- end doesn`t have award -->
 
                 <?php else: ?> <!-- IS AWARD -->
-                    <?php if($model->award->status = 'pending.verification'): ?>
+                    <?php if($model->award->status == 'pending.verification'): ?>
                         <?php if(!$model->memberAuctionProtocol): ?>
                             <h3><?= Yii::t('app', 'Your bid is awarded. You can {upload} the auction protocol',
                                     [
