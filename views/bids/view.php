@@ -290,7 +290,7 @@ JS;
                             <h3><?= Yii::t('app', 'Qualification is confirmed. Waiting for contract signing'); ?></h3>
                         <?php endif; ?>
                     <?php elseif($model->award->status == 'cancelled'): ?>
-                        <h3><?= Yii::t('app', 'Your bid has been cancelled'); ?></h3>
+                        <h3><?= Yii::t('app', 'Ви відмінили свою ставку на аукціон'); ?></h3>
                     <?php endif; ?>
                 <?php endif; ?> <!-- END IS AWARD -->
             <?php endif; ?>

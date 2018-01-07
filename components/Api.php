@@ -44,15 +44,7 @@ class Api extends Component
     }
 
     public function createBid(Bids $bid){
-//        DMF($bid->toArray());
-//        try{
         $data = $this->request('auctions/' . $bid->apiAuction->id . '/bids', 'POST', ['data' => $bid->toArray()]);
-//        }
-//        catch(\Exception $e){
-//            $bid->delete();
-//            VarDumper::dumpAsString($e->getMessage());
-//            DMF($e->getMessage());
-//        }
         if(!isset($data['data'])) {
             $bid->delete();
             DMF($data);
@@ -73,7 +65,6 @@ class Api extends Component
             ))
             ->setFormat(Client::FORMAT_JSON)
             ->setData($data);
-//        try{
         $response = $client->send($request);
         if($response->getStatusCode() == '412') {
             $request->setCookies([
@@ -83,10 +74,6 @@ class Api extends Component
             $response = $client->send($request);
             return $response->getData();
         }
-//        }
-//        catch(\Exception $e){
-//            return [];
-//        }
         return $response->getData();
 
     }
@@ -102,7 +89,6 @@ class Api extends Component
         }
 
         $bid->load($data, '');
-        // $bid->access_token = isset($data['access']) ? $data['access']['token'] : null;
         return $bid->save(false);
     }
 
@@ -286,7 +272,6 @@ class Api extends Component
             DMF($data);
         }
         $document->id = $data['data']['id'];
-        // $document->load($data, '');
         $document->save(false);
 
         return isset($data['data']);

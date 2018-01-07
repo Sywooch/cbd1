@@ -64,7 +64,6 @@ class AuctionsSearch extends Auctions
 
         $this->load($params);
         if (!$this->validate()) {
-            DMF($this->errors);
             return $dataProvider;
         }
 

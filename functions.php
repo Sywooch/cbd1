@@ -16,6 +16,6 @@ function STOP($data){
     die();
 }
 
-function DMF($data){
+function DMF($data = ''){
     STOP($data);
 }

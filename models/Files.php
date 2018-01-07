@@ -365,14 +365,8 @@ class Files extends ActiveRecord
                     return Yii::$app->api->addContractDocument($bid, $document);
                 }
                 else{
-                    print_r($_FILES);
-                    DMF($this->file);
                     @unlink($this->path . $this->name);
                 }
-            }
-            else{
-                // print_r($_FILES);
-                // DMF($this->file);
             }
         }
         return false;
