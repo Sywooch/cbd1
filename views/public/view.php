@@ -295,7 +295,7 @@ JS
                                     <?php
                                     if($modelBid->award && ($modelBid->award->status == 'unsuccessful')){
                                         $bidNumber--;
-                                        $awardNumber--;
+                                        //$awardNumber--;
                                     };
                                     $n++;
                                     ?>
