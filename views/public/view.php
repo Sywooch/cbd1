@@ -286,118 +286,118 @@ JS
                             </div>
 
                             <?php if($model->awards): ?>
-                            <h2><?=Yii::t('app', 'Bids list'); ?></h2>
-                            <?php
-                            $awardNumber = 0;
-                            $bidNumber = 0;
-                            ?>
-                            <?php foreach ($model->bids as $n => $modelBid): ?>
-                            <?php
-                            if($modelBid->award && ($modelBid->award->status == 'unsuccessful')){
-                                //$bidNumber--;
-                                //$awardNumber--;
-                            };
-                            $n++;
-                            ?>
-
-                            <?php if($modelBid->award): ?>
-                            <h3>
-
-                                <?=Html::a(Yii::t('app', "Учасник  № $n"),
-                                    ['/bids/view', 'id' => $modelBid->unique_id], [
-                                        'id' => "bids[{$bidNumber}].link",
-                                    ]); ?>
+                                <h2><?=Yii::t('app', 'Bids list'); ?></h2>
                                 <?php
-
-                                $awardsCount = \api\Awards::find()
-                                    ->where(['auction_id'=> $modelBid->award->auction_id])
-                                    ->andWhere(['<', 'unique_id', $modelBid->award->unique_id])
-                                    ->count();
-                                switch($modelBid->award->status){
-                                    case 'pending.verification':
-                                        if($awardsCount < 2){
-                                            $class = 'success';
-                                            $statusName = 'Очікується завантаження протоколу';
-                                        }
-                                        else{
-                                            $class = 'default';
-                                            $statusName = 'Учасник, що не бере участі';
-                                        }
-                                        break;
-                                    case 'pending.payment':
-                                        $class = 'warning';
-                                        $statusName = 'Waiting for payment';
-                                        break;
-                                    case 'unsuccessful':
-                                        $class = 'danger';
-                                        $statusName = 'Disqualified';
-                                        break;
-                                    case 'active':
-                                        $class = 'success';
-                                        $statusName = 'Winner';
-                                        break;
-                                    case 'pending.waiting':
-                                        $class = 'default';
-                                        if($awardsCount < 2){
-                                            $statusName = 'Second';
-                                        }
-                                        else{
-                                            $statusName = 'Учасник, що не бере участі';
-                                        }
-                                        break;
-                                    case 'cancelled':
-                                        $class = 'default';
-                                        $statusName = 'Скасовано учасником';
-                                        break;
-                                    default:
-                                        $class = 'default';
-                                        $status = ' ';
-                                }
+                                $awardNumber = 0;
+                                $bidNumber = 0;
                                 ?>
-                                <?=Html::tag('li',
-                                    Yii::t('app', $statusName)
-                                    . ' ' . Html::a($modelBid->organization->name ?:
-                                        $modelBid->organization->contactPoint_name,
-                                        ['/bids/view', 'id' => $modelBid->unique_id],
-                                        ['class' => 'btn btn-' . $class]), ['class' => 'list-group-item']); ?>
-                                <?=Html::tag('span', $modelBid->award->status, ['id' => "awards[{$awardNumber}].status", 'class' => 'is_debug']); ?>
-                                <?php endif; ?>
-                                <?php if($modelBid->award && $modelBid->award->status == 'active'):?>
-                                <span class="label label-success"><?=Yii::t('app', 'Winner'); ?></span>
-                            </h3>
-                            <?php
-                            $documents = '';
-                            foreach($modelBid->documents as $document){
-                                $documents .= "<br />" . Html::a($document->title, $document->url, ['name' => $document->documentType]);
-                            }
-                            ?>
-                            <?= DetailView::widget([
-                                'model' => $modelBid,
-                                'attributes' => [
-                                    'date:datetime',
-                                    'value_amount',
-                                    [
-                                        'attribute' => 'value_currency',
-                                        'value' => Yii::t('app', $modelBid->value_currency),
-                                    ],
-                                    [
-                                        'attribute' => 'documents',
-                                        'format' => 'raw',
-                                        'value' => $documents,
-                                    ],
-                                    [
-                                        'attribute' => 'value_valueAddedTaxIncluded',
-                                        'format' => 'raw',
-                                        'value' => Html::checkbox('value_valueAddedTaxIncluded', $model->value_valueAddedTaxIncluded, ['disabled' => 'disabled']),
-                                    ],
-                                ],
-                            ]) ?>
-                            <?php
-                            $awardNumber++;
-                            $bidNumber++;
-                            ?>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
+                                <?php foreach ($model->bids as $n => $modelBid): ?>
+                                    <?php
+                                    if($modelBid->award && ($modelBid->award->status == 'unsuccessful')){
+                                        //$bidNumber--;
+                                        //$awardNumber--;
+                                    };
+                                    $n++;
+                                    ?>
+
+                                    <?php if($modelBid->award): ?>
+                                        <h3>
+
+                                        <?=Html::a(Yii::t('app', "Учасник  № $n"),
+                                            ['/bids/view', 'id' => $modelBid->unique_id], [
+                                                'id' => "bids[{$bidNumber}].link",
+                                            ]); ?>
+                                        <?php
+
+                                        $awardsCount = \api\Awards::find()
+                                            ->where(['auction_id'=> $modelBid->award->auction_id])
+                                            ->andWhere(['<', 'unique_id', $modelBid->award->unique_id])
+                                            ->count();
+                                        switch($modelBid->award->status){
+                                            case 'pending.verification':
+                                                if($awardsCount < 2){
+                                                    $class = 'success';
+                                                    $statusName = 'Очікується завантаження протоколу';
+                                                }
+                                                else{
+                                                    $class = 'default';
+                                                    $statusName = 'Учасник, що не бере участі';
+                                                }
+                                                break;
+                                            case 'pending.payment':
+                                                $class = 'warning';
+                                                $statusName = 'Waiting for payment';
+                                                break;
+                                            case 'unsuccessful':
+                                                $class = 'danger';
+                                                $statusName = 'Disqualified';
+                                                break;
+                                            case 'active':
+                                                $class = 'success';
+                                                $statusName = 'Winner';
+                                                break;
+                                            case 'pending.waiting':
+                                                $class = 'default';
+                                                if($awardsCount < 2){
+                                                    $statusName = 'Second';
+                                                }
+                                                else{
+                                                    $statusName = 'Учасник, що не бере участі';
+                                                }
+                                                break;
+                                            case 'cancelled':
+                                                $class = 'default';
+                                                $statusName = 'Скасовано учасником';
+                                                break;
+                                            default:
+                                                $class = 'default';
+                                                $status = ' ';
+                                        }
+                                        ?>
+                                        <?=Html::tag('li',
+                                            Yii::t('app', $statusName)
+                                            . ' ' . Html::a($modelBid->organization->name ?:
+                                                $modelBid->organization->contactPoint_name,
+                                                ['/bids/view', 'id' => $modelBid->unique_id],
+                                                ['class' => 'btn btn-' . $class]), ['class' => 'list-group-item']); ?>
+                                        <?=Html::tag('span', $modelBid->award->status, ['id' => "awards[{$awardNumber}].status", 'class' => 'is_debug']); ?>
+                                    <?php endif; ?>
+                                    <?php if($modelBid->award && $modelBid->award->status == 'active'):?>
+                                        <span class="label label-success"><?=Yii::t('app', 'Winner'); ?></span>
+                                        </h3>
+                                        <?php
+                                        $documents = '';
+                                        foreach($modelBid->documents as $document){
+                                            $documents .= "<br />" . Html::a($document->title, $document->url, ['name' => $document->documentType]);
+                                        }
+                                        ?>
+                                        <?= DetailView::widget([
+                                            'model' => $modelBid,
+                                            'attributes' => [
+                                                'date:datetime',
+                                                'value_amount',
+                                                [
+                                                    'attribute' => 'value_currency',
+                                                    'value' => Yii::t('app', $modelBid->value_currency),
+                                                ],
+                                                [
+                                                    'attribute' => 'documents',
+                                                    'format' => 'raw',
+                                                    'value' => $documents,
+                                                ],
+                                                [
+                                                    'attribute' => 'value_valueAddedTaxIncluded',
+                                                    'format' => 'raw',
+                                                    'value' => Html::checkbox('value_valueAddedTaxIncluded', $model->value_valueAddedTaxIncluded, ['disabled' => 'disabled']),
+                                                ],
+                                            ],
+                                        ]) ?>
+                                        <?php
+                                        $awardNumber++;
+                                        $bidNumber++;
+                                        ?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
                         <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
