@@ -459,6 +459,7 @@ JS
                                 <p class="lead"><?= Html::tag('span', $model->cancellation->reason, ['id' => 'cancellation-reason']); ?></p>
                             <?php }; ?>
                         </div>
+                        <?php if(!$model->isEnded); ?>
                         <div class="publications-left">
                             <p class="subtitle-secondary mb-2">Залишилось</p>
                             <p class="publications-left-time font-weight-bold"><?php
@@ -470,19 +471,20 @@ JS
                                 }
                                 ?></p>
                         </div>
+                        <?php endif; ?>
                         <?php if(!Yii::$app->user->can('org') && !$model->isEnded && (strtotime($model->tenderPeriod_endDate) > time())): ?>
-                            <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
-                                ['class' => 'btn btn-primary btn-block mt-4 mb-3', 'id' => 'bid-create-btn'])?>
+                        <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
+                            ['class' => 'btn btn-primary btn-block mt-4 mb-3', 'id' => 'bid-create-btn'])?>
                         <?php endif; ?>
 
                         <?php if((strtotime($model->enquiryPeriod_endDate)) > time() && !$model->isEnded): ?>
-                            <?= Html::a(Yii::t('app', 'Create question'), ['/questions/create', 'id' => $model->unique_id],
-                                [
-                                    'class' => 'btn-block link-secondary text-center question-tender',
-                                    'data-toggle' => 'modal',
-                                    'data-target' => '#exampleModal',
-                                    'id' => 'create-question-btn',
-                                ])?>
+                        <?= Html::a(Yii::t('app', 'Create question'), ['/questions/create', 'id' => $model->unique_id],
+                            [
+                                'class' => 'btn-block link-secondary text-center question-tender',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#exampleModal',
+                                'id' => 'create-question-btn',
+                            ])?>
                         <?php endif; ?>
                     </div>
                 </div>
