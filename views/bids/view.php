@@ -399,7 +399,7 @@ JS;
                                             break;
                                         default:
                                             $class = 'default';
-                                            $status = ' ';
+                                            $statusName = ' ';
                                     }
                                     ?>
                                     <?=Html::tag('p', Yii::t('app', $statusName), ['class' => 'btn btn-' . $class])
