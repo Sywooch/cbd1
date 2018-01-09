@@ -369,6 +369,12 @@ JS
                                         <?= DetailView::widget([
                                             'model' => $modelBid,
                                             'attributes' => [
+                                                [
+                                                    'attribute' => 'award.description',
+                                                    'header' => 'Причина дискваліфікації',
+                                                    'value' => $modelBid->award->description,
+                                                    'visible' => $modelBid->award->description != '',
+                                                ],
                                                 'date:datetime',
                                                 'value_amount',
                                                 [

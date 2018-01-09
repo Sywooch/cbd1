@@ -163,7 +163,7 @@ class Awards extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'bid_id' => Yii::t('app', 'Bid ID'),
             'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
+            'description' => Yii::t('app', 'Причина дискваліфікації'),
             'status' => Yii::t('app', 'Status'),
             'date' => Yii::t('app', 'Date'),
             'value_amount' => Yii::t('app', 'Value Amount'),
