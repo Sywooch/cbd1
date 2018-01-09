@@ -392,7 +392,7 @@ JS
                                         $bidNumber++;
                                         ?>
                                     <?php else: ?>
-                                        <?php $bidNumber--; $awardNumber--; $n-- ?>
+                                        <?php $bidNumber--; $awardNumber--; $n--; ?>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
