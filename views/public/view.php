@@ -372,7 +372,7 @@ JS
                                                 [
                                                     'attribute' => 'award.description',
                                                     'header' => 'Причина дискваліфікації',
-                                                    'value' => $modelBid->award->description,
+                                                    'visible' => $modelBid->award->status == 'unsuccessful',
                                                 ],
                                                 'date:datetime',
                                                 'value_amount',

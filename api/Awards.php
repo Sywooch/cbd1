@@ -250,9 +250,16 @@ class Awards extends ActiveRecord
             (new Messages())->sendMessage($this->bid->user->id , $notes, true);
         }
         if(!$insert && isset($changedAttributes['status']) && $this->status == 'unsuccessful' && $this->title == 'Disqualified' && $this->bid && $this->bid->user){
-            $notes = Yii::t('app', 'Ваша ставка була дискваліфікована по причині незавантаження протоколу торгів на протязі 3-ох діб з моменту початку кваліфікації. {link}', [
-                'link' => Html::a(Yii::t('app', 'Переглянути'), Url::to(['/bids/view', 'id' => $this->bid->unique_id], true)),
-            ]);
+            if($this->description != ''){
+                $notes = t('app', 'Ваша ставка була дискваліфікована({link}). Причина: ' . $this->description, [
+                    'link' => Html::a(Yii::t('app', 'Переглянути'), Url::to(['/bids/view', 'id' => $this->bid->unique_id], true)),
+                ]);
+            }
+            else{
+                $notes = Yii::t('app', 'Ваша ставка була дискваліфікована по причині незавантаження протоколу торгів. {link}', [
+                    'link' => Html::a(Yii::t('app', 'Переглянути'), Url::to(['/bids/view', 'id' => $this->bid->unique_id], true)),
+                ]);
+            }
             (new Messages())->sendMessage($this->bid->user_id , $notes, true);
         }
         foreach($this->_suppliers as $item){
