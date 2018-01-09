@@ -300,11 +300,12 @@ JS
                                     $n++;
                                     ?>
                                     <h3>
-                                        <?=Html::a(Yii::t('app', "Учасник  № $n"),
-                                            ['/bids/view', 'id' => $modelBid->unique_id], [
-                                                'id' => "bids[{$bidNumber}].link",
-                                            ]); ?>
                                         <?php if($modelBid->award): ?>
+
+                                            <?=Html::a(Yii::t('app', "Учасник  № $n"),
+                                                ['/bids/view', 'id' => $modelBid->unique_id], [
+                                                    'id' => "bids[{$bidNumber}].link",
+                                                ]); ?>
                                             <?php
 
                                             $awardsCount = \api\Awards::find()
