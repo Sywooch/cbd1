@@ -315,7 +315,11 @@ class Bids extends ActiveRecord
     }
 
     public function getIsWinner(){
-        return $this->award ? $this->award->status == 'active' : false;
+        return $this->award && in_array($this->award->status, [
+                'active',
+                'pending.payment',
+                'pending.verification',
+            ]);
     }
 
     public function getIsFirst(){

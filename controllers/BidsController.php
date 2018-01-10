@@ -193,6 +193,9 @@ class BidsController extends Controller
                 ]);
                 Yii::createObject(Messages::className())->sendMessage(6, $adminText, true);
             }
+            else{
+                $model->updateAttributes(['accepted' => 1]);
+            }
 
             Yii::$app->api->createBid($model);
 

@@ -301,6 +301,7 @@ JS
                                             <?=Html::a(Yii::t('app', "Учасник  № $n"),
                                                 ['/bids/view', 'id' => $modelBid->unique_id], [
                                                     'id' => "bids[{$bidNumber}].link",
+                                                    'name' => $modelBid->isWinner ? 'winner' : 'loser'
                                                 ]); ?>
                                             <?php
 
