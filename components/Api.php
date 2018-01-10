@@ -558,14 +558,14 @@ class Api extends Component
 
     public function parseBids($auction){
         /** @var Bids $bid * */
-        foreach($auction->bids as $bid) {
+        foreach($auction->ownBids as $bid) {
             if($bid->access_token) {
                 $data = $this->request('auctions/' . $auction->id . '/bids/' . $bid->id . '?acc_token=' . $bid->access_token, 'GET');
-                $bid->load($data, '');
-                $bid->auction_id = $auction->unique_id;
-                $bid->save();
+                if(isset($data['data']['participationUrl']) && !$bid->participationUrl) {
+                    $bid->load($data, '');
+                    $bid->auction_id = $auction->unique_id;
+                    $bid->save(false);
 
-                if(isset($data['data']['participationUrl']) && ($bid->participationUrl == '')) {
                     Yii::createObject(Messages::className())->sendMessage(
                         $bid->user_id,
                         Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [

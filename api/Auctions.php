@@ -478,6 +478,11 @@ class Auctions extends ActiveRecord
     public function getBids(){
         return $this->hasMany(Bids::className(), ['auction_id' => 'unique_id'])->joinWith('awards')->orderBy(['api_awards.unique_id' => SORT_ASC])->where('api_awards.id is not null')/*->via('lot')*/;
     }
+    public function getOwnBids(){
+        return $this->hasMany(Bids::className(), ['auction_id' => 'unique_id'])
+            ->joinWith('awards')
+            ->orderBy(['api_awards.unique_id' => SORT_ASC]);
+    }
 
 
     public function getQuestions(){
