@@ -565,7 +565,7 @@ class Api extends Component
                 $bid->auction_id = $auction->unique_id;
                 $bid->save();
 
-                if(isset($data['data']['participationUrl']) && !$bid->participationUrl) {
+                if(isset($data['data']['participationUrl']) && ($bid->participationUrl == '')) {
                     Yii::createObject(Messages::className())->sendMessage(
                         $bid->user_id,
                         Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [
