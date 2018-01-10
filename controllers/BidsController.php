@@ -68,18 +68,7 @@ class BidsController extends Controller
 
     public function actionView($id = null)
     {
-        if(isset($_POST['rows'])){
-
-        }else{
-
-        }
         $model = $this->findModel($id);
-        // if($model->user_id != Yii::$app->user->id){
-        //     throw new ForbiddenHttpException();
-        // }
-        /*else*/if(Yii::$app->user->can('org') && $model->status == 'draft1'){
-        throw new ForbiddenHttpException();
-    }
         if(($model->user_id === Yii::$app->user->id) && ($model->id && !$model->participationUrl) && $model->status == 'active'){
             $data = Yii::$app->api->request('auctions/' . $model->lot->apiAuction->id . '/bids/' . $model->id . '?acc_token=' . $model->access_token);
             $model->load($data, '');
