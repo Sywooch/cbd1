@@ -384,6 +384,17 @@ class BidsController extends Controller
                     true
                 );
             Yii::$app->session->setFlash('success', Yii::t('app', 'Bid status changed to {status}', ['status' => $model->statusName]));
+
+            if($model->apiAuction->procurementMethodType == 'dgfInsider'){
+                Yii::createObject(Messages::className())->sendMessage(
+                    $model->user_id,
+                    Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [
+                        'auction' => $model->apiAuction->title,
+                        'link' => Html::a(Yii::t('app', 'перейти'), $model->participationUrl),
+                    ]),
+                    true
+                );
+            }
             return $this->redirect(['view', 'id' => $id]);
         }
         else{
