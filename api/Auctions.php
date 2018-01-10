@@ -639,7 +639,7 @@ class Auctions extends ActiveRecord
                 'complete' => Yii::t('app', 'Завершився'),
             ];
             if(in_array($this->status, ['cancelled', 'unsuccessful', 'complete'])){
-                foreach($this->bids as $bid){
+                foreach($this->ownBids as $bid){
                     if($bid->user){
                         $text = Yii::t('app', 'Аукціон {auctionID} {action}. Ви можете переглянути результати аукціону, перейшовши за посиланням: {link}',[
                             'link' => Html::a(Yii::t('app', 'Переглянути'), Url::to(['/public/view', 'id' => $this->unique_id], true)),
