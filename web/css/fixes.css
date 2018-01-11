@@ -19,5 +19,5 @@
     display: none;
 }
 .fade {
-    opacity: 1!important;
+    opacity: inherit!important;
 }
