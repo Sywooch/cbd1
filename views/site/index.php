@@ -36,7 +36,7 @@ JS
         <div class="container jumbotron-content text-center text-lg-left">
             <div class="row justify-content-between">
                 <div class="col-lg-8">
-                    <p class="jumbotron-title">Сучасні електронні <br>торгові системи</p>
+                    <p class="jumbotron-title">Земельна універсальна <br>промислова біржа</p>
                     <p class="jumbotron-subtitle">Продаж майна банків, що ліквідуються</p>
                 </div>
             </div>
