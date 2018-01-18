@@ -1,0 +1,314 @@
+.is_debug {
+	font-size: 0;
+}
+
+tr td {
+	word-break: break-word;
+}
+
+.footer.purple-back{
+	height:auto;
+	position: relative;
+}
+
+.tab-link {
+}
+
+.tab-link li {
+	display:inline-block;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+}
+
+.tab-link li:hover {
+	background: rgba(0,150,225,.6);
+}
+
+.tab-link li:hover a {
+	color:#ffffff;
+}
+
+.tab-link li a {
+	display: block;
+	position: relative;
+	height:100%;
+	padding:10px 15px;
+	color:#212121;
+	text-decoration: none;
+	font-size: 16px;
+
+}
+
+.tab-link li.active {
+	background: #0088ab;
+
+}
+
+.tab-link li.active a {
+	color:#ffffff;
+}
+
+.menu ul li:nth-child(7):hover ul {
+  	display: -ms-flexbox !important;
+  	display: flex !important;
+}
+.drpdwn-menu li {
+    display: block;
+    width: 170px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.drpdwn-menu {
+	-ms-flex-direction: column;
+	flex-direction: column;
+	display: none !important;
+	position: absolute;
+	min-width: 20px;
+	width: 60vw;
+	max-width:200px;
+	top: 19.4px;
+}
+
+.drpdwn-menu li {
+	width: 100%;
+}
+
+.panel-primary > .panel-heading {
+	color: #fff;
+	background-color: #0088ab;
+	border-color: #0088ab;
+}
+
+.auctions-index>h1 {
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+	text-align: center;
+	margin-bottom: 10px;
+	color: #ffffff;
+	background-color: #0088ab;
+}
+.auctions-view>h1 {
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+	text-align: center;
+	margin-bottom: 10px;
+	color: #ffffff;
+	background-color: #0088ab;
+}
+.action-view {
+	padding: 30px;
+}
+#w0 {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+#w0 > tbody{
+	background-color: rgba(0,150,255,.2);
+}
+
+
+
+/* Added custom styles */
+
+.grid-view {
+	padding:30px;
+}
+
+.grid-view table {
+	box-shadow:6px 6px 20px rgba(0,0,0,.2);
+}
+
+ul.pagination {
+	background-color: #0088ab;
+	width: 100%;
+	text-align: center;
+	border-radius:0;
+	border-bottom-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+ul.pagination li {
+	display: inline-block;
+	height: auto;
+	padding-top:6px;
+	padding-bottom:0;
+}
+
+table > tbody{
+	background-color: rgba(0,150,255,.2);
+}
+
+tbody{
+	background-color: rgba(0,150,255,.2);
+}
+
+table > thead{
+	background-color: rgba(0,150,255,.1);
+}
+
+button.a.button {
+	padding: 10px 20px;
+}
+
+.count{
+	background: #000;
+}
+.tab-is-first{
+	/*background: #000;*/
+}
+
+.auctions-view {
+	background: #fff;
+}
+#tab-1 > div > div:nth-child(3) > div.text-text-t.col-md-12.text-left{
+	color: #fff;
+}
+
+/* Custom styles by Stas 08.02.2017 */
+
+nav.row {
+	margin: 0;
+}
+
+.menu {
+	padding: 0 2vw;
+}
+
+.menu .main-logo {
+	z-index: 10;
+}
+
+.menu .nopadding {
+	padding: 0;
+}
+
+.menu ul li a.menu-min-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-size: 36px;
+	cursor: pointer;
+}
+
+.menu ul li.last {
+	width: 60px;
+}
+
+.menu .menu-min {
+	background-color: #fff;
+	position: absolute;
+	display: none;
+	flex-direction: column;
+	width:102vw;
+	top:80px;
+	right:-2vw;
+}
+
+.content {
+	padding:3vw;
+}
+
+.login button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.search {
+	width: 100%;
+}
+
+.button--search {
+	margin: 0;
+}
+
+.over-x {
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.footer img {
+	padding-left: 3vw;
+}
+
+.footer address {
+	padding-right: 3vw;
+}
+
+/* Custom news styles added on 10.02.2017 */
+
+.blog-wrap {
+	margin-top: 10px;
+	margin-bottom: 60px;
+}
+
+.page-header {
+	background-color:#0088AB;
+	margin: 0;
+	border-bottom: 1px solid #0088AB;
+}
+
+.list-inline {
+	text-align: right;
+}
+
+.list-inline li {
+	padding-top: 15px;
+	padding-right: 40px;
+}
+
+.list-inline li a {
+	color: #fff;
+}
+
+.post-desc {
+	background-color: #fff;
+	padding: 40px;
+	border-bottom: 2px solid #0088AB;
+}
+
+.post-desc h2 {
+	font-weight: bold;
+}
+
+.post-desc p {
+	text-align: justify;
+}
+
+.post-desc img {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	width: 100% !important;
+	height: auto !important;
+}
+
+.btn-default {
+	background-color: #0088AB;
+	border: 1px solid #0088AB;
+	color: #fff;
+}
+
+.btn-default:hover {
+	border: 1px solid #0088AB;
+	background-color: #2E9BB7;
+	color: #fff;
+}
+
+/*added by Ivakhnov 05.05.2017*/
+.info-block__list {
+	text-align:justify;
+	margin: 0;
+}
+
+.info-block__list li {
+	padding-right:20px;
+}
+}
+.center-block {
+	height: 180px;
+}
+.wrapper {
+	min-height: 100%!important;
+}

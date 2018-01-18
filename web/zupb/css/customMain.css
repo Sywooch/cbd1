@@ -1,0 +1,330 @@
+body table, .panel {
+	font-size: 12px;
+}
+
+.jumbotron {
+	background: url('../img/jtron-min.png') no-repeat center;
+	background-size: cover;
+	/*background-attachment: fixed;*/
+	opacity: 0.9;
+	filter: alpha(Opacity=90);
+}
+
+#j-main {
+	color: white;
+	text-shadow: 0 0 0.1em black;
+}
+
+#head-lable {
+	/* text-shadow: 0px 5px 10px rgb(100, 100, 100); */ /* Параметры тени */
+    color: white;
+    font-weight: bold;
+    width: 500px;
+    background-color: #022F5A;
+    margin: auto;
+}
+
+#lead-text {
+	color: white;
+	width: 300px;
+	background-color: #022F5A;
+	margin: auto;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	vertical-align: middle;
+
+}
+
+.navbar-brand img {
+	height: 50px;
+	width: 160px;
+	padding-top: 0px;
+}
+
+.navbar-brand {
+	padding-top: 0px;
+}
+
+td .form-control {
+	height: 20px;
+	font-size: 12px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+
+}
+
+form .form-control, .form-control {
+	font-size: 12px;
+	height: 25px;
+	padding: 3px 12px;
+	margin-top: 3px;
+}
+
+.input-group-addon {
+	padding: 3px 12px;
+	font-size: 12px;
+}
+
+.panel {
+	margin-bottom: 10px;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0px 5px 10px rgb(100, 100, 100);
+}
+
+div .panel-heading {
+	padding: 5px 15px;
+}
+
+.input-group-btn {
+	font-size: 20px;
+
+}
+
+.centering {
+  float:none;
+  margin:0 auto;
+}
+
+.panel-primary > .panel-heading {
+	background-color: rgb(4, 81, 155);
+	// linear-gradient(rgb(4, 81, 155), rgb(4, 70, 135) 60%, rgb(3, 55, 105));
+}
+
+.btn {
+	padding: 3px 12px;
+	font-size: 12px;
+}
+
+.form-group {
+	margin-bottom: 5px;
+}
+
+.control-label {
+	margin-bottom: 0px;
+}
+
+#addReq {
+	margin-top: 19px;
+}
+
+a { 
+	cursor: pointer; 
+	color: #053D73; 
+}
+
+#btnPubLot {
+	float: right;
+}
+
+#nav-left {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.img img {width: 200px;}
+.img {float: left; width: 200px;}
+.text {margin-left: 220px;}
+
+#marker {
+	width: 20px;
+	height: 20px;
+	/* border: 1px solid #088; */
+	border-radius: 10px;
+	background-color: red;
+	opacity: 0.5;
+}
+
+.bgvideo {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-height: 100%;
+	min-width: 100%;
+	width: auto;
+	height: auto;
+	/*z-index: 0;*/
+}
+
+.main-lable {
+	font-weight: bold;
+	color: white;
+	text-shadow: 0 0 0.1em black;
+}
+
+.main-text {
+
+	padding: 5px;
+	color: white;
+	background-color: rgba(114, 114, 114, 0.8);
+}
+
+.modal-backdrop.am-fade {
+  opacity: .5;
+  transition: opacity .15s linear;
+  &.ng-enter {
+    opacity: 0;
+    &.ng-enter-active {
+      opacity: .5;
+    }
+  }
+  &.ng-leave {
+    opacity: .5;
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+}
+
+.navbar-nav > li > a {
+	padding-left: 7px; 
+	padding-right: 7px;
+}
+
+row1 {
+	color: rgb(85, 85, 85);
+}
+
+.loader {
+	padding-top: 20px;
+	height: 80px;
+	width: 60px;
+}
+
+
+
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+
+[ng-click] {
+  cursor: pointer;
+}
+
+.red {
+	color: red;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ---- Spiner Begin -----
+.loader {
+    text-align: center;   
+}
+.loader span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    margin: 50px auto;
+    background: black;
+    border-radius: 50px;
+    -webkit-animation: loader 0.9s infinite alternate;
+    -moz-animation: loader 0.9s infinite alternate;
+}
+.loader span:nth-of-type(2) {
+    -webkit-animation-delay: 0.3s;
+    -moz-animation-delay: 0.3s;
+}
+.loader span:nth-of-type(3) {
+    -webkit-animation-delay: 0.6s;
+    -moz-animation-delay: 0.6s;
+}
+@-webkit-keyframes loader {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 0.9;
+    -webkit-transform: translateY(0);
+  }
+  100% {
+    width: 24px;
+    height: 24px;
+    opacity: 0.1;
+    -webkit-transform: translateY(-21px);
+  }
+}
+@-moz-keyframes loader {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 0.9;
+    -moz-transform: translateY(0);
+  }
+  100% {
+    width: 24px;
+    height: 24px;
+    opacity: 0.1;
+    -moz-transform: translateY(-21px);
+  }
+}
+// ---- Spiner End -------
+
+.img-man {
+  
+}
+
+/*
+video, object {
+ left:0;
+ position: fixed;
+ top:0;
+ min-width: 100%;
+ min-height: 100%;
+}
+*/
+
+.man {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 1080px;
+  height: 607px;
+
+  background-repeat     : no-repeat center;
+  background-size       : contain;
+  background-position-x : 50%;
+  background-position-y : 50%;
+
+  overflow: hidden;
+}

@@ -10,15 +10,16 @@ use yii\helpers\Url;
         <div class="col-lg-7">
             <p class="publications-lot subtitle-secondary">Номер лоту: <span class="text-uppercase"> <?= $model->auctionID?></span></p>
             <h4 class="publications-item-title">
-                <?= Html::a(Yii::t('app', $model->title), ['/public/view', 'id' => $model->auctionID])?>
+                <?= Html::a(Yii::t('app', $model->title), ['/public/view', 'id' => $model->auctionID], ['class' => 'link-primary'])?>
             </h4>
             <div class="row">
                 <div class="col-sm-6">
                     <p class="publications-org"><?= $model->procuringEntity->name?></p>
                     <div class="publications-org-about mb-2">
-                        <a href="#" class="popover-trigger link-secondary">Про організатора</a>
-                        <div class="webui-popover-content">
-                            <div class="publications-org-info">
+                        <a href="#<?= $model->id?>" data-toggle="collapse" aria-expanded="true" aria-controls="collapseInfo" class="link-secondary p-0 collapsed">Про організатора</a>
+                        <div class="collapse multi-collapse" id="<?= $model->id?>" role="tabpanel" aria-labeledby="" data-parent="">
+
+                            <div class="card-body">
                                 <p class="font-weight-bold mb-0">Контактна особа:</p>
                                 <p class="org-name"><?= $model->procuringEntity->name?></p>
                                 <p class="font-weight-bold mb-0">E-mail:</p>
@@ -75,9 +76,9 @@ use yii\helpers\Url;
                             <?= Yii::t('app', $model->value_currency)?>.</p>
                     </div>
                     <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
-                        ['class' => 'btn btn-primary mt-3'])?>
+                        ['class' => 'btn btn-primary btn-block mt-3'])?>
                     <?= Html::a(Yii::t('app', 'Детальніше'), ['/public/view', 'id' => $model->auctionID],
-                        ['class' => 'btn link-secondary'])?>
+                        ['class' => 'btn link-secondary btn-block'])?>
 
                 </div>
             </div>
