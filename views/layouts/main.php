@@ -21,6 +21,7 @@ $messages_counter = \app\models\Messages::find()->where(['user_id' => Yii::$app-
     <!-- <meta name="MobileOptimized" content="991"/>
     <meta name="HandheldFriendly" content="true"/> -->
     <?= Html::csrfMetaTags() ?>
+    <link href="/minify/9b6424233ddcc85d1063b7b2cc065919.css" rel="stylesheet">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
@@ -322,7 +323,7 @@ else{
         </div>
     </div>
 </footer><?php $this->endBody() ?>
-
+<script src="/minify/a5d28ed5bc2fa31557a487e5f932d265.js">
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -15,7 +15,7 @@ $components = [
                 '@vendor/dektrium/yii2-user/views' => '@app/views/user',
             ],
         ],
-        'enableMinify' => true,
+        'enableMinify' => false,
         'concatCss' => true,
         'minifyCss' => true,
         'concatJs' => true,
