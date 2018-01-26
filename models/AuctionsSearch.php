@@ -64,11 +64,13 @@ class AuctionsSearch extends Auctions
 
         $this->load($params);
         if (!$this->validate()) {
-            DMF($this->errors);
             return $dataProvider;
         }
 
-        $query->joinWith(['procuringEntity', 'items']);
+        $query->joinWith(['procuringEntity']);
+        if($this->cav || $this->region){
+            $query->joinWith(['items']);
+        }
 
         $query->andFilterWhere([
             'or',

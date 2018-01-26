@@ -25,8 +25,7 @@ use yii\helpers\Html;
             </h4>
             <p><span class='question-description <?=$n; ?>'><?=Yii::t('app', 'Question description'); ?>:  <b id="questions[<?=$n; ?>].description"><?=$question->description; ?></b></span></p>
             <?php if($question->answer): ?>
-
-                <p><span class='answer-date <?=$n; ?>' id="questions[<?=$n; ?>].answer-date"><?=Yii::t('app', 'Date answered'); ?>: <?=Yii::$app->formatter->asDatetime($question->dateAnswered); ?></span></p>
+                <p><span class='answer-date <?=$n; ?>' id="questions[<?=$n; ?>].answer-date"><?=Yii::t('app', 'Date answered'); ?>: <?=Yii::$app->formatter->asDatetime($question->updated_at); ?></span></p>
                 <p><span class="lead question-answer <?=$n; ?>" id="questions[<?=$n; ?>].answer"><?=$question->answer; ?></span></p>
             <?php elseif($auction->lot && ($auction->lot->user_id === Yii::$app->user->id) && !$question->answer): ?>
                 <?=Html::a(Yii::t('app', 'Answer the question'), ['/questions/answer', 'id' => $question->unique_id], ['class' => 'btn btn-primary', 'id' => "question[{$item_id}].answer"]); ?>

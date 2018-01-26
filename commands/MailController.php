@@ -30,7 +30,7 @@ class MailController extends Controller
             } catch(\Exception $e){
                 Yii::error('Error while sending email');
                 echo $e->getMessage() . "\n";
-                // $task->updateAttributes(['process' => '0']);
+                 $task->updateAttributes(['process' => '0']);
             }
         }
         foreach($this->checkUnanswered() as $question){

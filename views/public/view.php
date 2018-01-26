@@ -50,8 +50,8 @@ JS
                         <span id='auction-procurementMethodType' class='is_debug'><?=$model->procurementMethodType; ?></span>
                     </div>
                     <nav class="nav nav-tabs" id="myTab" role="tablist">
-                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
-                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
+                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab1" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
+                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab1" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-auction" role="tabpanel" aria-labelledby="nav-auction-tab">
@@ -73,7 +73,7 @@ JS
                                             <p class="org-telephone"><?= $model->procuringEntity->contactPoint_telephone?></p>
                                             <p class="font-weight-bold mb-0">ЄДРПОУ:</p>
                                             <p class="org-edrpou"><?= $model->procuringEntity->identifier_id?></p>
-                                            <a href="<?=\yii\helpers\Url::to(['/public', 'Auctions' => ['organization' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони замовника</a>
+                                            <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони замовника</a>
                                         </div>
                                     </div>
                                 </div>
@@ -118,6 +118,16 @@ JS
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Рішення ФГВ</p>
                                 </div>
+                                <div class="col-md-7">
+                                    <div class="mb-1" id="auction-dgfDecisionID"><?= $model->dgfDecisionID; ?></div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-md-5">
+                                    <p class="subtitle-secondary mb-1">Дата рішення ФГВ</p>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="mb-1" id="auction-dgfDecisionDate"><?= date('d.m.Y', strtotime($model->dgfDecisionDate)); ?></div>
+                                </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Лоти виставляються</p>
@@ -131,9 +141,12 @@ JS
                                     <p class="subtitle-secondary mb-1">Посилання на аукціон</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
-                                    <?php if(YII_DEBUG): ?>
-                                        <?= Html::a('API', getenv('API_URL') . '/api/' . getenv('API_VERSION') . '/auctions/' . $model->id, ['target' => '_blank']); ?>
+                                    <?php if(false == ($bid = \api\Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
+                                        <div class="col-md-12 text-left"><?= $model->auctionUrl ? Html::a($model->auctionUrl, $model->auctionUrl, ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
+                                        </div>
+                                    <?php else: ?><?= $bid->participationUrl ? Html::a
+                                    ($bid->participationUrl, $bid->participationUrl,
+                                        ['target' =>'_blank', 'id' => 'auction-url']) : 'Очікується'; ?>
                                     <?php endif; ?>
                                 </div>
                                 <div class="w-100"></div>
@@ -163,8 +176,15 @@ JS
                                     <p class="subtitle-secondary mb-1">Дата провдення аукціону</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p class="mb-1" id = "auction-auctionPeriod_startDate"><?=Yii::$app->formatter->asDatetime($model->auctionPeriod_startDate ?: $model->enquiryPeriod_startDate); ?></p>
-                                    <p class="mb-1" id = "auction-auctionPeriod_endDate"><?=Yii::$app->formatter->asDatetime($model->auctionPeriod_endDate ?: $model->enquiryPeriod_endDate); ?></p>
+                                    <p class="mb-1">
+                                        <span id="auction-auctionPeriod_startDate">
+                                            <?=Yii::$app->formatter->asDatetime($model->auctionPeriod_startDate ?: $model->enquiryPeriod_startDate); ?>
+                                        </span>
+                                        -
+                                        <span id = "auction-auctionPeriod_endDate">
+                                        <?=Yii::$app->formatter->asDatetime($model->auctionPeriod_endDate ?: $model->enquiryPeriod_endDate); ?>
+                                        </span>
+                                    </p>
                                 </div>
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Критерії оцінювання</p>
@@ -272,56 +292,118 @@ JS
                                 $bidNumber = 0;
                                 ?>
                                 <?php foreach ($model->bids as $n => $modelBid): ?>
-                                    <?php if($modelBid->award || true): ?>
+                                    <?php if($modelBid->award): ?>
+                                        <?php if($modelBid->award->status == 'unsuccessful'){
+                                            //$bidNumber--;
+                                            //$awardNumber--;
+                                        }; $n++; ?>
                                         <h3>
-                                            <?=Html::a(Yii::t('app', "Учасник #$n"),
+                                            <?=Html::a(Yii::t('app', "Учасник  № $n"),
                                                 ['/bids/view', 'id' => $modelBid->unique_id], [
                                                     'id' => "bids[{$bidNumber}].link",
-                                                    'name' => ($modelBid->isWinner || (count($model->bids) == 1)) ? 'winner' : 'loser'
+                                                    'name' => $modelBid->isWinner ? 'winner' : 'loser'
                                                 ]); ?>
-                                            <?php if($modelBid->award): ?>
-                                                <?=Html::tag('span', $modelBid->award->status, ['id' => "awards[{$awardNumber}].status", 'class' => 'is_debug']); ?>
-                                            <?php endif; ?>
-                                            <?php if($modelBid->award && $modelBid->award->status == 'active'):?>
+                                            <?php
+
+                                            $awardsCount = \api\Awards::find()
+                                                ->where(['auction_id'=> $modelBid->award->auction_id])
+                                                ->andWhere(['<', 'unique_id', $modelBid->award->unique_id])
+                                                ->count();
+                                            switch($modelBid->award->status){
+                                                case 'pending.verification':
+                                                    if($awardsCount < 2){
+                                                        $class = 'success';
+                                                        $statusName = 'Очікується завантаження протоколу';
+                                                    }
+                                                    else{
+                                                        $class = 'default';
+                                                        $statusName = 'Учасник, що не бере участі';
+                                                    }
+                                                    break;
+                                                case 'pending.payment':
+                                                    $class = 'warning';
+                                                    $statusName = 'Waiting for payment';
+                                                    break;
+                                                case 'unsuccessful':
+                                                    $class = 'danger';
+                                                    $statusName = 'Disqualified';
+                                                    break;
+                                                case 'active':
+                                                    $class = 'success';
+                                                    $statusName = 'Winner';
+                                                    break;
+                                                case 'pending.waiting':
+                                                    $class = 'default';
+                                                    if($awardsCount < 2){
+                                                        $statusName = 'Second';
+                                                    }
+                                                    else{
+                                                        $statusName = 'Учасник, що не бере участі';
+                                                    }
+                                                    break;
+                                                case 'cancelled':
+                                                    $class = 'default';
+                                                    $statusName = 'Скасовано учасником';
+                                                    break;
+                                                default:
+                                                    $class = 'default';
+                                                    $status = ' ';
+                                            }
+                                            ?>
+                                            <?=Html::tag('li',
+                                                Yii::t('app', $statusName)
+                                                . ' ' . Html::a($modelBid->organization->name ?:
+                                                    $modelBid->organization->contactPoint_name,
+                                                    ['/bids/view', 'id' => $modelBid->unique_id],
+                                                    ['class' => 'btn btn-' . $class]), ['class' => 'list-group-item']); ?>
+                                            <?=Html::tag('span', $modelBid->award->status, ['id' => "awards[{$awardNumber}].status", 'class' => 'is_debug']); ?>
+                                            <?php if($modelBid->award->status == 'active'):?>
                                                 <span class="label label-success"><?=Yii::t('app', 'Winner'); ?></span>
                                             <?php endif; ?>
                                         </h3>
+                                        <?php
+                                        $documents = '';
+                                        foreach($modelBid->documents as $document){
+                                            $documents .= "<br />" . Html::a($document->title, $document->url, ['name' => $document->documentType]);
+                                        }
+                                        ?>
+                                        <?= DetailView::widget([
+                                            'model' => $modelBid,
+                                            'attributes' => [
+                                                [
+                                                    'attribute' => 'award.description',
+                                                    'header' => 'Причина дискваліфікації',
+                                                    'visible' => $modelBid->award->status == 'unsuccessful',
+                                                ],
+                                                'date:datetime',
+                                                'value_amount',
+                                                [
+                                                    'attribute' => 'value_currency',
+                                                    'value' => Yii::t('app', $modelBid->value_currency),
+                                                ],
+                                                [
+                                                    'attribute' => 'documents',
+                                                    'format' => 'raw',
+                                                    'value' => $documents,
+                                                ],
+                                                [
+                                                    'attribute' => 'value_valueAddedTaxIncluded',
+                                                    'format' => 'raw',
+                                                    'value' => Html::checkbox('value_valueAddedTaxIncluded', $model->value_valueAddedTaxIncluded, ['disabled' => 'disabled']),
+                                                ],
+                                            ],
+                                        ]) ?>
+                                        <?php
+                                        $awardNumber++;
+                                        $bidNumber++;
+                                        ?>
+                                    <?php else: ?>
+                                        <?php $bidNumber--; $awardNumber--; $n--; ?>
                                     <?php endif; ?>
-                                    <?php
-                                    $documents = '';
-                                    foreach($modelBid->documents as $document){
-                                        $documents .= "<br />" . Html::a($document->title, $document->url, ['name' => $document->documentType]);
-                                    }
-                                    ?>
-                                    <?= DetailView::widget([
-                                        'model' => $modelBid,
-                                        'attributes' => [
-                                            'date:datetime',
-                                            'value_amount',
-                                            [
-                                                'attribute' => 'value_currency',
-                                                'value' => Yii::t('app', $modelBid->value_currency),
-                                            ],
-                                            [
-                                                'attribute' => 'documents',
-                                                'format' => 'raw',
-                                                'value' => $documents,
-                                            ],
-                                            [
-                                                'attribute' => 'value_valueAddedTaxIncluded',
-                                                'format' => 'raw',
-                                                'value' => Html::checkbox('value_valueAddedTaxIncluded', $model->value_valueAddedTaxIncluded, ['disabled' => 'disabled']),
-                                            ],
-                                        ],
-                                    ]) ?>
-                                    <?php
-                                    $awardNumber++;
-                                    $bidNumber++;
-                                    ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
-                        <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+                        <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
                             <?php if(count($model->questions) > 0): ?>
                                 <?php foreach($model->questions as $n => $question): $n++; ?>
                                     <div class="row">
@@ -337,13 +419,13 @@ JS
                                                 <div class="faq-item-message" id="questions[<?= $n; ?>].description">
                                                     <?=$question->description; ?>
                                                 </div>
+                                                <?php if($question->answer): ?>
+                                                    <p><span class='answer-date <?=$n; ?>' id="questions[<?=$n; ?>].answer-date"><?=Yii::t('app', 'Date answered'); ?>: <?=Yii::$app->formatter->asDatetime($question->updated_at); ?></span></p>
+                                                    <p><span class="lead question-answer <?=$n; ?>" id="questions[<?=$n; ?>].answer"><?=$question->answer; ?></span></p>
+                                                <?php elseif($model->lot && ($model->lot->user_id == Yii::$app->user->id) && !$question->answer): ?>
+                                                    <?=Html::a(Yii::t('app', 'Answer the question'), ['/questions/answer', 'id' => $question->unique_id], ['class' => 'btn btn-primary', 'id' => "question[{$item_id}].answer"]); ?>
+                                                <?php endif; ?>
                                             </article>
-                                            <?php if($question->answer): ?>
-                                                <p><span class='answer-date <?=$n; ?>' id="questions[<?=$n; ?>].answer-date"><?=Yii::t('app', 'Date answered'); ?>: <?=Yii::$app->formatter->asDatetime($question->dateAnswered); ?></span></p>
-                                                <p><span class="lead question-answer <?=$n; ?>" id="questions[<?=$n; ?>].answer"><?=$question->answer; ?></span></p>
-                                            <?php elseif($model->lot && ($model->lot->user_id == Yii::$app->user->id) && !$question->answer): ?>
-                                                <?=Html::a(Yii::t('app', 'Answer the question'), ['/questions/answer', 'id' => $question->unique_id], ['class' => 'btn btn-primary', 'id' => "question[{$item_id}].answer"]); ?>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -378,18 +460,20 @@ JS
                                 <p class="lead"><?= Html::tag('span', $model->cancellation->reason, ['id' => 'cancellation-reason']); ?></p>
                             <?php }; ?>
                         </div>
-                        <div class="publications-left">
-                            <p class="subtitle-secondary mb-2">Залишилось</p>
-                            <p class="publications-left-time font-weight-bold"><?php
-                                $diff = strtotime ($model->auctionPeriod_startDate) - time();
-                                if($diff < 0){
-                                    echo Yii::t('app', 'Auction is started');
-                                }else{
-                                    echo intval($diff/86400) . ' дн. ' . intval(($diff%86400)/3600) . ' год. ' . intval((($diff%86400)%3600)/60) . ' хв.';
-                                }
-                                ?></p>
-                        </div>
-                        <?php if(!Yii::$app->user->can('org')): ?>
+                        <?php if(!$model->isEnded): ?>
+                            <div class="publications-left">
+                                <p class="subtitle-secondary mb-2">Залишилось</p>
+                                <p class="publications-left-time font-weight-bold"><?php
+                                    $diff = strtotime ($model->auctionPeriod_startDate) - time();
+                                    if($diff < 0){
+                                        echo Yii::t('app', 'Auction is started');
+                                    }else{
+                                        echo intval($diff/86400) . ' дн. ' . intval(($diff%86400)/3600) . ' год. ' . intval((($diff%86400)%3600)/60) . ' хв.';
+                                    }
+                                    ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if(!Yii::$app->user->can('org') && !$model->isEnded && (strtotime($model->tenderPeriod_endDate) > time())): ?>
                             <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
                                 ['class' => 'btn btn-primary btn-block mt-4 mb-3', 'id' => 'bid-create-btn'])?>
                         <?php endif; ?>

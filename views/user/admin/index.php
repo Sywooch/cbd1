@@ -63,12 +63,16 @@ $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' =>
 
 ?>
 
-<div class="panel panel-primary">
-    <div class="panel-heading"><span class="glyphicon glyphicon-stats"></span><strong>
-            <?= Html::encode($this->title); ?></strong></div>
-    <div class="panel-body">
-        <div class="users-view">
-
+<div class="container">
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane auctions fade show active" id="nav-auctions" role="tabpanel" aria-labelledby="nav-auctions-tab">
+            <div class="auctions-header">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
+                    </div>
+                </div>
+            </div>
             <?= GridView::widget([
                 'dataProvider' 	=> $dataProvider,
                 'filterModel'  	=> $searchModel,
@@ -151,11 +155,19 @@ $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' =>
                         'template' => '{view} {login} {update} {delete}',
                         'buttons' => [
                             'view' => function($url, $model, $key){
-                                return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['info', 'id' => $key]);
+                                return Html::a('<i class="fa fa-eye"></i>', ['info', 'id' => $key]);
+                            },
+                            'delete' => function($url, $model, $key){
+                                return Html::a('<i class="fa fa-remove"></i>', ['delete', 'id' => $key], [
+                                    'data' => [
+                                        'method' => 'post',
+                                        'confirm' => Yii::t('app', 'Ви впевнені?')
+                                    ]
+                                ]);
                             },
                             'login' => function($url, $model, $key){
                                 return Html::a(
-                                    '<i class="glyphicon glyphicon-arrow-right"></i>',
+                                    '<i class="fa fa-arrow-right"></i>',
                                     ['login-user', 'id' => $model->id],
                                     ['data' => [
                                         'confirm' => Yii::t('app', 'Are you sure you want to login into this account?'),

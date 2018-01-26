@@ -26,7 +26,7 @@ use yii\widgets\DetailView;
                                 <p class="org-telephone"><?= $model->procuringEntity->contactPoint_telephone?></p>
                                 <p class="font-weight-bold mb-0">ЄДРПОУ:</p>
                                 <p class="org-edrpou"><?= $model->procuringEntity->identifier_id?></p>
-                                <a href="<?=\yii\helpers\Url::to(['/public', 'Auctions' => ['organization' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони організатора</a>
+                                <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони організатора</a>
                             </div>
                         </div>
                     </div>
@@ -72,8 +72,10 @@ use yii\widgets\DetailView;
                             <span class = 'price-calculate'><?= $model->value_amount?></span>
                             <?= Yii::t('app', $model->value_currency)?>.</p>
                     </div>
-                    <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
-                        ['class' => 'btn btn-primary mt-3'])?>
+                    <?php if((strtotime($model->tenderPeriod_endDate) > time()) && !Yii::$app->user->can('org')): ?>
+                        <?= Html::a(Yii::t('app', 'Взяти участь'), ['/bids/create', 'id' => $model->unique_id],
+                            ['class' => 'btn btn-primary mt-3'])?>
+                    <?php endif; ?>
                     <?= Html::a(Yii::t('app', 'Детальніше'), ['/public/view', 'id' => $model->auctionID],
                         ['class' => 'btn link-secondary'])?>
                 </div>

@@ -12,20 +12,25 @@ if(isset($document)){
 ?>
 
 <div class="container">
-
-        <div class="panel-heading"><span class="glyphicon glyphicon-inbox"></span><strong> <?= Html::encode($this->title) ?></strong></div>
-        <div class="panel-body">
-            <div class="upload-document">
-                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-
-                <?=$form->field($file, 'file')->fileInput(); ?>
-
-                <?=$form->field($model, 'description')->textInput(); ?>
-
-                <div class="form-group">
-                    <?=Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success', 'id' => 'upload-document']); ?>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane auctions fade show active" id="nav-auctions" role="tabpanel" aria-labelledby="nav-auctions-tab">
+            <div class="auctions-header">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
+                    </div>
                 </div>
-                <?php ActiveForm::end(); ?>
             </div>
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+
+            <?=$form->field($file, 'file')->fileInput(); ?>
+
+            <?=$form->field($model, 'description')->textInput(); ?>
+
+            <div class="form-group">
+                <?=Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success', 'id' => 'upload-document']); ?>
+            </div>
+            <?php ActiveForm::end(); ?>
         </div>
+    </div>
 </div>

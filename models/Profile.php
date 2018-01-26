@@ -18,7 +18,7 @@ class Profile extends \dektrium\user\models\Profile
     public function scenarios()
     {
         return [
-            'organizer' => ['org_type', 'firma_full', 'region', 'city', 'postal_code', 'f_address', 'phone', 'member', 'inn', 'passport_number'],
+            'organizer' => ['org_type', 'firma_full', 'region', 'city', 'postal_code', 'f_address', 'phone', 'member', 'inn', 'passport_number', 'licenseNumber', 'zkpo'],
         ];
     }
 
@@ -58,37 +58,36 @@ class Profile extends \dektrium\user\models\Profile
             'document'  => [['document', 'scan'],   'file', 'maxSize' => 1572864,  'skipOnEmpty' => true],
             'documents' => [['documents'], 'file', 'maxFiles' => 10, 'maxSize' => 1572864,  'skipOnEmpty' => true],
 
-            [['user_id'/*, 'firma_full'*/, 'member', 'phone', 'role', 'postal_code', 'city', 'region'], 'required'],
+            [['user_id', 'f_address', 'member', 'phone', 'role', 'postal_code', 'region'], 'required'],
             [['u_address'], 'required',
                 'when' => function($model){ return $model->org_type != 'entity'; },
                 'whenClient' => 'function(){return $("#profile-org_type input:checked").val() != "entity"}',
             ],
-            [['licenseNumber', 'zkpo'], 'required', 'when' => function($model){ return $model->org_type == 'financial'; },
+            [['licenseNumber'], 'required', 'when' => function($model){ return $model->org_type == 'financial'; },
                 'whenClient' => 'function(){return $("#profile-org_type input:checked").val() == "financial"}',],
             [['inn', 'passport_number'], 'required',
-                'when' => function($model){ return $model->org_type == 'entity'; },
+                'when' => function($model){ return $model->org_type == 'individual'; },
                 'whenClient' => 'function(){return $("#profile-org_type input:checked").val() == "entity"}',
             ],
             [['zkpo'], 'required',
-                'when' => function($model){ return $model->org_type != 'entity'; },
-                'whenClient' => 'function(){return $("#profile-org_type input:checked").val() != "entity"}',
+                'when' => function($model){ return $model->org_type != 'individual'; },
+                'whenClient' => 'function(){return $("#profile-org_type input:checked").val() != "individual"}',
             ],
-//            ['inn', 'match', 'pattern' => '/^[0-9]+$/'],
-            ['inn', 'integer'],
+            [['firma_full'],
+                'required',
+                'when' => function($model){ return $model->org_type != 'individual'; },
+                'whenClient' => 'function(){return $("#profile-org_type input:checked").val() != "individual"}'],
+            ['inn', 'integer', 'min' => 00000001, 'max' => 999999999999],
             [['zkpo'], 'safe'],
             [['postal_code'], 'integer',],
-//            ['inn', 'string', 'min' => 6],
-//            ['inn', 'string', 'max' => 20],
-            // ['zkpo', 'string', 'min' => 6],
             [['f_address'], 'string', 'max' => 500],
-            // ['phone', 'match', 'pattern' => '/\+38\(([0-9]{3})\)-([0-9]{3})-([0-9]{2})-([0-9]{2})/'],
             ['member_phone', 'match', 'pattern' => '/\+38\(([0-9]{3})\)-([0-9]{3})-([0-9]{2})-([0-9]{2})/'],
             ['site', 'url'],
-            [['licenseNumber'], 'string', 'max' => 25],
+            [['licenseNumber', 'city'], 'string', 'max' => 25],
             'document'  => [['document', 'scan'],   'file', 'maxSize' => 1572864,  'skipOnEmpty' => true],
             'documents' => [['documents'], 'file', 'maxFiles' => 10, 'maxSize' => 1572864,  'skipOnEmpty' => true],
             [['firma_full'], 'string', 'max' => 255],
-           ];
+        ];
     }
     /**
      * @inheritdoc

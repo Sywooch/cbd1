@@ -6,12 +6,18 @@
     margin-bottom: 0;
 }
 .is_debug {
-    /*font-size: 0;*/
-    /*width: 0;*/
-    /*height: 0;*/
-    /*overflow: hidden;*/
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 .has-error .help-block{
     color:red;
     font-size: 14px;
+}
+.hidden {
+    display: none;
+}
+.fade {
+    opacity: inherit!important;
 }

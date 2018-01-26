@@ -4,7 +4,9 @@
 namespace app\commands;
 
 
+use api\Bids;
 use Yii;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use api\Organizations;
 use app\models\Profile;
@@ -84,6 +86,21 @@ class HelperController extends Controller
         \Yii::createObject(Messages::className())->sendMessage(13, $text, true);
         $text = 'У вас є запитання без відповіді. ' . '<a href="https://proumstrade.com.ua/questions/answer?id=5957">Переглянути</a>';
         \Yii::createObject(Messages::className())->sendMessage(13, $text, true);
+    }
+
+    public function actionSendUrls(){
+        foreach(Bids::find()->where(['!=', 'participationUrl', ''])->all() as $bid){
+            if(!$bid->award){
+                Yii::createObject(Messages::className())->sendMessage(
+                    $bid->user_id,
+                    Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [
+                        'auction' => $bid->apiAuction->title,
+                        'link' => Html::a(Yii::t('app', 'перейти'), $bid->participationUrl),
+                    ]),
+                    true
+                );
+            }
+        }
     }
 
 }

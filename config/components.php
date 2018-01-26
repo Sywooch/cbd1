@@ -33,7 +33,7 @@ $components = [
         'class' => 'yii\web\AssetManager',
         'bundles' => [
             'yii\web\JqueryAsset' => [
-                'js' => ['https://code.jquery.com/jquery-3.2.1.min.js'],
+//                'js' => ['https://code.jquery.com/jquery-3.2.1.min.js'],
             ],
             'yii\bootstrap\BootstrapAsset' => [
                 'sourcePath' => null,
@@ -78,11 +78,11 @@ $components = [
         'useFileTransport' => false,
         'transport' => [
             'class' => 'Swift_SmtpTransport',
-            'host' => 'mail.uisce.com.ua',
-            'username' => 'info@uisce.com.ua',
-            'password' => 'dkflbvbhbujhtdbx_2017',
-            'port' => '25',
-            // 'encryption' => 'tls',
+            'host' => getenv('SMTP_HOST'),
+            'username' => getenv('SMTP_LOGIN'),
+            'password' => getenv('SMTP_PASS'),
+            'port' => '587',
+            'encryption' => 'tls',
         ],
     ],
     'log' => [

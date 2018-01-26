@@ -55,7 +55,7 @@ class MessagesController extends Controller
             'params' => [':user_id' => Yii::$app->user->identity->id],
             'totalCount' => (int)$totalCount,
             'sort' => [
-                'defaultOrder' => ['status' => SORT_ASC]
+                'defaultOrder' => ['status' => SORT_ASC, 'date' => SORT_DESC]
             ],
             'key' => 'id',
             'pagination' => [
@@ -65,6 +65,10 @@ class MessagesController extends Controller
         $dataProvider->sort->attributes['status'] = [
             'asc' => ['messages.status' => SORT_ASC],
             'desc' => ['messages.status' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['date'] = [
+            'asc' => ['messages.date' => SORT_ASC],
+            'desc' => ['messages.date' => SORT_DESC],
         ];
         //$userRole = Yii::$app->authManager->getRole('org');
         //Yii::$app->authManager->assign($userRole, Yii::$app->user->identity->id);

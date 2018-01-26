@@ -8,20 +8,19 @@
 
 namespace app\components;
 
-use Yii;
-use api\Bids;
-use api\Awards;
 use api\Auctions;
-use api\Questions;
-use api\Documents;
-use yii\helpers\Html;
-use app\helpers\Date;
-use api\Cancellations;
-use yii\base\Component;
-use app\models\Messages;
-use yii\helpers\VarDumper;
-use yii\httpclient\Client;
 use api\Auctions as ApiAuctions;
+use api\Awards;
+use api\Bids;
+use api\Cancellations;
+use api\Documents;
+use api\Questions;
+use app\helpers\Date;
+use app\models\Messages;
+use Yii;
+use yii\base\Component;
+use yii\helpers\Html;
+use yii\httpclient\Client;
 
 /**
  * @property integer $count
@@ -31,8 +30,6 @@ use api\Auctions as ApiAuctions;
  * @property string $fullPath
  * @property string $fullpath
  **/
-
-
 class Api extends Component
 {
 
@@ -47,36 +44,51 @@ class Api extends Component
     }
 
     public function createBid(Bids $bid){
-//        DMF($bid->toArray());
-//        try{
         $data = $this->request('auctions/' . $bid->apiAuction->id . '/bids', 'POST', ['data' => $bid->toArray()]);
-//        }
-//        catch(\Exception $e){
-//            $bid->delete();
-//            VarDumper::dumpAsString($e->getMessage());
-//            DMF($e->getMessage());
-//        }
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             $bid->delete();
             DMF($data);
         }
         $bid->load($data, '');
-        $bid->access_token = isset($data['access']) ? $data['access']['token'] : null;
+        $bid->access_token = isset($data['access']) ? $data['access']['token'] : NULL;
         return $bid->save(false);
+    }
+
+    public function request($address, $method = 'GET', $data = [], $additionalHeaders = []){
+        $client = new Client(['baseUrl' => $this->fullpath]);
+        $request = $client->createRequest()
+            ->setMethod($method)
+            ->setUrl($address)
+            ->setHeaders(array_merge(
+                $additionalHeaders,
+                ['Authorization' => 'Basic ' . base64_encode($this->apiKey . ':')]
+            ))
+            ->setFormat(Client::FORMAT_JSON)
+            ->setData($data);
+        $response = $client->send($request);
+        if($response->getStatusCode() == '412') {
+            $request->setCookies([
+                $response->cookies->get('AWSELB'),
+                $response->cookies->get('SERVER_ID'),
+            ]);
+            $response = $client->send($request);
+            return $response->getData();
+        }
+        return $response->getData();
+
     }
 
     public function updateBid(Bids $bid){
         $data = $this->request(
-            'auctions/' . $bid->apiAuction->id . '/bids/' . $bid->id . '?acc_token=' . $bid->access_token ,
+            'auctions/' . $bid->apiAuction->id . '/bids/' . $bid->id . '?acc_token=' . $bid->access_token,
             'PATCH',
             ['data' => $bid->toArray()]
         );
-        if(isset($data['errors'])){
+        if(isset($data['errors'])) {
             DMF($data);
         }
 
         $bid->load($data, '');
-        // $bid->access_token = isset($data['access']) ? $data['access']['token'] : null;
         return $bid->save(false);
     }
 
@@ -87,7 +99,7 @@ class Api extends Component
             'POST',
             ['data' => $documentData]);
 
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             var_dump($document->toArray());
             DMF($data);
         }
@@ -106,7 +118,7 @@ class Api extends Component
             'PATCH',
             ['data' => $document->toArray()]);
 
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             DMF($data);
         }
 
@@ -125,7 +137,7 @@ class Api extends Component
                     'status' => 'active',
                 ],
             ]);
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
         return $bid->load($data, '') && $bid->save(false);
@@ -136,7 +148,7 @@ class Api extends Component
             'auctions/' . $bid->lot->apiAuction->id . '/bids/' . $bid->id . '?acc_token=' . $bid->access_token,
             'DELETE',
             []);
-        if(isset($data['data'])){
+        if(isset($data['data'])) {
             return $bid->delete();
         }
         return false;
@@ -146,27 +158,27 @@ class Api extends Component
 
         $auctionData = $auction->toArray();
 
-        if(YII_DEBUG){
-            $auctionData['procurementMethodDetails'] = 'quick, accelerator=14400';
+        if(YII_DEBUG) {
+            $auctionData['procurementMethodDetails'] = 'quick, accelerator=1440';
             $auctionData['submissionMethodDetails'] = 'quick';
         }
 
         $data = $this->request('auctions', 'POST', ['data' => $auctionData]);
 
-        if(!isset($data['data']) || ((isset($data['status']) && $data['status'] == 'error'))){
+        if(!isset($data['data']) || ((isset($data['status']) && $data['status'] == 'error'))) {
             var_dump($auction->toArray());
             $auction->delete();
             DMF($data);
         }
 
-        /** @var Documents $document **/
-        foreach($auction->documents as $document){
+        /** @var Documents $document * */
+        foreach($auction->documents as $document) {
             $this->request('auctions/' . $data['data']['id'] . '/documents?acc_token=' . $data['access']['token'],
                 'POST',
                 ["data" => $document->toArray()]);
         }
 
-        if($auction->procurementMethodType == "dgfFinancialAssets" && $auction->lot->vdr){
+        if($auction->procurementMethodType == "dgfFinancialAssets" && $auction->lot->vdr) {
             $document = new Documents([
                 'relatedItem' => $auction->unique_id,
                 'documentOf' => "auction",
@@ -183,7 +195,7 @@ class Api extends Component
             $document->documentOf = "auction";
             $document->save(false);
         }
-        if($auction->lot->address){
+        if($auction->lot->address) {
             $document = new Documents([
                 'relatedItem' => $auction->unique_id,
                 'documentOf' => "auction",
@@ -203,7 +215,7 @@ class Api extends Component
             $document->documentOf = "auction";
             $document->save(false);
         }
-        if($auction->lot->passport){
+        if($auction->lot->passport) {
             $document = new Documents([
                 'relatedItem' => $auction->unique_id,
                 'documentOf' => "auction",
@@ -220,7 +232,7 @@ class Api extends Component
             $document->documentOf = "auction";
             $document->save(false);
         }
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             var_dump($auctionData);
             DMF($data);
         }
@@ -232,12 +244,11 @@ class Api extends Component
 
     public function updateAuction(Auctions $auction){
         $data = $this->request('auctions/' . $auction->id . '?acc_token=' . $auction->access_token, 'PATCH', ['data' => $auction->toArray()]);
-        if(isset($data['data']) && YII_DEBUG){
+        if(isset($data['data']) && YII_DEBUG) {
             $auction->load($data['data'], '');
             $auction->save(false);
             return true;
-        }
-        else{
+        } else {
             DMF($data);
             return false;
         }
@@ -245,7 +256,7 @@ class Api extends Component
 
     public function addAuctionDocument(Documents $document){
         $documentData = $document->toArray();
-        if($document->documentType == 'evaluationCriteria'){
+        if($document->documentType == 'evaluationCriteria') {
             $document->title = 'Критерії оцінки';
         }
         $data = $this->request('auctions/' . $document
@@ -256,12 +267,11 @@ class Api extends Component
             'POST',
             ["data" => $documentData]);
 
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             print_r($document->toArray());
             DMF($data);
         }
         $document->id = $data['data']['id'];
-        // $document->load($data, '');
         $document->save(false);
 
         return isset($data['data']);
@@ -269,7 +279,7 @@ class Api extends Component
 
     public function replaceAuctionDocument($old_document, Documents $document){
         $documentData = $document->toArray();
-        if($document->documentType == 'evaluationCriteria'){
+        if($document->documentType == 'evaluationCriteria') {
             $document->title = 'Критерії оцінки';
         }
         $data = $this->request('auctions/' . $document
@@ -280,7 +290,7 @@ class Api extends Component
             'PUT',
             ["data" => $documentData]);
 
-        if(isset($data['errors']) && YII_DEBUG){
+        if(isset($data['errors']) && YII_DEBUG) {
             print_r($documentData);
             DMF($data['errors']);
         }
@@ -298,7 +308,7 @@ class Api extends Component
             'auctions/' . $cancellation->auction->id . '/cancellations/' . $cancellation->id . '/documents?acc_token=' . $cancellation->auction->access_token,
             'POST',
             ['data' => $documentData]);
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             DMF($data);
         }
         $document->load(array_merge($data['data'], ['documentOf' => 'cancellation', 'relatedItem' => $cancellation->unique_id]), '');
@@ -314,7 +324,7 @@ class Api extends Component
             'auctions/' . $cancellation->auction->id . '/cancellations/' . $cancellation->id . '/documents/' . $old_document->id . '?acc_token=' . $cancellation->auction->access_token,
             'PUT',
             ['data' => $documentData]);
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             DMF($data);
         }
         $document->load(array_merge($data['data'], ['documentOf' => 'cancellation', 'relatedItem' => $cancellation->unique_id]), '');
@@ -327,7 +337,7 @@ class Api extends Component
 
         $data = $this->request('auctions/' . $model->auctionId . '/questions', 'POST', ['data' => $question]);
         $model->scenario = 'publish';
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             print_r($question);
             DMF($data);
         }
@@ -339,8 +349,8 @@ class Api extends Component
         $question = $model->toArray();
         $question['date'] = Date::normalize(date('Y-m-d', time()));
 
-        $data = $this->request('auctions/'. $model->auction->auction->id . '/questions/' . $model->id . '?acc_token=' . $model->auction->auction->access_token, 'PATCH', ['data' => $question]);
-        if(!isset($data['data']) && YII_DEBUG){
+        $data = $this->request('auctions/' . $model->auction->auction->id . '/questions/' . $model->id . '?acc_token=' . $model->auction->auction->access_token, 'PATCH', ['data' => $question]);
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
         $model->load($data, '');
@@ -366,7 +376,7 @@ class Api extends Component
                 ]),
             ]
         );
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
 
@@ -382,9 +392,9 @@ class Api extends Component
             'PATCH', [
             'data' => [
                 'status' => 'pending.payment',
-            ]
+            ],
         ]);
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
         $award = $bid->award;
@@ -393,11 +403,11 @@ class Api extends Component
     }
 
     public function confirmAward(Awards $award){
-        $data =  $this->request(
+        $data = $this->request(
             'auctions/' . $award->auction->id . '/awards/' . $award->id . '?acc_token=' . $award->auction->access_token, 'PATCH',
             ['data' => ['status' => 'active']]
         );
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
         $award->load($data, '');
@@ -410,16 +420,16 @@ class Api extends Component
 
         $data = $this->request(
             'auctions/'
-            .$bid->apiAuction->id
-            .'/contracts/'
-            .$bid->contract->id
-            .'/documents?acc_token='
-            .$bid->apiAuction->access_token,
+            . $bid->apiAuction->id
+            . '/contracts/'
+            . $bid->contract->id
+            . '/documents?acc_token='
+            . $bid->apiAuction->access_token,
 
             'POST',
             ['data' => $documentData]
         );
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             DMF($data);
         }
         $document->id = $data['data']['id'];
@@ -428,7 +438,7 @@ class Api extends Component
         return $data;
     }
 
-    public function confirmContract(Bids $bid, $date = null){
+    public function confirmContract(Bids $bid, $date = NULL){
         $data = [
             'status' => 'active',
         ];
@@ -457,7 +467,7 @@ class Api extends Component
             'PATCH',
             ['data' => ['status' => 'unsuccessful']]);
 
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
 
@@ -469,7 +479,7 @@ class Api extends Component
         $data = $this->request('auctions/' . $bid->apiAuction->id . '/awards/' . $bid->award->id . '?acc_token=' . $bid->access_token,
             'PATCH',
             ['data' => ['status' => 'cancelled']]);
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
         $bid->load($data, '');
@@ -480,7 +490,7 @@ class Api extends Component
 
         $path = $this->url . $this->path . 'auctions/' . $cancellation->auction->id . '/cancellations';
         $data = $this->request($path . '?acc_token=' . $cancellation->auction->access_token, 'POST', ['data' => $cancellation->toArray()]);
-        if(!isset($data['data']) && YII_DEBUG){
+        if(!isset($data['data']) && YII_DEBUG) {
             DMF($data);
         }
 
@@ -492,43 +502,14 @@ class Api extends Component
 
     public function confirmCancellation(Cancellations $cancellation){
         $data = $this->request('auctions/' . $cancellation->auction->id . '/cancellations/' . $cancellation->id . '?acc_token=' . $cancellation->auction->access_token, 'PATCH', ['data' => ['status' => 'active']]);
-        if(!isset($data['data'])){
+        if(!isset($data['data'])) {
             DMF($data);
         }
         return $cancellation->updateAttributes(['status' => 'active']) && $cancellation->auction->updateAttributes(['status' => 'unsuccessful']);
     }
 
-    public function request($address, $method='GET', $data = [], $additionalHeaders = []){
-        $client = new Client(['baseUrl' => $this->fullpath]);
-        $request = $client->createRequest()
-            ->setMethod($method)
-            ->setUrl($address)
-            ->setHeaders(array_merge(
-                $additionalHeaders,
-                ['Authorization' => 'Basic ' . base64_encode($this->apiKey . ':')]
-            ))
-            ->setFormat(Client::FORMAT_JSON)
-            ->setData($data);
-//        try{
-        $response = $client->send($request);
-        if($response->getStatusCode() == '412'){
-            $request->setCookies([
-                $response->cookies->get('AWSELB'),
-                $response->cookies->get('SERVER_ID'),
-            ]);
-            $response = $client->send($request);
-            return $response->getData();
-        }
-//        }
-//        catch(\Exception $e){
-//            return [];
-//        }
-        return $response->getData();
-
-    }
-
-    public function parseAuctions($offset='2015-01-01T21%3A00%3A03.340891%2B03%3A00', $resave = false, $rewind = false){
-        do{
+    public function parseAuctions($offset = '2015-01-01T21%3A00%3A03.340891%2B03%3A00', $resave = false, $rewind = false){
+        do {
             ob_implicit_flush(true);
 
             echo $offset . "\n";
@@ -537,31 +518,30 @@ class Api extends Component
 //            $temp = $this->request('auctions?offset=' . $offset . ($rewind == true ? '&descending=True' : ''));
 
             $data = $temp['data'];
-            foreach($data as $item){
+            foreach($data as $item) {
 
                 echo $item['id'] . ' - ' . $item['dateModified'] . "\r\n";
 
-                if(false != ($auction = ApiAuctions::find()->where(['id' => $item['id']])->one())){
-                    if(($auction->dateModified != $item['dateModified']) || $resave == true){
+                if(false != ($auction = ApiAuctions::find()->where(['id' => $item['id']])->one())) {
+                    if(($auction->dateModified != $item['dateModified']) || $resave == true) {
                         $auctiondata = $this->request('auctions/' . $item['id'])['data'];
 
 //                        if($auction->status == 'active.tendering' && $auctiondata['status'] == 'active.auction' && $auction->bids){
                         $this->parseBids($auction);
 //                        }
                         $auction->load($auctiondata, '');
-                        if(!$auction->save() && YII_DEBUG){
+                        if(!$auction->save() && YII_DEBUG) {
                             $id = $auctiondata['id'];
                             echo "Tender $id saving error\n";
                             print_r($auction->errors);
                         }
-                        if($resave == false)$this->count += 1;
+                        if($resave == false) $this->count += 1;
                     }
-                }
-                else{
+                } else {
                     $auction = new ApiAuctions();
                     $auctiondata = $this->request('auctions/' . $item['id']);
                     $auction->load($auctiondata, '');
-                    if(!$auction->save(false) && YII_DEBUG){
+                    if(!$auction->save(false) && YII_DEBUG) {
                         echo "Auction $auction->id saving error\n<br>";
                         print_r($auction->errors);
 //                        die();
@@ -572,13 +552,35 @@ class Api extends Component
 
             $apiVersion = getenv('API_VERSION');
             $offset = str_replace("/api/{$apiVersion}/auctions?offset=", "", $temp['next_page']['path']);
-        }
-        while(count($data) > 0);
+        } while(count($data) > 0);
         echo "Получено записей:" . $this->count . "\n";
     }
 
+    public function parseBids($auction){
+        /** @var Bids $bid * */
+        foreach($auction->ownBids as $bid) {
+            if($bid->access_token) {
+                $data = $this->request('auctions/' . $auction->id . '/bids/' . $bid->id . '?acc_token=' . $bid->access_token, 'GET');
+                if(isset($data['data']['participationUrl']) && !$bid->participationUrl) {
+                    $bid->load($data, '');
+                    $bid->auction_id = $auction->unique_id;
+                    $bid->save(false);
+
+                    Yii::createObject(Messages::className())->sendMessage(
+                        $bid->user_id,
+                        Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [
+                            'auction' => $auction->title,
+                            'link' => Html::a(Yii::t('app', 'перейти'), $data['data']['participationUrl']),
+                        ]),
+                        true
+                    );
+                }
+            }
+        }
+    }
+
     public function refreshAuction($id = ''){
-        if(null === ($auction = Auctions::find()->where(['id' => $id])->one())){
+        if(NULL === ($auction = Auctions::find()->where(['id' => $id])->one())) {
             $auction = new Auctions();
         }
         $auction->load($this->request('auctions/' . $id), '');
@@ -588,29 +590,6 @@ class Api extends Component
         //print_r($auction->errors);
 //        }
         return $saved;
-    }
-
-    public function parseBids($auction){
-        /** @var Bids$bid **/
-        foreach($auction->bids as $bid){
-            if($bid->access_token){
-                $data = $this->request('auctions/' . $auction->id . '/bids/' . $bid->id . '?acc_token=' . $bid->access_token, 'GET');
-                if(isset($data['data']['participationUrl']) && !$bid->participationUrl){
-                    $bid->load($data, '');
-                    $bid->auction_id = $auction->unique_id;
-                    $bid->save(false);
-
-                    Yii::createObject(Messages::className())->sendMessage(
-                        $bid->user_id,
-                        Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [
-                            'auction' => $auction->title,
-                            'link' =>  Html::a(Yii::t('app', 'перейти'), $data['data']['participationUrl']),
-                        ]),
-                        true
-                    );
-                }
-            }
-        }
     }
 
 }

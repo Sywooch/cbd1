@@ -10,22 +10,22 @@ $this->title = Yii::t('app', 'Auction cancelling');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cancellations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="container">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <span class="glyphicon glyphicon-stats"></span>
-            <strong>
-                <?= Html::encode($this->title) ?>
-            </strong>
-        </div>
-        <div class="panel-body">
-            <div class="cancellations-create">
-
-                <?= $this->render('_form', [
-                    'model' => $model,
-                ]) ?>
-
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane auctions fade show active" id="nav-auctions" role="tabpanel" aria-labelledby="nav-auctions-tab">
+            <div class="auctions-header">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
+                    </div>
+                </div>
             </div>
+
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+
         </div>
     </div>
 </div>
