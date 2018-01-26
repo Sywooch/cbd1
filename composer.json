@@ -35,7 +35,8 @@
         "kartik-v/yii2-widget-typeahead": "*",
         "mihaildev/yii2-ckeditor": "*",
         "mihaildev/yii2-elfinder": "*",
-        "kartik-v/yii2-popover-x": "*"
+        "kartik-v/yii2-popover-x": "*",
+        "rmrevin/yii2-minify-view": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

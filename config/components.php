@@ -9,11 +9,25 @@ $apiVersion = getenv('API_VERSION');
 
 $components = [
     'view' => [
+        'class' => '\rmrevin\yii\minify\View',
         'theme' => [
             'pathMap' => [
                 '@vendor/dektrium/yii2-user/views' => '@app/views/user',
             ],
         ],
+        'enableMinify' => true,
+        'concatCss' => true,
+        'minifyCss' => true,
+        'concatJs' => true,
+        'minifyJs' => true,
+        'minifyOutput' => true,
+        'webPath' => '@web',
+        'basePath' => '@webroot',
+        'minifyPath' => '@webroot/minify',
+        'jsPosition' => [ \yii\web\View::POS_END ],
+        'forceCharset' => 'UTF-8',
+        'expandImports' => true,
+        'compressOptions' => ['extra' => true],
     ],
     'assetManager' => [
         'class' => 'yii\web\AssetManager',
