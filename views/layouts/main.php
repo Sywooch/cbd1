@@ -128,11 +128,14 @@ else{
         </div>
     </div>
     <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
-        <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
-        <?php if(Yii::$app->user->isGuest){?>
+        <?php if(Yii::$app->user->isGuest): ?>
+            <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
             <a href="/user/login" class="btn btn-primary btn-block btn-lg">Вхід</a>
             <a href="/registration/register" class="btn btn-warning btn-block btn-lg">Реєстрація</a>
-        <?php }?>
+        <?php else: ?>
+            <a href="/bids" class="btn btn-primary btn-block btn-lg">Кабінет</a>
+            <a href="/messages" class="btn btn-primary btn-block btn-lg">Повідомлення</a>
+        <?php endif; ?>
         <button type="button" class="menu-mini-close">
             <img src="/images/icon-close.png" alt="">
         </button>
