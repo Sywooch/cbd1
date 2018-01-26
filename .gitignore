@@ -5,3 +5,4 @@ composer.lock
 /.env
 tmp/
 stats/
+web/minify/
