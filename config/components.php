@@ -28,6 +28,10 @@ $components = [
         'forceCharset' => 'UTF-8',
         'expandImports' => true,
         'compressOptions' => ['extra' => true],
+        'excludeFiles' => [
+        ],
+        'excludeBundles' => [
+        ],
     ],
     'assetManager' => [
         'class' => 'yii\web\AssetManager',
