@@ -21,7 +21,6 @@ $messages_counter = \app\models\Messages::find()->where(['user_id' => Yii::$app-
     <!-- <meta name="MobileOptimized" content="991"/>
     <meta name="HandheldFriendly" content="true"/> -->
     <?= Html::csrfMetaTags() ?>
-    <link href="/minify/9b6424233ddcc85d1063b7b2cc065919.css" rel="stylesheet">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
@@ -50,7 +49,7 @@ else{
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
+                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="d-none d-lg-inline-block logo-prozorro" src="/images/logo-prozorro.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
@@ -213,7 +212,7 @@ else{
     <div class="container">
         <div class="row">
             <div class="banner-footer col-12 col-lg-6 align-self-center">
-<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
+                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
                 <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
                 <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
@@ -323,7 +322,4 @@ else{
         </div>
     </div>
 </footer><?php $this->endBody() ?>
-<script src="/minify/a5d28ed5bc2fa31557a487e5f932d265.js">
-</body>
-</html>
 <?php $this->endPage() ?>

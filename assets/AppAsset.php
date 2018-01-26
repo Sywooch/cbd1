@@ -18,19 +18,19 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        //'css/bootstrap.css',
-        //'css/font-awesome.css',
-        //'css/popover.css',
-        //'dist/custom.min.css',
-        //'css/fixes.css'
+        'css/bootstrap.css',
+        'css/font-awesome.css',
+        'css/popover.css',
+        'dist/custom.min.css',
+        'css/fixes.css'
     ];
     public $js = [
-        //'js/sweetalert.js',
-        //'js/popper.js',
-        //'js/bootstrap.js',
-        //'js/popover.js',
-        //'js/accounting.js',
-        //'dist/scripts.min.js'
+        'js/sweetalert.js',
+        'js/popper.js',
+        'js/bootstrap.js',
+        'js/popover.js',
+        'js/accounting.js',
+        'dist/scripts.min.js'
 
     ];
     public $depends = [
