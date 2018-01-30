@@ -10,7 +10,7 @@ $messages_counter = $messages_count > 0 ? ('</span><span class="notification">' 
 echo Nav::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'About Us'),
+            'label' => Yii::t('app', 'Про нас'),
             'url' => ['/site/about'],
         ],
         [
@@ -31,7 +31,7 @@ echo Nav::widget([
             'linkOptions' => ['target' => '_blank'],
         ],
         [
-            'label' => Yii::t('app', 'Contacts'),
+            'label' => Yii::t('app', 'Контакти'),
             'url' => ['/site/contacts'],
         ],
 
