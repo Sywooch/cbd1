@@ -63,6 +63,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $this->layout = '@app/views/layouts/index/index';
         $searchModel = new AuctionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

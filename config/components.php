@@ -17,21 +17,21 @@ $components = [
     ],
     'assetManager' => [
         'class' => 'yii\web\AssetManager',
-        'bundles' => [
-            'yii\web\JqueryAsset' => [
-//                'js' => ['https://code.jquery.com/jquery-3.2.1.min.js'],
-            ],
-            'yii\bootstrap\BootstrapAsset' => [
-                'sourcePath' => null,
-                'css' => [
-                    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css',
-                ],
-                'js' => [
-                    'https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js',
-                    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js',
-                ]
-            ]
-        ],
+        //'bundles' => [
+        //    'yii\web\JqueryAsset' => [
+        //        'js' => ['https://code.jquery.com/jquery-3.2.1.min.js'],
+            //],
+            //'yii\bootstrap\BootstrapAsset' => [
+            //    'sourcePath' => null,
+            //    'css' => [
+            //        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css',
+            //    ],
+            //    'js' => [
+            //        'https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js',
+            //        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js',
+            //    ]
+            //]
+        //],
     ],
     'request' => [
         // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

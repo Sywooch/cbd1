@@ -8,6 +8,7 @@
 namespace app\assets;
 
 use yii\web\AssetBundle;
+use Yii;
 
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -15,6 +16,24 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+
+    public function init(){
+        Yii::$app->assetManager->bundles['yii\web\JqueryAsset'] = [
+
+        ];
+        Yii::$app->assetManager->bundles['yii\bootstrap\BootstrapAsset'] = [
+            'sourcePath' => null,
+            'css' => [
+                'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css',
+            ],
+            'js' => [
+                'https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js',
+                'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js',
+            ]
+        ];
+        parent::init();
+    }
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -23,7 +42,6 @@ class AppAsset extends AssetBundle
         'https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css',
         'dist/custom.min.css',
         'css/fixes.css'
-
     ];
     public $js = [
         //'https://code.jquery.com/jquery-3.2.1.min.js',

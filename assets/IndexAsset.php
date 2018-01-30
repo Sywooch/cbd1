@@ -13,17 +13,23 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAssetUser extends AppAsset
+class IndexAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $basePath = '@webroot/index';
+    public $baseUrl = '@web/index';
+
     public $css = [
-        'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-        'css/style.min.css',
-        'css/backend.css',
+        'css/dist/css/style.min.css',
+//        'css/backend.css',
+        'css/dist/css/custom.min.css'
     ];
     public $js = [
+//         'css/dist/js/bootstrap.min.js',
+        'css/dist/js/scripts.js',
         'js/accounting.js',
+//        'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
+//        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+        'dist/scripts.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
