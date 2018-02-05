@@ -5,6 +5,7 @@ namespace app\controllers;
 use api\Auctions;
 use app\models\AuctionsSearch;
 use app\models\Categoriesblog;
+use app\models\Feedback;
 use app\models\Pages;
 use app\models\Posts;
 use app\models\searchModels\PostsSearch;
@@ -92,14 +93,25 @@ class SiteController extends Controller
 
             return $this->refresh();
         }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
+        return $this->render('contact');
     }
 
     public function actionAbout()
     {
+        $this->layout = '@app/views/layouts/index/index';
+
         return $this->render('about');
+    }
+    public function actionContacts()
+    {
+        $this->layout = '@app/views/layouts/index/index';
+
+        $model = new Feedback();
+        if($model->load(Yii::$app->request->post()) && $model->send()){
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Ваше звернення прийняте'));
+            return $this->refresh();
+        }
+        return $this->render('contacts', ['model' => $model]);
     }
 
     public function actionManual()
