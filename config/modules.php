@@ -20,6 +20,7 @@ $modules = [
         'controllerMap' => [
             'admin' => 'app\controllers\AdminController',
             'registration' => 'app\controllers\RegistrationController',
+            'security' => 'app\controllers\SecurityController',
             'elfinder' => [
                 'class' => 'mihaildev\elfinder\Controller',
                 'access' => ['@'], //глобальный доступ к фаил менеджеру @ - для авторизорованных , ? - для гостей , чтоб открыть всем ['@', '?']
