@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 ?>
 <?php if(!Yii::$app->user->can('org') && (strtotime($model->enquiryPeriod_endDate)) >= time()): ?>
-<?=Html::a(Yii::t('app', 'Create question'), ['/questions/create', 'id' => $auction->unique_id], ['class' => 'btn btn-success pull-right', 'id' => 'create-question-btn']); ?>
+    <?=Html::a(Yii::t('app', 'Create question'), ['/questions/create', 'id' => $auction->unique_id], ['class' => 'btn btn-success pull-right', 'id' => 'create-question-btn']); ?>
 <?php endif; ?>
 <?php if(count($questions) > 0): ?>
     <?php foreach($questions as $n => $question): $n++; ?>
