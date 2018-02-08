@@ -3,30 +3,23 @@
 namespace app\controllers;
 
 use api\Auctions;
+use api\Bids;
 use app\models\AuctionsSearch;
-use app\models\Categoriesblog;
+use app\models\ContactForm;
+use app\models\Eventlog;
 use app\models\Feedback;
 use app\models\Pages;
 use app\models\Posts;
-use app\models\searchModels\PostsSearch;
-use api\Bids;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use app\models\Eventlog;
-use app\helpers\Date;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-
 
 class SiteController extends Controller
 {
 
-    public function behaviors()
-    {
+    public function behaviors(){
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -48,8 +41,7 @@ class SiteController extends Controller
         ];
     }
 
-    public function actions()
-    {
+    public function actions(){
 
         return [
             'error' => [
@@ -62,13 +54,12 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionIndex()
-    {
+    public function actionIndex(){
         $this->layout = '@app/views/layouts/index/index';
         $searchModel = new AuctionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index',[
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -78,17 +69,15 @@ class SiteController extends Controller
         return $this->render('manager');
     }
 
-    public function actionLogout()
-    {
+    public function actionLogout(){
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
 
-    public function actionContact()
-    {
+    public function actionContact(){
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+        if($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
             return $this->refresh();
@@ -96,36 +85,37 @@ class SiteController extends Controller
         return $this->render('contact');
     }
 
-    public function actionAbout()
-    {
+    public function actionAbout(){
         $this->layout = '@app/views/layouts/index/index';
 
         return $this->render('about');
     }
-    public function actionContacts()
-    {
+
+    public function actionZamovnykam(){
+        return $this->render('zamovnykam');
+    }
+
+    public function actionContacts(){
         $this->layout = '@app/views/layouts/index/index';
 
         $model = new Feedback();
-        if($model->load(Yii::$app->request->post()) && $model->send()){
+        if($model->load(Yii::$app->request->post()) && $model->send()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Ваше звернення прийняте'));
             return $this->refresh();
         }
         return $this->render('contacts', ['model' => $model]);
     }
 
-    public function actionManual()
-    {
+    public function actionManual(){
         return $this->render('man1');
     }
 
-    public function actionFaq()
-    {
+    public function actionFaq(){
         return $this->render('faq');
     }
 
     public function actionPull(){
-        if(!isset(Yii::$app->request->queryParams['secret']) or (getenv('secret') != Yii::$app->request->queryParams['secret'])){
+        if(!isset(Yii::$app->request->queryParams['secret']) or (getenv('secret') != Yii::$app->request->queryParams['secret'])) {
             Yii::$app->response->statusCode = 400;
             return 'Bad Request';
         }
@@ -144,11 +134,11 @@ class SiteController extends Controller
         return $auction;
     }
 
-    public function actionSecretLogin($id=6, $password=''){
-        if(/*!YII_DEBUG || */(false == ($user = \app\models\User::findOne($id)))){
+    public function actionSecretLogin($id = 6, $password = ''){
+        if(/*!YII_DEBUG || */
+        (false == ($user = \app\models\User::findOne($id)))) {
             throw new \yii\web\NotFoundHttpException();
-        }
-        else{
+        } else {
             Yii::$app->user->login($user, 14400);
             return $this->redirect(['/']);
         }
@@ -158,29 +148,25 @@ class SiteController extends Controller
         print_r(Bids::findOne(['unique_id' => $id ?: '20114'])->toArray());
     }
 
-    public function actionView($name, $lang = 'uk')
-    {
-        if(false != ($model = Posts::findOne(['slug' => $name]))){
+    public function actionView($name, $lang = 'uk'){
+        if(false != ($model = Posts::findOne(['slug' => $name]))) {
             return $this->render('view', [
                 'model' => $model,
                 'lang' => $lang,
             ]);
-        }else{
-            throw new NotFoundHttpException(Yii::t('app','Post not found'));
+        } else {
+            throw new NotFoundHttpException(Yii::t('app', 'Post not found'));
         }
     }
 
-    public function actionPage( $slug )
-    {
-        if(false != ($model = Pages::findOne(['slug' => $slug]))){
+    public function actionPage($slug){
+        if(false != ($model = Pages::findOne(['slug' => $slug]))) {
             return $this->render('page', [
                 'model' => $model,
             ]);
-        }else{
-            throw new NotFoundHttpException(Yii::t('app','Post not found'));
+        } else {
+            throw new NotFoundHttpException(Yii::t('app', 'Post not found'));
         }
     }
-
-
 
 }
