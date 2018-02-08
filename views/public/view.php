@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model api\Auctions */
 
-$this->title = $model->title;
+$this->title = Html::encode($model->title);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Auctions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs(<<<JS
@@ -32,7 +32,7 @@ JS
                 <div class="col-9">
                     <p class="subtitle-primary">Номер лоту: <span class="text-uppercase"><?= $model->auctionID?></span></p>
                     <h3 class="lot-title">
-                        <span id = "auction-title"><?= $model->title?></span>
+                        <span id = "auction-title"><?= Html::encode($model->title)?></span>
                         <?php if($model->access_token && Yii::$app->user->can('org')): ?>
                             <?= Html::a('<i class="fa fa-pencil"></i>', ['/lots/edit', 'id' => $model->baseAuction_id], ['id' => 'lot-edit-btn']); ?>
                             <?= Html::a('<i class="fa fa-pencil"></i>', ['/lots/update', 'id' => $model->baseAuction_id], ['id' => 'lot-update-btn']); ?>
@@ -62,18 +62,18 @@ JS
                                     <p class="subtitle-secondary mb-1">Найменування органiзатора</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <a href="#" id = "auction-procuringEntity_name" class="link-secondary mb-1 popover-trigger"><?= $model->baseAuction->ownerName ?: ($model->procuringEntity ? $model->procuringEntity->name : ''); ?></a>
+                                    <a href="#" id = "auction-procuringEntity_name" class="link-secondary mb-1 popover-trigger"><?= Html::encode($model->baseAuction->ownerName) ?: ($model->procuringEntity ? $model->procuringEntity->name : ''); ?></a>
                                     <div class="webui-popover-content">
                                         <div class="publications-org-info">
                                             <p class="font-weight-bold mb-0">Контактна особа:</p>
-                                            <p class="org-name"><span><?= $model->procuringEntity->name?></span></p>
+                                            <p class="org-name"><span><?= Html::encode($model->procuringEntity->name)?></span></p>
                                             <p class="font-weight-bold mb-0">E-mail:</p>
-                                            <p class="org-email"><?= $model->procuringEntity->contactPoint_email?></p>
+                                            <p class="org-email"><?= Html::encode($model->procuringEntity->contactPoint_email)?></p>
                                             <p class="font-weight-bold mb-0">Телефон:</p>
-                                            <p class="org-telephone"><?= $model->procuringEntity->contactPoint_telephone?></p>
+                                            <p class="org-telephone"><?= Html::encode($model->procuringEntity->contactPoint_telephone)?></p>
                                             <p class="font-weight-bold mb-0">ЄДРПОУ:</p>
-                                            <p class="org-edrpou"><?= $model->procuringEntity->identifier_id?></p>
-                                            <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони замовника</a>
+                                            <p class="org-edrpou"><?= Html::encode($model->procuringEntity->identifier_id)?></p>
+                                            <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => Html::encode($model->procuringEntity->name)]])?>" class="link-primary">Всі аукціони замовника</a>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@ JS
                                     <p class="subtitle-secondary mb-1">Код в ЄДРПОУ / ІПН</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p class="mb-1"><?= $model->procuringEntity->identifier_id?></p>
+                                    <p class="mb-1"><?= Html::encode($model->procuringEntity->identifier_id)?></p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
@@ -99,7 +99,7 @@ JS
                             <h4 class="font-weight-bold mt-4 mb-3">Інформация про лот</h4>
                             <div class="row">
                                 <div class="col-12">
-                                    <p id = "auction-description"><?= $model->description?></p>
+                                    <p id = "auction-description"><?= Html::encode($model->description); ?></p>
                                 </div>
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Ідентифікатор аукціону</p>
@@ -112,14 +112,14 @@ JS
                                     <p class="subtitle-secondary mb-1">Номер лоту ФГВ</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p class="mb-1" id = "auction-dgfID"><?= $model->dgfID?></p>
+                                    <p class="mb-1" id = "auction-dgfID"><?= Html::encode($model->dgfID)?></p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Рішення ФГВ</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <div class="mb-1" id="auction-dgfDecisionID"><?= $model->dgfDecisionID; ?></div>
+                                    <div class="mb-1" id="auction-dgfDecisionID"><?= Html::encode($model->dgfDecisionID); ?></div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
@@ -190,7 +190,7 @@ JS
                                     <p class="subtitle-secondary mb-1">Критерії оцінювання</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p class = "mb-1" id="auction-eligibilityCriteria"><?=$model->eligibilityCriteria; ?></p>
+                                    <p class = "mb-1" id="auction-eligibilityCriteria"><?=Html::encode($model->eligibilityCriteria); ?></p>
                                 </div>
 
                                 <div class="w-100"></div>
@@ -214,13 +214,13 @@ JS
                                                     [
                                                         'data-toggle' => 'modal',
                                                         'data-target' => '#exampleModal',
-                                                        'id' => explode(':', $modelItem->description)[0] . 'item',
+                                                        'id' => Html::encode(explode(':', $modelItem->description)[0] . 'item'),
                                                         'class' => 'btn btn-success btn-sm question-item',
                                                         'data-url' => Url::to(['/questions/create', 'id' => $model->unique_id,
                                                             'item_id' => $modelItem->id])
                                                     ])?>
                                             <?php endif; ?>
-                                            <p class="lot-description mb-0" id = "items[<?=$n?>].description"><?= $modelItem->description?></p>
+                                            <p class="lot-description mb-0" id = "items[<?=$n?>].description"><?= Html::encode($modelItem->description)?></p>
                                             <small class="lot-subdescription">Код <?=Html::tag('span', $modelItem->classification->scheme, ['id' => 'items['.$n.'].classification.scheme'])?>: <span id = "items[<?=$n?>].classification.id"><?= $modelItem->classification_id?></span></small>
                                         </td>
                                         <td><span id = "items[<?=$n?>].quantity"><?=$modelItem->quantity?></span> <span id = "items[<?=$n?>].unit_name"><?=$modelItem->unit_name?></span>
@@ -229,18 +229,18 @@ JS
                                         <td><?php
                                             if($modelItem->address_countryName && $modelItem->address_locality
                                                 && $modelItem->address_streetAddress){
-                                                echo $modelItem->address_countryName . ', ' . $modelItem->address_locality
-                                                    . ', ' . $modelItem->address_streetAddress;
+                                                echo Html::encode($modelItem->address_countryName) . ', ' . Html::encode($modelItem->address_locality)
+                                                    . ', ' . Html::encode($modelItem->address_streetAddress);
                                             }else{
                                                 echo Yii::t('app', 'Не вказано');
                                             }?></td>
                                         <td>
                                             <?=Html::tag('span',
-                                                isset(explode(': ', $modelItem->description)[1])
+                                                isset(explode(': ', Html::encode($modelItem->description))[1])
                                                     ?
-                                                    explode(': ', $modelItem->description)[1]
+                                                    explode(': ', Html::encode($modelItem->description))[1]
                                                     :
-                                                    $modelItem->description,
+                                                    Html::encode($modelItem->description),
                                                 ['id' => "items[$n].classification_description"]);?>
                                         </td>
                                     </tr>
@@ -409,17 +409,17 @@ JS
                                             <?php $item_id = explode(':', $question->title)[0];?>
                                             <article class="faq-item py-4">
                                                 <header class="faq-item-header">
-                                                    <h3 class="faq-item-title" id="questions[<?= $n; ?>].title"><?= $question->title?></h3>
+                                                    <h3 class="faq-item-title" id="questions[<?= $n; ?>].title"><?= Html::encode($question->title)?></h3>
                                                     <time class="faq-item-time font-weight-bold">
                                                         <?=Yii::$app->formatter->asDatetime($question->created_at); ?>
                                                     </time>
                                                 </header>
                                                 <div class="faq-item-message" id="questions[<?= $n; ?>].description">
-                                                    <?=$question->description; ?>
+                                                    <?=Html::encode($question->description); ?>
                                                 </div>
                                                 <?php if($question->answer): ?>
                                                     <p><span class='answer-date <?=$n; ?>' id="questions[<?=$n; ?>].answer-date"><?=Yii::t('app', 'Date answered'); ?>: <?=Yii::$app->formatter->asDatetime($question->updated_at); ?></span></p>
-                                                    <p><span class="lead question-answer <?=$n; ?>" id="questions[<?=$n; ?>].answer"><?=$question->answer; ?></span></p>
+                                                    <p><span class="lead question-answer <?=$n; ?>" id="questions[<?=$n; ?>].answer"><?=Html::encode($question->answer); ?></span></p>
                                                 <?php elseif($model->lot && ($model->lot->user_id == Yii::$app->user->id) && !$question->answer): ?>
                                                     <?=Html::a(Yii::t('app', 'Answer the question'), ['/questions/answer', 'id' => $question->unique_id], ['class' => 'btn btn-primary', 'id' => "question[{$item_id}].answer"]); ?>
                                                 <?php endif; ?>
