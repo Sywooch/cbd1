@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 ?>
 
-<div class="row">
+<div class="row my-4">
     <div class="col-md-3">
         <?php if($model->picture){
             echo Html::img(['/uploads/posts/' . $model->picture], ['class' => 'img-fluid']);

@@ -23,12 +23,12 @@ use yii\widgets\MaskedInput;
 $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<section class="registration">
+<section class="registration py-5">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12 col-xl-9 registration-block">
                 <div class="row justify-content-center">
-                    <div class="col-9">
+                    <div class="col-md-9">
                         <h3 class="mb-4">Реєстрація нового користувача</h3>
                         <?php $form = ActiveForm::begin([
                             'id' => 'registration-form',
@@ -71,10 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             'labelOptions' => ['class' => 'col-md-4'],
                         ])->passwordInput(); ?>
 
-                        <div class="form-group row justify-content-end">
-                            <div class="col-lg-8">
-                                <?= $form->field($model, 'oferta', ['options' => ['class' => 'form-check mb-4']])->checkbox(['label' => $model->getAttributeLabel('oferta'), 'labelOptions' => ['class' => 'form-check-label']]); ?>
-                                <?= Html::submitButton(Yii::t('app', 'Зареєструватися'), ['class' => 'btn btn-warning']); ?>
+                        <div class="form-group row">
+                            <div class="col">
+                                <?= $form->field($model, 'oferta', ['options' => ['class' => 'form-check mb-4']])->checkbox(['label' => $model->getAttributeLabel('oferta'), 'labelOptions' => ['class' => 'form-check-label', 'style' => 'padding-left:0']]); ?>
+                                <p class="text-center">
+                                    <?= Html::submitButton(Yii::t('app', 'Зареєструватися'), ['class' => 'btn btn-warning']); ?>
+                                </p>
                             </div>
                         </div>
                         <?php $form->end(); ?>

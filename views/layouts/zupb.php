@@ -31,7 +31,7 @@ ZupbAsset::register($this);
         <div class="row no-gutters">
             <!-- logos -->
             <div class="col-6 col-sm-4 col-lg-5 align-self-center">
-                <a href="#"><img src="/zupb/img/logo.png" alt="ЗУПБ" class="logo"></a>
+                <a href="/"><img src="/zupb/img/logo.png" alt="ЗУПБ" class="logo"></a>
                 <p class="logo-slogan d-none d-lg-inline-block">Акредитований майданчик<br>Prozorro.Sale</p>
             </div>
             <!-- contact info -->
@@ -123,7 +123,7 @@ ZupbAsset::register($this);
             <li><a href="#" class="link-primary">Учасникам</a></li>
             <li><a href="#" class="link-primary">Замовникам</a></li>
             <li><a href="/public" class="link-primary">Публікації</a></li>
-            <li><a href="#" class="link-primary">Новини</a></li>
+            <li><a href="/category/novini" class="link-primary">Новини</a></li>
             <li><a href="#" class="link-primary">Контакти</a></li>
         </ul>
 
@@ -160,7 +160,7 @@ ZupbAsset::register($this);
                     <a class="nav-link" href="/public">Публікації</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Новини</a>
+                    <a class="nav-link" href="/category/novini">Новини</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Контакти</a>
@@ -212,7 +212,7 @@ ZupbAsset::register($this);
                         <li><a href="#" class="link-primary">Учасникам</a></li>
                         <li><a href="#" class="link-primary">Замовникам</a></li>
                         <li><a href="/public" class="link-primary">Публікації</a></li>
-                        <li><a href="#" class="link-primary">Новини</a></li>
+                        <li><a href="/category/novini" class="link-primary">Новини</a></li>
                         <li><a href="#" class="link-primary">Контакти</a></li>
                     </ul>
                     <button type="button" class="menu-mini-close-footer">
@@ -253,7 +253,7 @@ ZupbAsset::register($this);
                             <a class="nav-link" href="/public">Публікації</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Новини</a>
+                            <a class="nav-link" href="/category/novini">Новини</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Контакти</a>

@@ -7,23 +7,23 @@ use yii\helpers\Html;
 use app\widgets\pagesOut;
 
 ?>
-<main class="site-content">
-    <section class="news">
-        <div class="container">
-            <h2 class="news-title">Новини</h2>
 
-            <!--Виджет вывода записей-->
-            <?= ListView::widget([
-                'dataProvider'=>$dataProvider ,
-                'itemView' => 'items/posts_item',
-                'layout' => "{items}\n",
-                'viewParams' => [
-                    'lang' => $lang
-                ]
-            ]) ?>
-        </div>
-    </section>
-</main>
+<section class="news py-5">
+    <div class="container">
+        <h2 class="news-title">Новини</h2>
+
+        <!--Виджет вывода записей-->
+        <?= ListView::widget([
+            'dataProvider'=>$dataProvider ,
+            'itemView' => 'items/posts_item',
+            'layout' => "{items}\n",
+            'viewParams' => [
+                'lang' => $lang
+            ]
+        ]) ?>
+    </div>
+</section>
+
 <?= \yii\widgets\LinkPager::widget([
     'pagination'=>$dataProvider->pagination,
     'prevPageLabel' => '&larr;',

@@ -59,7 +59,7 @@ JS
                           <?= Html::submitButton(Html::img('/images/icon-search.png'), ['class' => 'btn btn-primary'])?>
                       </span>
                     </div>
-                    <input class="link-secondary p-0" data-toggle="collapse" data-target="#expandedSearch" type="button" value="Розширений пошук">
+                    <input class="link-secondary text-light p-0" data-toggle="collapse" data-target="#expandedSearch" type="button" value="Розширений пошук">
                     <img src="/images/icon-plus.png" alt="">
                     <div class="collapse mt-3 <?= $searchModel->isClear() ? '' : 'show'?>" id="expandedSearch">
                         <div class="row no-gutters">
@@ -102,7 +102,7 @@ JS
                         </div>
                         <div class="row no-gutters">
                             <div class="col mt-3">
-                                <a class="link-secondary" href="/" id="reset-btn" name="search-clear">Очистити фільтр</a>
+                                <a class="link-secondary text-light" href="/" id="reset-btn" name="search-clear">Очистити фільтр</a>
                             </div>
                         </div>
                     </div>

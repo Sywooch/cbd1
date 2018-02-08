@@ -26,7 +26,7 @@ JS
 ?>
 
 <main class="site-content">
-    <section class="lot">
+    <section class="lot py-5">
         <div class="container">
             <div class="row">
                 <div class="col-9">
@@ -238,9 +238,8 @@ JS
                                 </tbody>
                             </table>
                             <h4 class="font-weight-bold mt-4 mb-3">Документи аукціону</h4>
-                            <div class="row">
                                 <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)):?>
-                                    <div class="row" id='auction-documents'>
+                                    <div id='auction-documents'>
                                         <table>
                                             <?php
                                             ?>
@@ -273,7 +272,6 @@ JS
                                         </table>
                                     </div>
                                 <?php endif; ?>
-                            </div>
 
                             <?php if($model->awards): ?>
                                 <h2><?=Yii::t('app', 'Bids list'); ?></h2>
@@ -335,10 +333,10 @@ JS
                             <?php if(count($model->questions) > 0): ?>
                                 <?php foreach($model->questions as $n => $question): $n++; ?>
                                     <div class="row">
-                                        <div class="col-xs-12">
+                                        <div class="col-12">
                                             <?php $item_id = explode(':', $question->title)[0];?>
-                                            <article class="faq-item">
-                                                <header class="faq-item-header">
+                                            <article class="faq-item mb-4">
+                                                <header class="faq-item-header mt-2">
                                                     <h3 class="faq-item-title" id="questions[<?= $n; ?>].title"><?= $question->title?></h3>
                                                     <time class="faq-item-time font-weight-bold">
                                                         <?=Yii::$app->formatter->asDatetime($question->created_at); ?>
@@ -358,13 +356,13 @@ JS
                                     </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
-                                <div class="well"><h3><?=Yii::t('app', 'No questions'); ?></h3></div>
+                                <div class="well my-3"><h3><?=Yii::t('app', 'No questions'); ?></h3></div>
                             <?php endif; ?>
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="lot-info">
+                    <div class="lot-info p-4 sticky-top">
                         <div class="publications-starting-price mb-4">
                             <p class="subtitle-secondary mb-1">Початкова ціна</p>
                             <p class="publications-starting-price-value font-weight-bold">

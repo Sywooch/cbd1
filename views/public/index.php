@@ -26,7 +26,7 @@ JS
     <section class="publications">
         <div class="container">
             <h2 class="publications-title">Публікації</h2>
-            <div style="margin-top: calc(-117px - 1rem);" class="publications-search">
+            <div class="publications-search">
                 <?php $form = ActiveForm::begin([
                     'method' => 'get',
                     'action' => ['/public'],
@@ -40,7 +40,7 @@ JS
                         <?= Html::submitButton(Html::img('/images/icon-search.png'), ['class' => 'btn btn-primary', 'id' => 'public-search-btn'])?>
                     </span>
                 </div>
-                <input class="link-secondary mb-3 p-0" data-toggle="collapse" data-target="#expandedSearch" type="button" value="Розширений пошук">
+                <input class="link-secondary text-light mb-3 p-0" data-toggle="collapse" data-target="#expandedSearch" type="button" value="Розширений пошук">
                 <img src="/images/icon-plus.png" alt="">
                 <div class="collapse <?= $searchModel->isClear() ? '' : 'show'?>" id="expandedSearch">
                     <div class="row ">
@@ -84,7 +84,7 @@ JS
                     </div>
                     <div class="row no-gutters">
                         <div class="col mt-3">
-                            <a class="link-secondary" href="/public" id="reset-btn" name="search-clear">Очистити фільтр</a>
+                            <a class="link-secondary text-light" href="/public" id="reset-btn" name="search-clear">Очистити фільтр</a>
                         </div>
                     </div>
                 </div>

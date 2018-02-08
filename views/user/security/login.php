@@ -27,7 +27,7 @@ $model->rememberMe = 1;
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<section class="login">
+<section class="login mt-5">
   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">

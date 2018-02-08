@@ -39,9 +39,9 @@ switch($route){
 
 ?>
 <main class="site-content">
-    <div class="office">
-        <div class="office-header">
-            <div class="container">
+    <div class="office py-4">
+        <div class="container">
+            <div class="office-header">
                 <div class="row">
                     <div class="col-9">
                         <nav class="nav nav-tabs" id="officeTab" role="tablist">
@@ -60,14 +60,15 @@ switch($route){
                     <?php endif;?>
                 </div>
             </div>
-        </div>
-        <?php
-        $items = [];
-        if(Yii::$app->user->can('admin')){
-            $items[] = ['label' => Yii::t('app', 'Users') . $unconfirmedLabel, 'url' => ['/user/admin'], 'active' => in_array(Yii::$app->controller->id, ['admin'])];
-        }
-        $items[] = ['label' => Yii::t('app', 'Auctions'),  'url' => ['/lots/index'], 'active' => in_array(Yii::$app->controller->id, ['lots', 'cancellations'])];
-        $items[] = ['label' => Yii::t('app', 'Bidding'),  'url' => ['/bids/index'], 'active' => in_array(Yii::$app->controller->id, ['bids'])];
-        $items[] = ['label' => Yii::t('app', 'Messages'),  'url' => ['/bids/index'], 'active' => in_array(Yii::$app->controller->id, ['bids'])];
+            <?php
+            $items = [];
+            if(Yii::$app->user->can('admin')){
+                $items[] = ['label' => Yii::t('app', 'Users') . $unconfirmedLabel, 'url' => ['/user/admin'], 'active' => in_array(Yii::$app->controller->id, ['admin'])];
+            }
+            $items[] = ['label' => Yii::t('app', 'Auctions'),  'url' => ['/lots/index'], 'active' => in_array(Yii::$app->controller->id, ['lots', 'cancellations'])];
+            $items[] = ['label' => Yii::t('app', 'Bidding'),  'url' => ['/bids/index'], 'active' => in_array(Yii::$app->controller->id, ['bids'])];
+            $items[] = ['label' => Yii::t('app', 'Messages'),  'url' => ['/bids/index'], 'active' => in_array(Yii::$app->controller->id, ['bids'])];
 
-        ?>
+            ?>
+    
+        

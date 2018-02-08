@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css',
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
         'https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.css',
-        'dist/custom.min.css',
+        '/zupb/dist/custom.min.css',
         'css/fixes.css'
 
     ];

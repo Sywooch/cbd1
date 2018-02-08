@@ -64,8 +64,10 @@ $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' =>
 ?>
 
 <div class="panel panel-primary">
-    <div class="panel-heading"><span class="glyphicon glyphicon-stats"></span><strong>
-            <?= Html::encode($this->title); ?></strong></div>
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-stats"></span>
+        <strong><?= Html::encode($this->title); ?></strong>
+    </div>
     <div class="panel-body">
         <div class="users-view">
 
@@ -171,3 +173,6 @@ $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' =>
         </div>
     </div>
 </div>
+</div><!-- End of .office > .container -->
+</div><!-- End of .office -->
+</main><!-- End of .site-content -->
