@@ -26,7 +26,7 @@ JS
 ?>
 
 <main class="site-content">
-    <section class="lot">
+    <section class="lot py-5">
         <div class="container">
             <div class="row">
                 <div class="col-9">
@@ -50,8 +50,8 @@ JS
                         <span id='auction-procurementMethodType' class='is_debug'><?=$model->procurementMethodType; ?></span>
                     </div>
                     <nav class="nav nav-tabs" id="myTab" role="tablist">
-                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab1" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
-                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab1" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
+                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
+                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-auction" role="tabpanel" aria-labelledby="nav-auction-tab">
@@ -248,42 +248,40 @@ JS
                                 </tbody>
                             </table>
                             <h4 class="font-weight-bold mt-4 mb-3">Документи аукціону</h4>
-                            <div class="row">
-                                <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)):?>
-                                    <div class="row" id='auction-documents'>
-                                        <table>
-                                            <?php
-                                            ?>
-                                            <?php foreach ($model->documents as $k => $file): ?>
+                            <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)):?>
+                                <div id='auction-documents'>
+                                    <table>
+                                        <?php
+                                        ?>
+                                        <?php foreach ($model->documents as $k => $file): ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $file->documentTypeName; ?>
+                                                </td>
+                                                <td>
+                                                    <?= Html::a($file->name, $file->url, ['name' => "$k.title." . explode('.', $file->name)[0]]); ?>
+                                                    <?= Html::tag('span', $file->type, ['class' => 'documentType is_debug', 'name' => "$k.documentType"]); ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        <?php if($model->cancellation && $model->cancellation->documents): ?>
+                                            <?php foreach ($model->cancellation->documents as $k => $file): ?>
                                                 <tr>
                                                     <td>
                                                         <?= $file->documentTypeName; ?>
                                                     </td>
                                                     <td>
-                                                        <?= Html::a($file->name, $file->url, ['name' => "$k.title." . explode('.', $file->name)[0]]); ?>
-                                                        <?= Html::tag('span', $file->type, ['class' => 'documentType is_debug', 'name' => "$k.documentType"]); ?>
+                                                        <?= Html::a($file->name, $file->url, [
+                                                            'name' => "$k.title." . explode('.', $file->name)[0],
+                                                        ]); ?>
+                                                        <?= Html::tag('a', $file->description, ['name' =>  "$k.description." . explode('.', $file->name)[0], 'class' => 'is_debug']); ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                            <?php if($model->cancellation && $model->cancellation->documents): ?>
-                                                <?php foreach ($model->cancellation->documents as $k => $file): ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?= $file->documentTypeName; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?= Html::a($file->name, $file->url, [
-                                                                'name' => "$k.title." . explode('.', $file->name)[0],
-                                                            ]); ?>
-                                                            <?= Html::tag('a', $file->description, ['name' =>  "$k.description." . explode('.', $file->name)[0], 'class' => 'is_debug']); ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </table>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
+                                        <?php endif; ?>
+                                    </table>
+                                </div>
+                            <?php endif; ?>
 
                             <?php if($model->awards): ?>
                                 <h2><?=Yii::t('app', 'Bids list'); ?></h2>
@@ -403,13 +401,13 @@ JS
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
-                        <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+                        <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
                             <?php if(count($model->questions) > 0): ?>
                                 <?php foreach($model->questions as $n => $question): $n++; ?>
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <?php $item_id = explode(':', $question->title)[0];?>
-                                            <article class="faq-item">
+                                            <article class="faq-item py-4">
                                                 <header class="faq-item-header">
                                                     <h3 class="faq-item-title" id="questions[<?= $n; ?>].title"><?= $question->title?></h3>
                                                     <time class="faq-item-time font-weight-bold">
@@ -430,15 +428,15 @@ JS
                                     </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
-                                <div class="well"><h3><?=Yii::t('app', 'No questions'); ?></h3></div>
+                                <div class="well py-4"><h3><?=Yii::t('app', 'No questions'); ?></h3></div>
                             <?php endif; ?>
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="lot-info">
+                    <div class="lot-info sticky-top p-4">
                         <div class="publications-starting-price mb-4">
-                            <p class="subtitle-secondary mb-1">Початкова ціна</p>
+                            <p class="font-weight-bold mb-1">Початкова ціна</p>
                             <p class="publications-starting-price-value font-weight-bold">
                                 <?= Html::tag('span', zeropad($model->value_amount), ['id' => 'auction_value_amount', 'class' => 'price-calculate'])." " . ' ' . Yii::t('app', $model->value_currency) . ' '.Html::tag('span', $model->value_currency, ['id' => 'auction-value_currency', 'class' => 'is_debug'])." ";
                                 if ($model->value_valueAddedTaxIncluded == 1){
@@ -451,7 +449,7 @@ JS
 
                         <input type="checkbox" class="is_debug" checked="<?=$model->value_valueAddedTaxIncluded == 1 ? 'checked' : ''; ?>" id="auction-valueAddedTaxIncluded" disabled="disabled" readonly="readonly">
                         <div class="publications-status mb-4">
-                            <p class="subtitle-secondary mb-2">Статус</p>
+                            <p class="font-weight-bold mb-2">Статус</p>
                             <p class="text-success font-weight-bold mb-4"><?= $model->statusName?></p>
                             <div class="col-md-12"><?= Html::tag('span', $model->status, ['id' => 'auction-status', 'class' => 'is_debug']);?></div>
                             <?php if($model->cancellation){?>
@@ -462,7 +460,7 @@ JS
                         </div>
                         <?php if(!$model->isEnded): ?>
                             <div class="publications-left">
-                                <p class="subtitle-secondary mb-2">Залишилось</p>
+                                <p class="font-weight-bold mb-2">Залишилось</p>
                                 <p class="publications-left-time font-weight-bold"><?php
                                     $diff = strtotime ($model->auctionPeriod_startDate) - time();
                                     if($diff < 0){
@@ -481,7 +479,7 @@ JS
                         <?php if((strtotime($model->enquiryPeriod_endDate)) > time() && !$model->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Create question'), ['/questions/create', 'id' => $model->unique_id],
                                 [
-                                    'class' => 'btn-block link-secondary text-center question-tender',
+                                    'class' => 'btn btn-block btn-warning text-center question-tender',
                                     'data-toggle' => 'modal',
                                     'data-target' => '#exampleModal',
                                     'id' => 'create-question-btn',

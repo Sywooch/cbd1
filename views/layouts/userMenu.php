@@ -39,8 +39,8 @@ switch($route){
 
 ?>
 <main class="site-content">
-    <div class="office">
-        <div class="office-header">
+    <div class="office py-4">
+        <div class="office-header mb-3">
             <div class="container">
                 <div class="row">
                     <div class="<?= YiI::$app->user->can('org') ? 'col-10' : 'col-12'?>">

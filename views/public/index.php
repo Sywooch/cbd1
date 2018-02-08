@@ -26,7 +26,7 @@ JS
     <section class="publications">
         <div class="container">
             <h2 class="publications-title">Публікації</h2>
-            <div style="margin-top: calc(-117px - 1rem);" class="publications-search">
+            <div class="publications-search">
                 <?php $form = ActiveForm::begin([
                     'method' => 'get',
                     'action' => ['/public'],

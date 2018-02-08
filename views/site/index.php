@@ -37,8 +37,10 @@ JS
         <div class="container jumbotron-content text-center text-lg-left">
             <div class="row justify-content-between">
                 <div class="col-lg-8">
-                    <h1 class="jumbotron-title"><span style="color: #5c6bc0;">СЕТС</span> &mdash; сучасні електронні торгові системи</h1>
-                    <p class="jumbotron-subtitle">Продаж майна банків, що ліквідуються</p>
+                    <h1 class="jumbotron-title">Kyiv Mercantile Exchange</h1>
+                    <p class="jumbotron-subtitle">Продаж майна банків,<br>що ліквідуються</p>
+                    <a href="/registration/register" class="btn btn-reg jumbotron-btn mr-4">Реєстрація</a>
+                    <a href="/user/login" class="btn btn-reg jumbotron-btn">Вхід до кабінету</a>
                 </div>
                 <aside class="col-lg-4 align-self-center jumbotron-factoid justify-content-end">
                     <h4>Акредитований учасник електронної системи торгів <a target="_blank" href="http://prozorro.sale/">Prozorro.Sale</a></h4>
@@ -195,86 +197,12 @@ JS
                     <div class="register-block text-center text-lg-left">
                         <h3>Учасникам</h3>
                         <p class="mb-4">Купуйте майно банків вигідно.<br> Доступ до всіх аукціонів</p>
-                        <a href="#" class="btn btn-warning btn-block">Реєстрація учасника</a>
+                        <a href="#" class="btn btn-reg btn-block">Реєстрація учасника</a>
                         <h3>Замовникам</h3>
                         <p class="mb-4">Продавайте швидко.<br> Не втрачайте вартість активів</p>
-                        <a href="#" class="btn btn-primary btn-block">Реєстрація замовника</a>
+                        <a href="#" class="btn btn-reg btn-block">Реєстрація замовника</a>
                     </div>
                 </aside>
-            </div>
-        </div>
-    </section>
-    <section class="statistics">
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-md-4 col-lg-3">
-                    <p class="text-center text-md-left"><span class="statistics-numbers">100</span> млн. грн.<br> щоденна втрата вартості непроданих активів
-                    </p>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <p class="text-center text-md-left"><span class="statistics-numbers">100</span> млрд. грн.<br> оціночна вартість<br>майна банків
-                    </p>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <p class="text-center text-md-left"><span class="statistics-numbers">65</span> банків<br> в стадії ліквідації
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="latest-news">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-sm-8 latest-news-title">
-                    <h2 class="text-left mb-0">Останні новини</h2>
-                </div>
-                <div class="col-sm-4 text-sm-right mb-2">
-                    <a href="/" class="btn btn-outline-primary mb-3 d-none d-sm-inline-block">Всі новини</a>
-                </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col-lg-6 mb-4">
-                    <div class="row no-gutters">
-                        <div class="col-lg-4 latest-news-thumbnail">
-                            <img src="images/img-news-1.jpg" alt="">
-                        </div>
-                        <div class="col-lg-8 latest-news-excerpt mt-2 mt-lg-0 pl-lg-3 pr-lg-3">
-                            <?php $new1 = Posts::find()->orderBy(['id' => SORT_DESC])->one();?>
-                            <h3><?=Html::a($new1->title, ['/site/view', 'name' => $new1->slug], ['class' => 'link-primary'])?></h3>
-                            <p><?= $new1->short_text?></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="row no-gutters">
-                        <div class="col-lg-4 latest-news-thumbnail">
-                            <img src="images/img-news-2.jpg" alt="">
-                        </div>
-                        <div class="col-lg-8 latest-news-excerpt mt-2 mt-lg-0 pl-lg-3 pr-lg-3">
-                            <?php $new1 = Posts::find()->orderBy(['id' => SORT_DESC])->offset(1)->one();?>
-                            <h3><?=Html::a($new1->title, ['/site/view', 'name' => $new1->slug], ['class' => 'link-primary'])?></h3>
-                            <p><?= $new1->short_text?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p class="d-sm-none text-center">
-              <a href="/" class="btn btn-outline-primary btn-lg btn-block mb-4">Всі новини</a>
-            </p>
-        </div>
-    </section>
-    <section class="about-us">
-        <div class="container">
-          <h2 class="about-us-title mb-4">Про нас</h2>
-            <div class="row align-items-center no-gutters">
-                <div class="col-lg-8 order-2 order-sm-1">
-                    <p class="pr-4 mb-4">Перерозподіл бюджету, не змінюючи концепції, викладеної вище, свідомо концентрує споживчий медіамікс, розширюючи частку ринку. Суспільство споживання регулярно індукує емпіричний виставковий стенд. Стратегічне планування відштовхує суспільний
-                        медійний канал. Виробництво спотворює комплексний рекламний блок. Медіамікс відштовхує бюджет на розміщення. Правда, фахівці відзначають, що портрет споживача синхронізує колективний поведінковий таргетинг.</p>
-                    <a href="#" class="btn btn-outline-primary mb-3">Детальніше</a>
-                </div>
-                <div class="col-lg-4 order-1 order-sm-2">
-                    <img class="img-fluid mb-3" src="images/io-centers-2673325_960_720.jpg" alt="">
-                </div>
             </div>
         </div>
     </section>

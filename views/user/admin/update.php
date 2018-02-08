@@ -26,12 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= $this->render('_menu') ?>
 
-<div class="row">
-
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <?= $content ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <?= $content ?>
+                </div>
             </div>
         </div>
     </div>
