@@ -184,3 +184,7 @@ table tr th{text-align:center;}
     -moz-border-radius: 0;
     border-radius: 0;
 }
+
+.footer-navigation__item--small{
+    font-size: 12px;
+}

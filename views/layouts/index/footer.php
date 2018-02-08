@@ -26,30 +26,27 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 50px">
-                <div class="col-xs-12 col-sm-4 col-md-offset-1 col-md-2">
+                <div class="col-xs-12 col-sm-4 col-md-offset-1 col-md-2 text-center">
                     <ul class="footer-navigation__list list-unstyled">
                         <li class="footer-navigation__item footer-navigation__item--big">
                             <a href="/site/about" class="footer-navigation__link text-uppercase">Про нас</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
+                <div class="col-xs-12 col-sm-4 col-md-3 text-center">
                     <ul class="footer-navigation__list list-unstyled">
                         <li class="footer-navigation__item footer-navigation__item--big">
                             <a href="/participant/reglament" class="footer-navigation__link text-uppercase">Учасникам</a>
                         </li>
-                        <li class="footer-navigation__item">
-                            <a href="/participant/pravo-vymogy" class="footer-navigation__link">Право вимоги</a>
+                        <li class="footer-navigation__item footer-navigation__item--big text-left">
+                            <a href="/participant/pravo-vymogy" class="footer-navigation__link">Фонд ГВФО</a>
                         </li>
-                        <li class="footer-navigation__item">
-                            <a href="/participant/maino" class="footer-navigation__link">Майно</a>
-                        </li>
-                        <li class="footer-navigation__item">
-                            <a href="/participant/reglament" class="footer-navigation__link">Регламент</a>
+                        <li class="footer-navigation__item footer-navigation__item--big text-left">
+                            <a href="/participant/maino" class="footer-navigation__link">Фонд ДМУ</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
+                <div class="col-xs-12 col-sm-4 col-md-3 text-center">
                     <ul class="footer-navigation__list list-unstyled">
                         <li class="footer-navigation__item footer-navigation__item--big">
                             <a href="/site/zamovnykam" class="footer-navigation__link text-uppercase">Замовникам</a>
@@ -65,14 +62,7 @@
                         </li> -->
                     </ul>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
-                    <ul class="footer-navigation__list list-unstyled">
-                        <li class="footer-navigation__item footer-navigation__item--big">
-                            <a href="https://www.prozorro.sale/" target="_blank" class="footer-navigation__link text-uppercase">Прозорро Sale</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
+                <div class="col-xs-12 col-sm-4 col-md-3 text-center">
                     <ul class="footer-navigation__list list-unstyled">
                         <li class="footer-navigation__item footer-navigation__item--big">
                             <a href="/site/contacts" class="footer-navigation__link text-uppercase">Контакти</a>

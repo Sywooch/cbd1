@@ -46,7 +46,7 @@ else
     <section class="auction-detail">
         <div class="container">
             <div class="auction-detail-header mt-4 mb-5">
-                <a class="link-primary auction-detail-back-arrow d-inline-block mb-2" href="/lots/index">Назад до аукціонів</a>
+                <a class="text-info d-inline-block mb-2" href="/lots/index">&larr; Назад до аукціонів</a>
                 <div class="row">
 
                     <div class="col-lg-12">

@@ -45,16 +45,16 @@ $model->rememberMe = 1;
 
                     <?= $form->field($model, 'login', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) ?>
 
-                    <?= $form->field($model, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2']])->passwordInput()->label(Yii::t('user', 'Password') . ($module->enablePasswordRecovery ? ' (' . Html::a(Yii::t('user', 'Forgot password?'), ['/user/recovery/request'], ['tabindex' => '5']) . ')' : '')) ?>
+                    <?= $form->field($model, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2']])->passwordInput()->label(Yii::t('user', 'Password') . ($module->enablePasswordRecovery ? ' (' . Html::a(Yii::t('user', 'Forgot password?'), ['/user/recovery/request'], ['class' => 'text-info', 'tabindex' => '5']) . ')' : '')) ?>
 
-                    <?= Html::submitButton(Yii::t('user', 'Sign in'), ['class' => 'btn btn-primary btn-block', 'tabindex' => '4', 'id' => 'login-btn']) ?>
+                    <?= Html::submitButton(Yii::t('user', 'Sign in'), ['class' => 'btn btn-info btn-block', 'tabindex' => '4', 'id' => 'login-btn']) ?>
 
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>
             <?php if ($module->enableRegistration): ?>
-                <p class="text-center">
-                    <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/registration/register']) ?>
+                <p class="text-center mt-2">
+                    <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/registration/register'], ['class' => 'text-white']) ?>
                 </p>
             <?php endif ?>
             <?= Connect::widget([

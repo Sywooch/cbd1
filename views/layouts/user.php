@@ -26,75 +26,25 @@ AppAsset::register($this);
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
-                <img class="logo-prozorro" src="/images/logo-prozorro.png" alt="">
+                <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <img class="logo-prozorro" src="/images/prozorro-logo.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
             <div class="col-12 col-sm-6 align-self-center text-right d-none d-sm-inline-block">
-          <span class="contact-info text-left">
-                <a href="tel:+380443337098">044-333-70-98</a><br>
-                <a href="tel:+380508883298">050-888-32-98</a>
-              </span>
-                <span class="contact-info text-left">
-                <a href="tel:+380988883298">098-888-32-98</a><br>
-                <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
-              </span>
+                <span class="contact-info text-right">
+                    <a class="text-light" href="tel:+380443511081">044-351-10-81</a><br>
+                    <a class="text-light" href="mailto:office@biddingtime.com.ua">office@biddingtime.com.ua</a>
+                </span>
                 <?php if(Yii::$app->user->isGuest): ?>
                     <a href="/user/login" class="btn btn-primary btn-signin">Вхід</a>
                     <a href="/registration/register" class="btn btn-warning btn-signup">Реєстрація</a>
                     <?php else: ?>
-                    <a href="/user/security/logout" class="btn btn-primary btn-signin" data-method="post">Вихід</a>
+                    <a href="/user/security/logout" class="btn btn-outline-light btn-lg btn-signin" data-method="post">Вихід</a>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 </section>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#bottom-menu" aria-controls="bottom-menu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="bottom-menu">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Про нас</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Учасникам</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Замовникам</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/public">Публікації</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/category/novini">Новини</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Контакти</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto social">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="/images/vk.png" alt="">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="/images/fb.png" alt="">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="/images/g+.png" alt="">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <?= $this->render('@app/views/_alert'); ?>
 <?= $this->render('userMenu'); ?>
 <?= $content ?>
@@ -102,67 +52,17 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 align-self-center">
-<!--                <a href="#"><img class="logo" src="/images/logo.png" alt=""></a>-->
-                <img class="logo-prozorro" src="/images/logo-prozorro.png" alt="">
+               <a href="#"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <img class="logo-prozorro" src="/images/prozorro-logo.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
             <div class="col-12 col-md-6 align-self-center text-right">
-          <span class="contact-info text-left">
-                <a href="tel:+380443337098">044-333-70-98</a><br>
-                <a href="tel:+380508883298">050-888-32-98</a>
-              </span>
-                <span class="contact-info text-left">
-                <a href="tel:+380988883298">098-888-32-98</a><br>
-                <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
-              </span>
+                <span class="contact-info text-right">
+                    <a class= "text-light" href="tel:+380443511081">044-351-10-81</a><br>
+                    <a class="text-light" href="mailto:office@biddingtime.com.ua">office@biddingtime.com.ua</a>
+                </span>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-            <div class="container">
-                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#top-menu" aria-controls="top-menu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="top-menu">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Про нас</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Учасникам</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Замовникам</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Публікації</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Новини</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Контакти</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto social">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="/images/vk-2.png" alt="">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="/images/fb-2.png" alt="">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="/images/g.png" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <div class="copyright mt-2">
             <div class="row">
                 <div class="col">

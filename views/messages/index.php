@@ -64,7 +64,7 @@ JS
                 <h3 class="messages-title">Мої повідомлення</h3>
             </div>
             <div class="col-lg-9">
-                <nav class="navbar navbar-expand-md sticky-top navbar-light">
+                <nav class="navbar navbar-expand-md sticky-top navbar-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#messagesControls" aria-controls="messagesControls" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

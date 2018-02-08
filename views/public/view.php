@@ -30,7 +30,7 @@ JS
         <div class="container">
             <div class="row">
                 <div class="col-9">
-                    <p class="subtitle-primary">Номер лоту: <span class="text-uppercase"><?= $model->auctionID?></span></p>
+                    <p>Номер лоту: <span class="text-uppercase"><?= $model->auctionID?></span></p>
                     <h3 class="lot-title">
                         <span id = "auction-title"><?= $model->title?></span>
                         <?php if($model->access_token && Yii::$app->user->can('org')): ?>
@@ -50,8 +50,8 @@ JS
                         <span id='auction-procurementMethodType' class='is_debug'><?=$model->procurementMethodType; ?></span>
                     </div>
                     <nav class="nav nav-tabs" id="myTab" role="tablist">
-                        <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab1" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
-                        <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab1" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
+                        <a class="nav-item nav-link active" id="nav-auction-tab" data-toggle="tab" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
+                        <a class="nav-item nav-link" id="tab-selector-2" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-auction" role="tabpanel" aria-labelledby="nav-auction-tab">
@@ -59,10 +59,10 @@ JS
                             <div class="row">
 
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Найменування органiзатора</p>
+                                    <p mb-1">Найменування органiзатора</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <a href="#" id = "auction-procuringEntity_name" class="link-secondary mb-1 popover-trigger"><?= $model->baseAuction->ownerName ?: ($model->procuringEntity ? $model->procuringEntity->name : ''); ?></a>
+                                    <a href="#" id = "auction-procuringEntity_name" class="mb-1 popover-trigger"><?= $model->baseAuction->ownerName ?: ($model->procuringEntity ? $model->procuringEntity->name : ''); ?></a>
                                     <div class="webui-popover-content">
                                         <div class="publications-org-info">
                                             <p class="font-weight-bold mb-0">Контактна особа:</p>
@@ -79,14 +79,14 @@ JS
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Код в ЄДРПОУ / ІПН</p>
+                                    <p mb-1">Код в ЄДРПОУ / ІПН</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><?= $model->procuringEntity->identifier_id?></p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Юридична адреса</p>
+                                    <p mb-1">Юридична адреса</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><?= $model->procuringEntity->address_postalCode . ', '
@@ -102,35 +102,35 @@ JS
                                     <p id = "auction-description"><?= $model->description?></p>
                                 </div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Ідентифікатор аукціону</p>
+                                    <p mb-1">Ідентифікатор аукціону</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><span id = "auction-auctionID" ><?= $model->auctionID?></span></p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Номер лоту ФГВ</p>
+                                    <p mb-1">Номер лоту ФГВ</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1" id = "auction-dgfID"><?= $model->dgfID?></p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Рішення ФГВ</p>
+                                    <p mb-1">Рішення ФГВ</p>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="mb-1" id="auction-dgfDecisionID"><?= $model->dgfDecisionID; ?></div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Дата рішення ФГВ</p>
+                                    <p mb-1">Дата рішення ФГВ</p>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="mb-1" id="auction-dgfDecisionDate"><?= date('d.m.Y', strtotime($model->dgfDecisionDate)); ?></div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Лоти виставляються</p>
+                                    <p mb-1">Лоти виставляються</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><?=$model->tenderAttemptsString; ?></p>
@@ -138,7 +138,7 @@ JS
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Посилання на аукціон</p>
+                                    <p mb-1">Посилання на аукціон</p>
                                 </div>
                                 <div class="col-md-7">
                                     <?php if(false == ($bid = \api\Bids::findOne(['user_id' => Yii::$app->user->id, 'lot_id' => $model->lot->id]))): ?>
@@ -151,21 +151,21 @@ JS
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Мінімальний крок аукціону</p>
+                                    <p mb-1">Мінімальний крок аукціону</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><span id = "auction-minimalStep_amount"><?= $model->minimalStep_amount?></span> <?=Yii::t('app', $model->guarantee_currency)?>.</p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Гарантійний внесок</p>
+                                    <p mb-1">Гарантійний внесок</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><span id="auction-guarantee_amount"><?= $model->guarantee_amount?></span> <?=Yii::t('app', $model->guarantee_currency)?>.</p>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Подача пропозицій</p>
+                                    <p mb-1">Подача пропозицій</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><span id = "auction-tenderPeriod_startDate"><?= Yii::$app->formatter->asDatetime($model->tenderPeriod_startDate)
@@ -173,7 +173,7 @@ JS
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Дата провдення аукціону</p>
+                                    <p mb-1">Дата провдення аукціону</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1">
@@ -187,7 +187,7 @@ JS
                                     </p>
                                 </div>
                                 <div class="col-md-5">
-                                    <p class="subtitle-secondary mb-1">Критерії оцінювання</p>
+                                    <p mb-1">Критерії оцінювання</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class = "mb-1" id="auction-eligibilityCriteria"><?=$model->eligibilityCriteria; ?></p>
@@ -250,7 +250,7 @@ JS
                             <h4 class="font-weight-bold mt-4 mb-3">Документи аукціону</h4>
                             <div class="row">
                                 <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)):?>
-                                    <div class="row" id='auction-documents'>
+                                    <div class="col-12" id='auction-documents'>
                                         <table>
                                             <?php
                                             ?>
@@ -403,7 +403,7 @@ JS
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
-                        <div class="tab-pane fade show active" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+                        <div class="tab-pane fade show" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
                             <?php if(count($model->questions) > 0): ?>
                                 <?php foreach($model->questions as $n => $question): $n++; ?>
                                     <div class="row">
@@ -438,7 +438,7 @@ JS
                 <div class="col-3">
                     <div class="lot-info">
                         <div class="publications-starting-price mb-4">
-                            <p class="subtitle-secondary mb-1">Початкова ціна</p>
+                            <p mb-1">Початкова ціна</p>
                             <p class="publications-starting-price-value font-weight-bold">
                                 <?= Html::tag('span', zeropad($model->value_amount), ['id' => 'auction_value_amount', 'class' => 'price-calculate'])." " . ' ' . Yii::t('app', $model->value_currency) . ' '.Html::tag('span', $model->value_currency, ['id' => 'auction-value_currency', 'class' => 'is_debug'])." ";
                                 if ($model->value_valueAddedTaxIncluded == 1){
@@ -451,7 +451,7 @@ JS
 
                         <input type="checkbox" class="is_debug" checked="<?=$model->value_valueAddedTaxIncluded == 1 ? 'checked' : ''; ?>" id="auction-valueAddedTaxIncluded" disabled="disabled" readonly="readonly">
                         <div class="publications-status mb-4">
-                            <p class="subtitle-secondary mb-2">Статус</p>
+                            <p mb-2">Статус</p>
                             <p class="text-success font-weight-bold mb-4"><?= $model->statusName?></p>
                             <div class="col-md-12"><?= Html::tag('span', $model->status, ['id' => 'auction-status', 'class' => 'is_debug']);?></div>
                             <?php if($model->cancellation){?>
@@ -462,7 +462,7 @@ JS
                         </div>
                         <?php if(!$model->isEnded): ?>
                             <div class="publications-left">
-                                <p class="subtitle-secondary mb-2">Залишилось</p>
+                                <p mb-2">Залишилось</p>
                                 <p class="publications-left-time font-weight-bold"><?php
                                     $diff = strtotime ($model->auctionPeriod_startDate) - time();
                                     if($diff < 0){

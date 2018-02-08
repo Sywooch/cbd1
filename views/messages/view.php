@@ -12,13 +12,13 @@ $this->params['breadcrumbs']['messages'] = $this->title;
     <div class="message-detail">
         <div class="container">
             <div class="messages-header">
-                <a class="link-primary auction-detail-back-arrow d-inline-block mb-2" href="/messages/index">Назад до заявок</a>
+                <a class="text-info d-inline-block mb-2" href="/messages/index">&larr; Назад до заявок</a>
                 <div class="row align-items-center">
                     <div class="col-lg-3">
                         <h3 class="messages-title">Повідомлення #<?=$model->id?></h3>
                     </div>
                     <div class="col-lg-9">
-                        <nav class="navbar navbar-expand-md sticky-top navbar-light">
+                        <nav class="navbar navbar-expand-md sticky-top navbar-dark">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#messagesControls" aria-controls="messagesControls" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

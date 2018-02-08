@@ -49,21 +49,17 @@ else{
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
-                <img class="d-none d-lg-inline-block logo-prozorro" src="/images/logo-prozorro.png" alt="">
+               <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <img class="d-none d-lg-inline-block logo-prozorro" src="/images/prozorro-logo.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
-            <div class="col-12 col-sm-6 align-self-center text-right d-none d-sm-inline-block">
-        <span class="contact-info text-left d-none d-lg-inline-block">
-              <a href="tel:+380000000000">0000000000</a><br>
-              <a href="tel:+380000000000">0000000000</a>
-            </span>
-                <span class="contact-info text-left d-none d-lg-inline-block">
-              <a href="tel:+380000000000">000000000</a><br>
-              <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
+            <div class="col-12 col-sm-6 text-right d-none d-sm-inline-flex justify-content-end align-items-center">
+            <span class="contact-info text-right d-none d-lg-inline-block">
+              <a class="text-white" href="tel:+380443511081">(044) 351 10 81</a><br>
+              <a class="text-white" href="mailto:office@biddingtime.com.ua">office@biddingtime.com.ua</a>
             </span>
                 <?php if(Yii::$app->user->isGuest){?>
-                    <a href="/user/login" class="btn btn-primary btn-signin">Вхід</a>
+                    <a href="/user/login" class="btn btn-light btn-signin">Вхід</a>
                     <a href="/registration/register" class="btn btn-warning btn-signup">Реєстрація</a>
                 <?php }else{?>
                     <!-- <a href="/user/profile/show" class="btn btn-primary btn-signin">Вхід</a> -->
@@ -72,7 +68,7 @@ else{
                             [
                                 'label' => Yii::t('app','Cabinet'),
                                 'url' => ['/lots'],
-                                'template' => '<a id="cabinet" class="btn btn-primary btn-lg" href="{url}">{label}</a>',
+                                'template' => '<a id="cabinet" class="btn btn-outline-light btn-lg" href="{url}">{label}</a>',
                                 'visible' => !Yii::$app->user->isGuest,
                                 'options' => [
                                     'class' => 'nav-item',
@@ -80,7 +76,7 @@ else{
                             ],
                             [
                                 'label' => Yii::t('app','Messages'),
-                                'template' => '<a class="btn btn-primary btn-lg ml-2 mr-2" href="{url}" title="{label}"><span class="badge-message"><img src="/images/icon-chat.png">' . $messages_counter . '</span></a>',
+                                'template' => '<a class="btn btn-outline-light btn-lg ml-2 mr-2" href="{url}" title="{label}"><span class="badge-message"><img src="/images/icon-chat.png">' . $messages_counter . '</span></a>',
                                 'url' => ['/messages/index'],
                                 'visible' => !Yii::$app->user->isGuest,
                                 'options' => [
@@ -89,7 +85,7 @@ else{
                             ],
                             [
                                 'label' => Yii::t('app','Logout'),
-                                'template' => '<a data-method="post" id="cabinet" class="btn btn-primary btn-lg" href="{url}">{label}</a>',
+                                'template' => '<a data-method="post" id="cabinet" class="btn btn-outline-light btn-lg" href="{url}">{label}</a>',
                                 'url' => ['/user/logout'],
                                 'visible' => !Yii::$app->user->isGuest,
                                 'options' => [
@@ -127,7 +123,7 @@ else{
             </div>
         </div>
     </div>
-    <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
+    <!-- <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
         <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
         <?php if(Yii::$app->user->isGuest){?>
             <a href="/user/login" class="btn btn-primary btn-block btn-lg">Вхід</a>
@@ -154,9 +150,9 @@ else{
         <button type="button" class="menu-mini-close">
             <img src="/images/icon-close.png" alt="">
         </button>
-    </nav>
+    </nav> -->
 </section>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary d-none d-lg-flex">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary d-none d-lg-flex">
     <div class="container">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#bottom-menu" aria-controls="bottom-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -201,21 +197,21 @@ else{
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->
 <main class="site-content">
     <div class="container">
         <?= $this->render('@app/views/_alert'); ?>
+        <?= $content ?>
     </div>
-    <?= $content ?>
 </main>
 <footer class="site-footer">
     <div class="container">
         <div class="row">
             <div class="banner-footer col-12 col-lg-6 align-self-center">
-<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
-                <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
+               <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <img class="logo-prozorro d-none d-sm-inline-block" src="/images/prozorro-logo.png" alt="">
                 <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
-                <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
+                <!-- <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
                     <img src="/images/menu-icon.png">
                 </button>
                 <nav class="menu-mini-list-footer">
@@ -230,20 +226,16 @@ else{
                     <button type="button" class="menu-mini-close-footer">
                         <img src="/images/icon-close.png" alt="">
                     </button>
-                </nav>
+                </nav> -->
             </div>
             <div class="col-12 col-lg-6 align-self-center text-right d-none d-lg-block">
-        <span class="contact-info text-left">
-          <a href="tel:+380000000000">+380000000000</a><br>
-          <a href="tel:+380000000000">+380000000000</a>
-        </span>
-                <span class="contact-info text-left">
-          <a href="tel:+380000000000">+380000000000</a><br>
-          <a class="link-primary" href="mailto:mail@mail.ua">mail@mail.ua</a>
-        </span>
+                <span class="contact-info text-right">
+                    <a class="text-white" href="tel:+380443511081">(044) 351 10 81</a><br>
+                    <a class="text-white" href="mailto:office@biddingtime.com.ua">office@biddingtime.com.ua</a>
+                </span>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-secondary d-none d-lg-flex">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-secondary d-none d-lg-flex">
             <div class="container">
                 <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#top-menu" aria-controls="top-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -288,7 +280,7 @@ else{
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
         <div style="padding: 30px 0 0; border-top: 1px solid #dcdde0; border-bottom: 1px solid #dcdde0" class="contact-info-mini text-center mt-3 d-lg-none">
             <p><a href="tel:+380000000000">+380000000000</a></p>
             <p><a href="tel:+380000000000">+380000000000</a></p>
@@ -315,7 +307,7 @@ else{
         <div class="copyright mt-2">
             <div class="row">
                 <div class="col d-none d-lg-block">
-                    <p>&copy; 2017, <a class="link-copyright" href="/">Електронний торговий майданчик</a></p>
+                    <p>&copy; 2017, <a class="link-copyright" href="/">BIDDING TIME LLC.All rights reserved</a></p>
                 </div>
                 <div class="col text-center text-lg-right">Сайт зроблено — <a href="http://reactlogic.com.ua" class="link-copyright">«React Logic»</a></div>
             </div>

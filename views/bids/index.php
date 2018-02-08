@@ -67,7 +67,7 @@ JS
                 <h3 class="bids-title"><?= $this->title; ?></h3>
             </div>
             <div class="col-lg-9">
-                <nav class="navbar navbar-expand-md sticky-top navbar-light">
+                <nav class="navbar navbar-expand-md sticky-top navbar-dark">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#auctionsControls" aria-controls="auctionsControls" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -76,7 +76,7 @@ JS
                             <a class="nav-item nav-link bids-control-view" id = "bids-details-btn" href="#">Деталі заявки</a>
                         </div>
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link bids-control-view" id = "bids-delete-btn" href="#">Видалити обрані</a>
+                            <a class="nav-item nav-link bids-control-trash" id = "bids-delete-btn" href="#">Видалити обрані</a>
                         </div>
                     </div>
                 </nav>

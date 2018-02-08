@@ -12,13 +12,13 @@ echo Nav::widget([
         [
             'label' => Yii::t('app', 'Про нас'),
             'url' => ['/site/about'],
+            
         ],
         [
             'label' => Yii::t('app', 'Учасникам'),
             'items' => [
-                ['label' => Yii::t('app', 'Право вимоги'), 'url' => ['/participant/pravo-vymogy']],
-                ['label' => Yii::t('app', 'Майно'), 'url' => ['/participant/maino']],
-                ['label' => Yii::t('app', 'Регламент'), 'url' => ['/participant/reglament']],
+                ['label' => Yii::t('app', 'Фонд гарантування вкладів фізичних осіб'), 'url' => 'http://etm.biddingtime.com.ua/public'],
+                ['label' => Yii::t('app', 'Фонд державного майна України'), 'url' => 'http://etm.biddingtime.com.ua'],
             ],
         ],
         [
@@ -26,13 +26,9 @@ echo Nav::widget([
             'url' => ['/site/zamovnykam'],
         ],
         [
-            'label' => Yii::t('app', 'Prozorro Sale'),
-            'url' => 'https://www.prozorro.sale',
-            'linkOptions' => ['target' => '_blank'],
-        ],
-        [
             'label' => Yii::t('app', 'Контакти'),
             'url' => ['/site/contacts'],
+            
         ],
 
     ],
