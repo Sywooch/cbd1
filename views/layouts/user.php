@@ -14,6 +14,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/favicon.jpg" />
     <!-- <meta name="MobileOptimized" content="991"/>
     <meta name="HandheldFriendly" content="true"/> -->
     <?= Html::csrfMetaTags() ?>

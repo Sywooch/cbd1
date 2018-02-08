@@ -59,7 +59,8 @@ use yii\widgets\ListView;
             <!-- <span class="orbit-caption" id="ezioCaption">This is an <em>awesome caption</em> for Ezio. <strong>Note:</strong> This whole image is linked</span>
             <span class="orbit-caption" id="marcusCaption">This is an <em>awesome caption</em> for Marcus with a <a href="http://www.zurb.com/playground" target="_blank" style="color: #fff">link</a></span> -->
         </section>
-        <h5 class="blogger-m text-uppercase">Публікації</h5>
+
+        <!-- <h5 class="blogger-m text-uppercase">Публікації</h5>
         <div class="row">
             <div class="col-md-12">
                 <section class="widget widget--lined publications">
@@ -76,7 +77,8 @@ use yii\widgets\ListView;
                 </section>
             </div>
         </div>
-        <hr>
+        <hr> -->
+
         <div class="row">
             <div class="col-md-6">
                 <div class="widget widget--gray widget--lined">

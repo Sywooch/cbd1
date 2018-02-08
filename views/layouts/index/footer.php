@@ -36,13 +36,16 @@
                 <div class="col-xs-12 col-sm-4 col-md-3 text-center">
                     <ul class="footer-navigation__list list-unstyled">
                         <li class="footer-navigation__item footer-navigation__item--big">
-                            <a href="/participant/reglament" class="footer-navigation__link text-uppercase">Учасникам</a>
+                            <a class="footer-navigation__link text-uppercase">Учасникам</a>
                         </li>
                         <li class="footer-navigation__item footer-navigation__item--big text-left">
-                            <a href="/participant/pravo-vymogy" class="footer-navigation__link">Фонд ГВФО</a>
+                            <a href="/public/index" class="footer-navigation__link">Фонд ГВФО</a>
                         </li>
                         <li class="footer-navigation__item footer-navigation__item--big text-left">
-                            <a href="/participant/maino" class="footer-navigation__link">Фонд ДМУ</a>
+                            <a href="http://etm.biddingtime.com.ua" class="footer-navigation__link">Фонд ДМУ</a>
+                        </li>
+                        <li class="footer-navigation__item footer-navigation__item--big text-left">
+                            <a href="/participant/reglament" class="footer-navigation__link">Регламент</a>
                         </li>
                     </ul>
                 </div>

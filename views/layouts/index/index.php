@@ -61,6 +61,7 @@ else{
                         <p class="banner__subtitle helvetica-l text-uppercase text-left hidden-xs hidden-sm">
                             Акредитований<br>Майданчик
                         </p>
+                        <!--
                         <form action="<?= Url::to(['/public']); ?>">
                             <div style="margin-top: 5px;" class="input-group">
                                 <input type="text" class="form-control form-control-custom" name="Auctions[auctionID]" placeholder="Пошук...">
@@ -71,6 +72,7 @@ else{
                                             </span>
                             </div>
                         </form>
+                        -->
                         <!-- /input-group -->
                     </div>
                 </div>

@@ -17,8 +17,9 @@ echo Nav::widget([
         [
             'label' => Yii::t('app', 'Учасникам'),
             'items' => [
-                ['label' => Yii::t('app', 'Фонд гарантування вкладів фізичних осіб'), 'url' => 'http://etm.biddingtime.com.ua/public'],
+                ['label' => Yii::t('app', 'Фонд гарантування вкладів фізичних осіб'), 'url' => '/public/index'],
                 ['label' => Yii::t('app', 'Фонд державного майна України'), 'url' => 'http://etm.biddingtime.com.ua'],
+                ['label' => Yii::t('app', 'Регламент'), 'url' => '/participant/reglament'],
             ],
         ],
         [
