@@ -9,24 +9,24 @@ use yii\widgets\DetailView;
         <div class="col-md-7">
             <p class="publications-lot subtitle-secondary">Номер лоту: <span class="text-uppercase"> <?= $model->auctionID?></span></p>
             <h4 class="publications-item-title">
-                <?= Html::a(Yii::t('app', $model->title), ['/public/view', 'id' => $model->auctionID], ['id' => 'auction-view-btn'])?>
+                <?= Html::a(Yii::t('app', Html::encode($model->title)), ['/public/view', 'id' => $model->auctionID], ['id' => 'auction-view-btn'])?>
             </h4>
             <div class="row">
                 <div class="col-md-6">
-                    <p class="publications-org"><?= $model->procuringEntity->name?></p>
+                    <p class="publications-org"><?= Html::encode($model->procuringEntity->name)?></p>
                     <div class="publications-org-about">
                         <a href="#" class="popover-trigger link-secondary">Про організатора</a>
                         <div class="webui-popover-content">
                             <div class="publications-org-info">
                                 <p class="font-weight-bold mb-0">Контактна особа:</p>
-                                <p class="org-name"><?= $model->procuringEntity->name?></p>
+                                <p class="org-name"><?= Html::encode($model->procuringEntity->name)?></p>
                                 <p class="font-weight-bold mb-0">E-mail:</p>
                                 <p class="org-email"><?= $model->procuringEntity->contactPoint_email?></p>
                                 <p class="font-weight-bold mb-0">Телефон:</p>
                                 <p class="org-telephone"><?= $model->procuringEntity->contactPoint_telephone?></p>
                                 <p class="font-weight-bold mb-0">ЄДРПОУ:</p>
                                 <p class="org-edrpou"><?= $model->procuringEntity->identifier_id?></p>
-                                <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони організатора</a>
+                                <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => Html::encode($model->procuringEntity->name)]])?>" class="link-primary">Всі аукціони організатора</a>
                             </div>
                         </div>
                     </div>
