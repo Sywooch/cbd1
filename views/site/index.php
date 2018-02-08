@@ -111,7 +111,7 @@ JS
 
                 <?= ListView::widget([
                     'dataProvider'=>$dataProvider ,
-                    'itemView' => '_forms/_auctions',
+                    'itemView' => '@app/views/public/_forms/_auctions',
                     'layout' => "{items}",
                 ]) ?>
                 <a class="btn btn-primary btn-block mt-4" href="/public/index">Дивитись всi публікації <img class="ml-2" src="/images/arrow-white.png" alt=""></a>
