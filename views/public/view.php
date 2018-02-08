@@ -62,11 +62,11 @@ JS
                                     <p mb-1">Найменування органiзатора</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <a href="#" id = "auction-procuringEntity_name" class="mb-1 popover-trigger"><?= $model->baseAuction->ownerName ?: ($model->procuringEntity ? $model->procuringEntity->name : ''); ?></a>
+                                    <a href="#" id = "auction-procuringEntity_name" class="mb-1 popover-trigger"><?= $model->baseAuction->ownerName ?: ($model->procuringEntity ? Html::encode($model->procuringEntity->name) : ''); ?></a>
                                     <div class="webui-popover-content">
                                         <div class="publications-org-info">
                                             <p class="font-weight-bold mb-0">Контактна особа:</p>
-                                            <p class="org-name"><span><?= $model->procuringEntity->name?></span></p>
+                                            <p class="org-name"><span><?= Html::encode($model->procuringEntity->name)?></span></p>
                                             <p class="font-weight-bold mb-0">E-mail:</p>
                                             <p class="org-email"><?= $model->procuringEntity->contactPoint_email?></p>
                                             <p class="font-weight-bold mb-0">Телефон:</p>
@@ -90,9 +90,9 @@ JS
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><?= $model->procuringEntity->address_postalCode . ', '
-                                        . $model->procuringEntity->address_countryName . ', '
-                                        . $model->procuringEntity->address_locality . ', '
-                                        . $model->procuringEntity->address_streetAddress?></p>
+                                        . Html::encode($model->procuringEntity->address_countryName) . ', '
+                                        . Html::encode($model->procuringEntity->address_locality) . ', '
+                                        . Html::encode($model->procuringEntity->address_streetAddress)?></p>
                                 </div>
                                 <div class="w-100"></div>
                             </div>
@@ -260,7 +260,7 @@ JS
                                                         <?= $file->documentTypeName; ?>
                                                     </td>
                                                     <td>
-                                                        <?= Html::a($file->name, $file->url, ['name' => "$k.title." . explode('.', $file->name)[0]]); ?>
+                                                        <?= Html::a(Html::encode($file->name), $file->url, ['name' => "$k.title." . explode('.', $file->name)[0]]); ?>
                                                         <?= Html::tag('span', $file->type, ['class' => 'documentType is_debug', 'name' => "$k.documentType"]); ?>
                                                     </td>
                                                 </tr>
@@ -272,7 +272,7 @@ JS
                                                             <?= $file->documentTypeName; ?>
                                                         </td>
                                                         <td>
-                                                            <?= Html::a($file->name, $file->url, [
+                                                            <?= Html::a(Html::encode($file->name), $file->url, [
                                                                 'name' => "$k.title." . explode('.', $file->name)[0],
                                                             ]); ?>
                                                             <?= Html::tag('a', $file->description, ['name' =>  "$k.description." . explode('.', $file->name)[0], 'class' => 'is_debug']); ?>
