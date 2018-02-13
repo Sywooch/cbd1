@@ -23,7 +23,7 @@ JS
 
 
 <main class="site-content">
-    <section class="publications">
+    <section class="publications text-dark">
         <div class="container">
             <h2 class="publications-title">Публікації</h2>
             <div style="margin-top: calc(-117px - 1rem);" class="publications-search">

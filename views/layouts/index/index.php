@@ -30,7 +30,7 @@ else{
     <meta name="keywords" content="биддинг тайм, торги, биржа, торговая площадка, аукцион, ставка, ставки, лот, лоты">
     <meta name="description" content="биддинг тайм, торги, биржа, торговая площадка, аукцион, ставка, ставки, лот, лоты">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="icon" href="/favicon.jpg"><link rel="shortcut icon" href="/favicon.jpg">
+    <link rel="icon" href="/images/favicon.jpg"><link rel="shortcut icon" href="/images/favicon.jpg">
     <!-- <meta name="MobileOptimized" content="991"/>
     <meta name="HandheldFriendly" content="true"/> -->
     <?php $this->head() ?>
@@ -47,14 +47,14 @@ else{
         <div class="container">
             <div class="container-in">
                 <div class="row">
-                    <div class="col-xs-12 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-lg-7 text-604-center">
                         <img src="/images/strateg-logo.png" alt="Логотип Стратег">
                         <h1 class="banner__title helvetica-bc">
                             Bidding Time<br>
                             <small class="helvetica">Стань першим серед рівних</small>
                         </h1>
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-5 col-lg-offset-1 text-right">
+                    <div class="col-xs-12 col-lg-5 text-right">
                         <a class="prozorro-link" href="https://prozorro.sale" target="_blank">
                             <img class="hidden-xs hidden-sm" src="/images/prozorro-logo.png" alt="Логотип Прозорро">
                         </a>

@@ -96,6 +96,10 @@ body {
     color: #ffffff;
 }
 
+.publications-type-mlb{
+    color: #000;
+}
+
 .list-group-item {
     background-color: transparent;
 }
@@ -111,4 +115,8 @@ body {
 
 .site-footer {
     background-color: #0D0D0D;
+}
+
+.reglament-doc{
+    margin-bottom: 2rem;
 }
