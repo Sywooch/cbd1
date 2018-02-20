@@ -117,14 +117,14 @@ else{
                 <button type="button" id="miniRegCall" class="btn btn-primary d-sm-none">
                     <img src="/images/icon-user.png">
                 </button>
-                <button type="button" id="miniListCall" class="btn btn-primary ml-3">
+                <!-- <button type="button" id="miniListCall" class="btn btn-primary ml-3">
                     <img src="/images/menu-icon.png">
-                </button>
+                </button> -->
             </div>
         </div>
     </div>
-    <!-- <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
-        <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
+    <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
+        <h4 class="menu-mini-title font-weight-bold text-center text-dark">Вхід та реєстрація</h4>
         <?php if(Yii::$app->user->isGuest){?>
             <a href="/user/login" class="btn btn-primary btn-block btn-lg">Вхід</a>
             <a href="/registration/register" class="btn btn-warning btn-block btn-lg">Реєстрація</a>
@@ -133,6 +133,7 @@ else{
             <img src="/images/icon-close.png" alt="">
         </button>
     </nav>
+    <!--
     <nav id="menuMiniList" class="menu-mini-list d-lg-none">
         <ul class="text-center">
             <li><a href="/" class="link-primary">Про нас</a></li>
@@ -282,11 +283,9 @@ else{
             </div>
         </nav> -->
         <div style="padding: 30px 0 0; border-top: 1px solid #dcdde0; border-bottom: 1px solid #dcdde0" class="contact-info-mini text-center mt-3 d-lg-none">
-            <p><a href="tel:+380000000000">+380000000000</a></p>
-            <p><a href="tel:+380000000000">+380000000000</a></p>
-            <p><a href="tel:+380000000000">+380000000000</a></p>
-            <p><a href="mailto:mail@mail.ua">mail@mail.ua</a></p>
-            <ul class="navbar-nav flex-row social justify-content-center">
+            <p><a class="text-white" href="tel:+380443511081">+380443511081</a></p>
+            <p><a class="text-white" href="mailto:office@biddingtime.com.ua">office@biddingtime.com.ua</a></p>
+            <!-- <ul class="navbar-nav flex-row social justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <img src="/images/vk-2.png" alt="">
@@ -302,7 +301,7 @@ else{
                         <img src="/images/g.png" alt="">
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
         <div class="copyright mt-2">
             <div class="row">

@@ -7735,3 +7735,21 @@ div.questions-form .form-group {
     height: 0;
     overflow: hidden;
 }
+
+@media (max-width: 604px){
+    .text-604-center{
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px){
+    .text-sm-center{
+        text-align: center;
+    }
+}
+
+/* @media (max-width: 654px){
+    .menu .navbar-collapse.in .navbar-nav li a{
+        font-size: 10px;
+    }
+} */

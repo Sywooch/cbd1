@@ -2,6 +2,8 @@
 
 use yii\widgets\ListView;
 
+$this->title='Bidding Time';
+
 ?>
 
 <div class="row">

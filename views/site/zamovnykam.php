@@ -1,3 +1,9 @@
+<?php
+
+$this->title='Bidding Time | Замовникам';
+
+?>
+       
         <section class="zamovnykam">
             <div class="row">
                 <div class="col-xs-12">
@@ -14,6 +20,7 @@
                 </div>
             </div>
         </section>
+        
         <!-- <section class="download">
             <div class="download__content">
                 <div class="row">

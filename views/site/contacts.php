@@ -1,6 +1,9 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
+$this->title='Bidding Time | Регламент';
+
 ?>
 
 <section class="contacts">

@@ -1,4 +1,8 @@
+<?php
 
+$this->title='Bidding Time | Про нас';
+
+?>
         <section class="pro-nas">
             <div class="row">
                 <div class="col-xs-12">

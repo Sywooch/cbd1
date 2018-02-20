@@ -38,13 +38,13 @@
                         <li class="footer-navigation__item footer-navigation__item--big">
                             <a class="footer-navigation__link text-uppercase">Учасникам</a>
                         </li>
-                        <li class="footer-navigation__item footer-navigation__item--big text-left">
+                        <li class="footer-navigation__item footer-navigation__item--big text-left text-sm-center">
                             <a href="/public/index" class="footer-navigation__link">Фонд ГВФО</a>
                         </li>
-                        <li class="footer-navigation__item footer-navigation__item--big text-left">
+                        <li class="footer-navigation__item footer-navigation__item--big text-left text-sm-center">
                             <a href="http://etm.biddingtime.com.ua" class="footer-navigation__link">Фонд ДМУ</a>
                         </li>
-                        <li class="footer-navigation__item footer-navigation__item--big text-left">
+                        <li class="footer-navigation__item footer-navigation__item--big text-left text-sm-center">
                             <a href="/participant/reglament" class="footer-navigation__link">Регламент</a>
                         </li>
                     </ul>
