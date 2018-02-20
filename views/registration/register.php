@@ -20,6 +20,22 @@ use yii\widgets\MaskedInput;
  * @var dektrium\user\Module      $module
  */
 
+$js = <<< JS
+    $('.show-password').on('click', function(e) {
+      var self = $(this),
+      input = self.parent().find('input');
+      if(input.attr('type') === 'password'){
+          input.attr('type', 'text');
+      }
+      else{
+          input.attr('type', 'password');
+      }
+    });
+JS;
+
+$this->registerJs($js);
+
+
 $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -41,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= Html::activeInput('radio', $model, 'role', ['value' => '2']);?> Учасник
                                 </label>
                                 <label class="btn custom-radio">
-                                    <?= Html::activeInput('radio', $model, 'role', ['value' => '1']);?> Організатор
+                                    <?= Html::activeInput('radio', $model, 'role', ['value' => '1']);?> Замовник
                                 </label>
                             </div>
                         </div>
@@ -61,13 +77,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= $form->field($model, 'password', [
                             'options' => ['class' => 'form-group row'],
-                            'template' => '{label}<div class="col-md-6 input-group">{input}<button class="input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
+                            'template' => '{label}<div class="col-md-6 input-group">{input}<button type="button" class="show-password input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4'],
                         ])->passwordInput(); ?>
 
                         <?= $form->field($model, 'repeatpassword', [
                             'options' => ['class' => 'form-group row'],
-                            'template' => '{label}<div class="col-md-6 input-group">{input}<button class="input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
+                            'template' => '{label}<div class="col-md-6 input-group">{input}<button type="button" class="show-password input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4'],
                         ])->passwordInput(); ?>
 
@@ -75,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-lg-8">
                                 <?= $form->field($model, 'oferta', ['options' => ['class' => 'form-check mb-4']])->checkbox(['label' => $model->getAttributeLabel('oferta'), 'labelOptions' => ['class' => 'form-check-label']]); ?>
                                 <?= Html::submitButton(Yii::t('app', 'Зареєструватися'), ['class' => 'btn btn-warning']); ?>
+                                <?= Html::a(Yii::t('app', 'Інструкція'), '/registration.pdf', ['class' => 'btn btn-info', 'target' => '_blank']); ?>
                             </div>
                         </div>
                         <?php $form->end(); ?>
