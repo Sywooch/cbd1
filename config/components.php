@@ -67,8 +67,8 @@ $components = [
             'host' => getenv('SMTP_HOST'),
             'username' => getenv('SMTP_LOGIN'),
             'password' => getenv('SMTP_PASS'),
-            'port' => '587',
-            'encryption' => 'tls',
+            'port' => '25',
+            //'encryption' => 'tls',
         ],
     ],
     'log' => [
