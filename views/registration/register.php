@@ -20,6 +20,22 @@ use yii\widgets\MaskedInput;
  * @var dektrium\user\Module      $module
  */
 
+$js = <<< JS
+    $('.show-password').on('click', function(e) {
+      var self = $(this),
+      input = self.parent().find('input');
+      if(input.attr('type') === 'password'){
+          input.attr('type', 'text');
+      }
+      else{
+          input.attr('type', 'password');
+      }
+    });
+JS;
+
+$this->registerJs($js);
+
+
 $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -61,13 +77,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= $form->field($model, 'password', [
                             'options' => ['class' => 'form-group row'],
-                            'template' => '{label}<div class="col-md-6 input-group">{input}<button class="input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
+                            'template' => '{label}<div class="col-md-6 input-group">{input}<button type="button" class="show-password input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4'],
                         ])->passwordInput(); ?>
 
                         <?= $form->field($model, 'repeatpassword', [
                             'options' => ['class' => 'form-group row'],
-                            'template' => '{label}<div class="col-md-6 input-group">{input}<button class="input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
+                            'template' => '{label}<div class="col-md-6 input-group">{input}<button type="button" class="show-password input-group-addon"><img src="/images/password-off.png"></button></div><div class="col-md-4"></div><div class="col-md-6">{hint}{error}</div>',
                             'labelOptions' => ['class' => 'col-md-4'],
                         ])->passwordInput(); ?>
 
