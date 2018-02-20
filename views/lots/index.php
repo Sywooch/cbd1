@@ -160,4 +160,6 @@ JS
             ]); ?>
         </div>
     </div>
-</div>
+</div><!-- end of .office > .container -->
+</div><!-- end of .office -->
+</main><!-- end of .site-content -->

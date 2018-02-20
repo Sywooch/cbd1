@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="registration">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12 col-xl-9 registration-block">
                 <div class="row justify-content-center">
                     <div class="col-9">
@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])->passwordInput(); ?>
 
                         <div class="form-group row justify-content-end">
-                            <div class="col-lg-8">
+                            <div class="col-12">
                                 <?= $form->field($model, 'oferta', ['options' => ['class' => 'form-check mb-4']])->checkbox(['label' => $model->getAttributeLabel('oferta'), 'labelOptions' => ['class' => 'form-check-label']]); ?>
                                 <?= Html::submitButton(Yii::t('app', 'Зареєструватися'), ['class' => 'btn btn-warning']); ?>
                                 <?= Html::a(Yii::t('app', 'Інструкція'), '/registration.pdf', ['class' => 'btn btn-info', 'target' => '_blank']); ?>
