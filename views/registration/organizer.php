@@ -192,26 +192,14 @@ JS
                         <div class="row align-items-center" style="<?= $model->org_type == 'financial' ? '' : 'display:none'; ?>">
                             <div class="col-md-4"><p>Фінансова ліцензія</p></div>
                             <div class="col-md-6">
-                                <?= $form->field($model, 'document')->widget(FileInput::className(), [
-                                    'pluginOptions' => [
-                                        'showUpload' => false,
-                                        'showCancel' => false,
-                                        'showPreview' => false,
-                                    ]
-                                ])->label(false); ?>
+                                <?= $form->field($model, 'document')->fileInput()->label(false); ?>
                             </div>
                         </div>
 
                         <div class="row align-items-center">
                             <div class="col-md-4"><p>Інші документи</p></div>
                             <div class="col-md-6">
-                                <?= $form->field($model, 'documents[]')->widget(FileInput::className(), [
-                                    'pluginOptions' => [
-                                        'showUpload' => false,
-                                        'showCancel' => false,
-                                        'showPreview' => false,
-                                    ]
-                                ])->label(false); ?>
+                                <?= $form->field($model, 'documents[]')->fileInput()->label(false); ?>
                             </div>
                         </div>
 
