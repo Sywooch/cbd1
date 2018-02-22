@@ -69,7 +69,7 @@ AppAsset::register($this);
                 <div class="col">
                     <p>&copy; 2017, <a class="link-copyright" href="/">Електронний торговий майданчик</a></p>
                 </div>
-                <div class="col text-right">Сайт зроблено — <a href="#" class="link-copyright">«React Logic»</a></div>
+                <div class="col text-right">Сайт розроблено — <a href="#" class="link-copyright">«React Logic»</a></div>
             </div>
         </div>
     </div>
