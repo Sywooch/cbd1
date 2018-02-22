@@ -308,7 +308,7 @@ else{
                 <div class="col d-none d-lg-block">
                     <p>&copy; 2017, <a class="link-copyright" href="/">BIDDING TIME LLC.All rights reserved</a></p>
                 </div>
-                <div class="col text-center text-lg-right">Сайт зроблено — <a href="http://reactlogic.com.ua" class="link-copyright">«React Logic»</a></div>
+                <div class="col text-center text-lg-right">Розробка сайту — <a href="http://reactlogic.com.ua" class="link-copyright">«React Logic»</a></div>
             </div>
         </div>
     </div>

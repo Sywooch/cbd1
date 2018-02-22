@@ -105,7 +105,7 @@ $this->title='Bidding Time';
                     <div class="row">
                         <div class="col-xs-12 support__item">
                             <img src="/images/fgv-logo-uk.png" alt="">
-                            <a href="#">Фонд гарантування вкладів візичних осіб</a>
+                            <a href="#">Фонд гарантування вкладів фізичних осіб</a>
                         </div>
                         <div class="col-xs-12 support__item">
                             <img src="/images/NBU.png" alt="">
