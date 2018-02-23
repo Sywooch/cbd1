@@ -62,7 +62,6 @@ ActiveForm::end();
 $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' => SORT_DESC];
 
 ?>
-
 <div class="panel panel-primary">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-stats"></span>
@@ -153,11 +152,19 @@ $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' =>
                         'template' => '{view} {login} {update} {delete}',
                         'buttons' => [
                             'view' => function($url, $model, $key){
-                                return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['info', 'id' => $key]);
+                                return Html::a('<i class="fa fa-eye"></i>', ['info', 'id' => $key]);
+                            },
+                            'delete' => function($url, $model, $key){
+                                return Html::a('<i class="fa fa-remove"></i>', ['delete', 'id' => $key], [
+                                    'data' => [
+                                        'method' => 'post',
+                                        'confirm' => Yii::t('app', 'Ви впевнені?')
+                                    ]
+                                ]);
                             },
                             'login' => function($url, $model, $key){
                                 return Html::a(
-                                    '<i class="glyphicon glyphicon-arrow-right"></i>',
+                                    '<i class="fa fa-arrow-right"></i>',
                                     ['login-user', 'id' => $model->id],
                                     ['data' => [
                                         'confirm' => Yii::t('app', 'Are you sure you want to login into this account?'),
@@ -173,6 +180,3 @@ $dataProvider->sort->defaultOrder = ['confirmed_at' => SORT_ASC, 'created_at' =>
         </div>
     </div>
 </div>
-</div><!-- End of .office > .container -->
-</div><!-- End of .office -->
-</main><!-- End of .site-content -->

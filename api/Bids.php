@@ -75,9 +75,9 @@ class Bids extends ActiveRecord
                 ];
             }
         ];
-       if(in_array($this->lot->procurementMethodType, ['dgfFinancialAssets', 'dgfInsider'])){
-        $data['eligible'] = function($model){ return true; };
-       }
+        if(in_array($this->lot->procurementMethodType, ['dgfFinancialAssets', 'dgfInsider'])){
+            $data['eligible'] = function($model){ return true; };
+        }
         if($this->scenario !== 'dgfInsider'){
             $data['value'] = function($model){
                 return [
@@ -167,9 +167,9 @@ class Bids extends ActiveRecord
 
     public function validateSum($attribute, $params = []){
         if($this->lot){
-            if($this->$attribute < ($this->lot->start_price + $this->lot->step)){
-                $this->addError($attribute, Yii::t('app', 'Amount must be greater than lot price. {sum}', [
-                    'sum' => ($this->lot->start_price + $this->lot->step) . ' грн',
+            if($this->$attribute < $this->lot->start_price){
+                $this->addError($attribute, Yii::t('app', 'Сума заявки повинна бути більшою, ніж початкова ціна аукціону ({sum}). {sum}', [
+                    'sum' => $this->lot->start_price . ' грн',
                 ]));
             }
         }
@@ -300,10 +300,10 @@ class Bids extends ActiveRecord
 
     public function getContractDocuments(){
         return $this->hasMany(Documents::className(), ['relatedItem' => 'unique_id'])
-        ->andWhere([
-            'documentOf' => 'bid',
-            'documentType' => 'contractSigned',
-        ]);
+            ->andWhere([
+                'documentOf' => 'bid',
+                'documentType' => 'contractSigned',
+            ]);
     }
 
     public function getContract(){
@@ -315,7 +315,11 @@ class Bids extends ActiveRecord
     }
 
     public function getIsWinner(){
-        return $this->award ? $this->award->status == 'active' : false;
+        return $this->award && in_array($this->award->status, [
+                'active',
+                'pending.payment',
+                'pending.verification',
+            ]);
     }
 
     public function getIsFirst(){

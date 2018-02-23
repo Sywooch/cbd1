@@ -124,7 +124,6 @@ else{
 </div>
 <?php if(Yii::$app->user->isGuest):?>
     <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
-
         <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
         <a href="#" class="btn btn-primary btn-block btn-lg">Вхід</a>
         <a href="#" class="btn btn-warning btn-block btn-lg">Реєстрація</a>

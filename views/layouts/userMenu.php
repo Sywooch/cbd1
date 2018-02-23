@@ -43,7 +43,7 @@ switch($route){
         <div class="container">
             <div class="office-header">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="<?= YiI::$app->user->can('org') ? 'col-10' : 'col-12'?>">
                         <nav class="nav nav-tabs" id="officeTab" role="tablist">
                             <?php if(Yii::$app->user->can('admin')): ?>
                                 <a class="nav-item nav-link <?=$users?>" id="nav-users-tab" href="/user/admin" role="tab" aria-controls="nav-auctions" aria-selected="true">Користувачі <?= $unconfirmedLabel; ?></a>
@@ -54,7 +54,7 @@ switch($route){
                         </nav>
                     </div>
                     <?php if(Yii::$app->user->can('org')):?>
-                        <div class="col-3 align-self-center text-right">
+                        <div class="col-2 align-self-center text-right">
                             <a href="/lots/create" id="create-auction-btn" class="btn btn-warning">Додати аукціон</a>
                         </div>
                     <?php endif;?>

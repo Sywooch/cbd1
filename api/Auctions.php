@@ -400,7 +400,7 @@ class Auctions extends ActiveRecord
 
     /** @returns ActiveQuery|Items[] */
     public function getItems(){
-        return $this->hasMany(Items::className(), ['api_auction_id' => 'unique_id'])->orderBy(['api_items.created_at' => SORT_ASC]);
+        return $this->hasMany(Items::className(), ['api_auction_id' => 'unique_id']);
     }
 
     public function getItemsClassifications(){
@@ -476,7 +476,12 @@ class Auctions extends ActiveRecord
         return $this->getBaseAuction();
     }
     public function getBids(){
-        return $this->hasMany(Bids::className(), ['auction_id' => 'unique_id'])->joinWith('awards')->orderBy(['api_awards.unique_id' => SORT_ASC])/*->via('lot')*/;
+        return $this->hasMany(Bids::className(), ['auction_id' => 'unique_id'])->joinWith('awards')->orderBy(['api_awards.unique_id' => SORT_ASC])->where('api_awards.id is not null')/*->via('lot')*/;
+    }
+    public function getOwnBids(){
+        return $this->hasMany(Bids::className(), ['auction_id' => 'unique_id'])
+            ->joinWith('awards')
+            ->orderBy(['api_awards.unique_id' => SORT_ASC]);
     }
 
 
@@ -634,7 +639,7 @@ class Auctions extends ActiveRecord
                 'complete' => Yii::t('app', 'Завершився'),
             ];
             if(in_array($this->status, ['cancelled', 'unsuccessful', 'complete'])){
-                foreach($this->bids as $bid){
+                foreach($this->ownBids as $bid){
                     if($bid->user){
                         $text = Yii::t('app', 'Аукціон {auctionID} {action}. Ви можете переглянути результати аукціону, перейшовши за посиланням: {link}',[
                             'link' => Html::a(Yii::t('app', 'Переглянути'), Url::to(['/public/view', 'id' => $this->unique_id], true)),

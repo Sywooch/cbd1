@@ -28,7 +28,7 @@ $model->accept = 1;
                 <?=$form->field($model, 'oferta')->checkbox(['label' => $model->getAttributeLabel('oferta')]); ?>
             </div>
             <div class="col-md-12">
-                <?= Html::submitButton(Yii::t('app', $model->isNewRecord ? 'Create' : 'Save'), ['class' => 'btn btn-success btn-block', 'style' => 'margin-top: 25px', 'id' => 'bid-save-btn'])?>
+                <?= Html::submitButton(Yii::t('app', $model->isNewRecord ? 'Create' : 'Save'), ['class' => 'btn btn-success', 'style' => 'margin-top: 25px', 'id' => 'bid-save-btn'])?>
             </div>
         </div>
 

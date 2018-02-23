@@ -68,18 +68,7 @@ class BidsController extends Controller
 
     public function actionView($id = null)
     {
-        if(isset($_POST['rows'])){
-
-        }else{
-
-        }
         $model = $this->findModel($id);
-        // if($model->user_id != Yii::$app->user->id){
-        //     throw new ForbiddenHttpException();
-        // }
-        /*else*/if(Yii::$app->user->can('org') && $model->status == 'draft1'){
-        throw new ForbiddenHttpException();
-    }
         if(($model->user_id === Yii::$app->user->id) && ($model->id && !$model->participationUrl) && $model->status == 'active'){
             $data = Yii::$app->api->request('auctions/' . $model->lot->apiAuction->id . '/bids/' . $model->id . '?acc_token=' . $model->access_token);
             $model->load($data, '');
@@ -203,6 +192,9 @@ class BidsController extends Controller
                     'link' => Html::a(Yii::t('app', 'View'), ['/bids/view', 'id' => $model->unique_id]),
                 ]);
                 Yii::createObject(Messages::className())->sendMessage(6, $adminText, true);
+            }
+            else{
+                $model->updateAttributes(['accepted' => 1]);
             }
 
             Yii::$app->api->createBid($model);
@@ -384,6 +376,17 @@ class BidsController extends Controller
                     true
                 );
             Yii::$app->session->setFlash('success', Yii::t('app', 'Bid status changed to {status}', ['status' => $model->statusName]));
+
+            if($model->apiAuction->procurementMethodType == 'dgfInsider'){
+                Yii::createObject(Messages::className())->sendMessage(
+                    $model->user_id,
+                    Yii::t('app', 'Аукціон "{auction}" розпочався. Ви можете взяти участь, перейшовши за посиланням: {link}', [
+                        'auction' => $model->apiAuction->title,
+                        'link' => Html::a(Yii::t('app', 'перейти'), $model->participationUrl),
+                    ]),
+                    true
+                );
+            }
             return $this->redirect(['view', 'id' => $id]);
         }
         else{
@@ -419,7 +422,7 @@ class BidsController extends Controller
                 $text = Yii::t('app', 'Організатор аукціону завантажив та підтвердив протокол аукціону. {link}', [
                     'link' => Html::a(Yii::t('app', 'View'), Url::to(['/bids/view', 'id' => $id], true)),
                 ]);
-                Yii::createObject(Messages::className())->sendMessage($bid->user_id, $text, true);
+                Yii::createObject(Messages::className())->sendMessage($model->user_id, $text, true);
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Protocol has been confirmed'));
             }
 

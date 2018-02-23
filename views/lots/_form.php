@@ -146,11 +146,6 @@ $this->registerJs($js, 4);
 
         <?php if(!$model->apiAuction): ?>
 
-            <?= $form->field($model, 'delivery_time')->widget(DatePicker::className(),[
-                'dateFormat' => 'dd.MM.yyyy',
-                'options' => ['class' => 'form-control']
-            ]) ?>
-
             <div class="row">
                 <div class="col-sm-3">
                     <?= $form->field($model, 'start_price')->textInput() ?>
@@ -175,8 +170,6 @@ $this->registerJs($js, 4);
                 </div>
             </div>
 
-            <?= $form->field($model, 'delivery_term')->textarea(['rows'=> 3]); ?>
-            <?= $form->field($model, 'requires')->textarea(['rows'=> 3]); ?>
 
             <?= $form->field($model, 'notes')->textarea(['maxlength' => 800, 'rows' => 6, 'cols' => 50]) ?>
 

@@ -94,7 +94,7 @@ class BidsSearch extends Bids
             ;
         }
         elseif(Yii::$app->user->can('admin')){
-            $query->andWhere(['!=', 'lots.user_id', 0]);
+            $query->andWhere('api_auctions.id is not null');
         }
 
         if (!$this->validate()) {

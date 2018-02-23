@@ -4,14 +4,12 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use api\Auctions;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\LotSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'YouLots ID');
+$this->title = Yii::$app->user->can('org') ? Yii::t('app', 'Мої аукціони') : Yii::t('app', 'Аукціони');
 $this->params['breadcrumbs'][] = $this->title;
 
 $delete = Url::to(['/lots/remove-all']);
@@ -37,7 +35,6 @@ $('#auctions-delete-btn').on('click', function(){
             type: 'POST',
             url: "$delete",
             data: {ids:rows },
-
             success: function(data){
             console.log(rows);
         }
@@ -58,22 +55,24 @@ JS
             <div class="auctions-header">
                 <div class="row align-items-center">
                     <div class="col-lg-3">
-                        <h3 class="auctions-title">Мої аукціони</h3>
+                        <h3 class="auctions-title"><?= $this->title; ?></h3>
                     </div>
-                    <div class="col-lg-9">
-                        <nav class="navbar navbar-expand-md sticky-top navbar-light">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#auctionsControls" aria-controls="auctionsControls" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="auctionsControls">
-                                <div class="navbar-nav">
-                                    <a class="nav-item nav-link auctions-control-edit" id = "auctions-details-btn" href="#">Редагувати</a>
-                                    <a class="nav-item nav-link auctions-control-copy" id = "auctions-copy-btn" href="#">Створити копію</a>
-                                    <a class="nav-item nav-link auctions-control-trash" id = "auctions-delete-btn" href="#">Видалити</a>
+                    <?php if(Yii::$app->user->can('org')): ?>
+                        <div class="col-lg-9">
+                            <nav class="navbar navbar-expand-md sticky-top navbar-light">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#auctionsControls" aria-controls="auctionsControls" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="auctionsControls">
+                                    <div class="navbar-nav">
+                                        <a class="nav-item nav-link auctions-control-edit" id = "auctions-details-btn" href="#">Редагувати</a>
+                                        <a class="nav-item nav-link auctions-control-copy" id = "auctions-copy-btn" href="#">Створити копію</a>
+                                        <a class="nav-item nav-link auctions-control-trash" id = "auctions-delete-btn" href="#">Видалити</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </nav>
-                    </div>
+                            </nav>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <?= GridView::widget([
@@ -89,9 +88,6 @@ JS
                     }
                 },
                 'columns' => [
-                    // ['class' => 'yii\grid\SerialColumn'],
-
-                    //                        'id',
                     [
                         'class' => 'yii\grid\CheckboxColumn'
                     ],
@@ -110,25 +106,8 @@ JS
                         'attribute' => 'organizerName',
                         'visible' => Yii::$app->user->can('admin'),
                     ],
-                    //'start_price',
                     'num',
-                    //'description',
-                    //'step',
-                    // 'docs_id',
-                    // 'address',
-                    //'delivery_time:datetime',
-                    // 'delivery_term',
-                    // 'requires',
-                    //'payment_term',
-                    // 'payment_order',
-                    // 'member_require',
-                    // 'member_docs',
-                    // 'requisites_id',
-                    // 'notes',
-                    // 'dogovor_id',
-                    //'date',
                     'auction_date:datetime',
-                    //'date:datetime',
                     [
                         'attribute' => 'published',
                         'format' => 'raw',
@@ -159,12 +138,12 @@ JS
                                 return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['update', 'id' => $key], ['id' => 'update-btn']);
                             },
                             'view' => function($url, $model, $key){
-                                return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['view', 'id' => $key], ['id' => 'view-btn']);
+                                return Html::a('<i class="fa fa-eye"></i>', ['view', 'id' => $key], ['id' => 'view-btn']);
                             },
                             'delete' => function($url, $model, $key){
                                 if(!Yii::$app->user->can('org') || $model->user_id != Yii::$app->user->id || $model->apiAuction) return '';
                                 return Html::a(
-                                    '<i class="glyphicon glyphicon-trash"></i>',
+                                    '<i class="fa fa-trash"></i>',
                                     ['delete', 'id' => $key],
                                     [
                                         'id' => 'delete-btn',
@@ -180,7 +159,5 @@ JS
                 ],
             ]); ?>
         </div>
-
     </div>
 </div>
-</main>

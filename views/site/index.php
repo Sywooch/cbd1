@@ -7,6 +7,7 @@ use api\Auctions;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+
 $this->title = Yii::t('app','ЗУПБ | Земельна універсальна промислова біржа');
 
 $this->registerJs(<<<JS

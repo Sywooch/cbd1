@@ -164,7 +164,7 @@ class Cancellations extends ActiveRecord
     }
 
     public function confirm(){
-        foreach($this->auction->bids as $bid){
+        foreach($this->auction->ownBids as $bid){
             Yii::createObject(Messages::className())
                 ->sendMessage(
                     $bid->user_id,

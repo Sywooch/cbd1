@@ -10,6 +10,12 @@ use yii\web\UploadedFile;
 use yii\db\ActiveRecord;
 
 
+/**
+ * @property string $user_id
+ * @property string $bid_id
+**/
+
+
 class Files extends ActiveRecord
 {
 
@@ -359,14 +365,8 @@ class Files extends ActiveRecord
                     return Yii::$app->api->addContractDocument($bid, $document);
                 }
                 else{
-                    print_r($_FILES);
-                    DMF($this->file);
                     @unlink($this->path . $this->name);
                 }
-            }
-            else{
-                // print_r($_FILES);
-                // DMF($this->file);
             }
         }
         return false;
