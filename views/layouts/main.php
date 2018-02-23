@@ -49,7 +49,7 @@ else{
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-               <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
                 <img class="d-none d-lg-inline-block logo-prozorro" src="/images/prozorro-logo.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
@@ -124,11 +124,19 @@ else{
         </div>
     </div>
     <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
+        <<<<<<< HEAD
         <h4 class="menu-mini-title font-weight-bold text-center text-dark">Вхід та реєстрація</h4>
         <?php if(Yii::$app->user->isGuest){?>
+        =======
+        <?php if(Yii::$app->user->isGuest): ?>
+            <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
+            >>>>>>> master
             <a href="/user/login" class="btn btn-primary btn-block btn-lg">Вхід</a>
             <a href="/registration/register" class="btn btn-warning btn-block btn-lg">Реєстрація</a>
-        <?php }?>
+        <?php else: ?>
+            <a href="/bids" class="btn btn-primary btn-block btn-lg">Кабінет</a>
+            <a href="/messages" class="btn btn-primary btn-block btn-lg">Повідомлення</a>
+        <?php endif; ?>
         <button type="button" class="menu-mini-close">
             <img src="/images/icon-close.png" alt="">
         </button>
@@ -209,8 +217,13 @@ else{
     <div class="container">
         <div class="row">
             <div class="banner-footer col-12 col-lg-6 align-self-center">
-               <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <<<<<<< HEAD
+                <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
                 <img class="logo-prozorro d-none d-sm-inline-block" src="/images/prozorro-logo.png" alt="">
+                =======
+                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
+                <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
+                >>>>>>> master
                 <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
                 <!-- <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
                     <img src="/images/menu-icon.png">
