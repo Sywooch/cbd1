@@ -154,6 +154,7 @@ else{
     </div>
     <?= $content ?>
 </main>
+<<<<<<< HEAD
 <footer class="site-footer align-items-center bg-dark-footer">
 <div class="container">
     <div class="row">
@@ -172,6 +173,17 @@ else{
                 </ul>
                 <button type="button" class="menu-mini-close-footer">
                     <img src="/images/icon-close.png" alt="">
+=======
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="banner-footer col-12 col-lg-6 align-self-center">
+                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
+                <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
+                <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
+                <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
+                    <img src="/images/menu-icon.png">
+>>>>>>> master
                 </button>
             </nav>
 
