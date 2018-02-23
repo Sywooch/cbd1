@@ -8,6 +8,8 @@ use app\assets\AppAsset;
 use yii\widgets\Menu;
 
 AppAsset::register($this);
+
+$messages_counter = \app\models\Messages::find()->where(['user_id' => Yii::$app->user->id])->count();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
