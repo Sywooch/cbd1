@@ -168,6 +168,10 @@ class LotsController extends Controller
         if(!Yii::$app->user->can('org') || ($lot->user_id != Yii::$app->user->id)){
             throw new ForbiddenHttpException();
         }
+        if($lot->apiAuction && $lot->apiAuction->isEnded){
+            Yii::$app->session->setFlash('warning', Yii::t('app', 'Не можна завантажувати документи у поточному статусі аукціону'));
+            return $this->redirect(['/lots/view', 'id' => $id]);
+        }
 
         $model = new Files();
         $model->lot_id = $id;
