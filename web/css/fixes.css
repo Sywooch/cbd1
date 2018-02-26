@@ -120,3 +120,12 @@ body {
 .reglament-doc{
     margin-bottom: 2rem;
 }
+label {
+    color: black;
+}
+.form-control {
+    font-size: 1.4rem;
+}
+select.form-control:not([size]):not([multiple]) {
+    height: calc(3.25rem + 2px);
+}

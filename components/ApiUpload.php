@@ -38,10 +38,6 @@ class ApiUpload extends Component
     }
 
     private function register($document){
-//        if(filesize($document) > 1572864){
-//            $fh = fopen($document, 'w');
-//            fclose($fh);
-//        }
         $login = $this->login;
         $password = $this->password;
 
@@ -52,6 +48,8 @@ class ApiUpload extends Component
         ], [
             'Authorization' => 'Basic '. base64_encode("$login:$password") ,
         ]);
+
+        DMF($uploadPath);
 
         return $this->doUpload($uploadPath['upload_url'], $document);
     }
