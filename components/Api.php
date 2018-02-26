@@ -257,6 +257,10 @@ class Api extends Component
         if($document->documentType == 'evaluationCriteria') {
             $document->title = 'Критерії оцінки';
         }
+        elseif($document->documentType == 'x_dgfPublicAssetCertificate'){
+            unset($documentData['hash']);
+            unset($documentData['format']);
+        }
         $data = $this->request('auctions/' . $document
                 ->auction
                 ->id . '/documents?acc_token=' . $document
