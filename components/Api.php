@@ -112,8 +112,6 @@ class Api extends Component
 
     public function reuploadBidDocument(Bids $bid, Documents $old_document, Documents $document){
 
-        DMF('auctions/' . $bid->apiAuction->id . '/bids/' . $bid->id . '/documents/' . $old_document->id . '?');
-
         $data = $this->request('auctions/' . $bid->apiAuction->id . '/bids/' . $bid->id . '/documents/' . $old_document->id . '?acc_token=' . $bid->access_token,
             'PATCH',
             ['data' => $document->toArray()]);
@@ -258,6 +256,10 @@ class Api extends Component
         $documentData = $document->toArray();
         if($document->documentType == 'evaluationCriteria') {
             $document->title = 'Критерії оцінки';
+        }
+        elseif($document->documentType == 'x_dgfPublicAssetCertificate'){
+            unset($documentData['hash']);
+            unset($documentData['format']);
         }
         $data = $this->request('auctions/' . $document
                 ->auction
