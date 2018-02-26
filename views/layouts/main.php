@@ -40,9 +40,6 @@ if (!Yii::$app->user->isGuest){
     $items[] = ['label' => Yii::t('app', 'Change password'), 'url' => '/settings/account',  'options' => ['class' => 'dropdown-item']];
     $items[] =  ['label' => Yii::t('user', 'Logout')."\n\n\n(".Yii::$app->user->identity->username.")",  'url' => '/site/logout',  'options' => ['class' => 'dropdown-item']];
 }
-else{
-
-}
 
 ?>
 <section class="banner d-flex align-items-center">
@@ -124,13 +121,8 @@ else{
         </div>
     </div>
     <nav id="menuMiniReg" class="menu-mini-reg d-sm-none">
-        <<<<<<< HEAD
         <h4 class="menu-mini-title font-weight-bold text-center text-dark">Вхід та реєстрація</h4>
-        <?php if(Yii::$app->user->isGuest){?>
-        =======
         <?php if(Yii::$app->user->isGuest): ?>
-            <h4 class="menu-mini-title font-weight-bold text-center">Вхід та реєстрація</h4>
-            >>>>>>> master
             <a href="/user/login" class="btn btn-primary btn-block btn-lg">Вхід</a>
             <a href="/registration/register" class="btn btn-warning btn-block btn-lg">Реєстрація</a>
         <?php else: ?>
@@ -217,13 +209,8 @@ else{
     <div class="container">
         <div class="row">
             <div class="banner-footer col-12 col-lg-6 align-self-center">
-                <<<<<<< HEAD
                 <a href="/"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
                 <img class="logo-prozorro d-none d-sm-inline-block" src="/images/prozorro-logo.png" alt="">
-                =======
-                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
-                <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
-                >>>>>>> master
                 <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
                 <!-- <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
                     <img src="/images/menu-icon.png">
