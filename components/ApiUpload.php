@@ -49,8 +49,6 @@ class ApiUpload extends Component
             'Authorization' => 'Basic '. base64_encode("$login:$password") ,
         ]);
 
-        DMF($uploadPath);
-
         return $this->doUpload($uploadPath['upload_url'], $document);
     }
 

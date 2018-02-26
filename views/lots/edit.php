@@ -54,26 +54,17 @@ $this->title = Yii::t('app', 'Updating lot') . ': ' . $model->name;
 
             <?=$form->field($model, 'dgfDecisionDate');?>
 
-            <?=$form->field($model, 'tenderAttempts')->textInput()/*dropDownList([
+            <?=$form->field($model, 'tenderAttempts')->dropDownList([
                 '' => Yii::t('app', 'Not known'),
                 '1' => Yii::t('app', '1'),
                 '2' => Yii::t('app', '2'),
                 '3' => Yii::t('app', '3'),
                 '4' => Yii::t('app', '4'),
-            ])*/; ?>
+            ]); ?>
 
             <?= $form->field($model, 'description')->textarea(['maxlength' => 800, 'rows' => 6, 'cols' => 50]) ?>
 
-            <?= $form->field($model, 'clarificationFile')->widget(FileInput::className(), [
-                'options' => [
-                    'id' => 'file-type-input',
-                    'multiple' => false,
-                ],
-                'pluginOptions' => [
-                    'showUpload' => false,
-                    'showPreview' => false,
-                ]
-            ]); ?>
+            <?= $form->field($model, 'clarificationFile')->fileInput(['class' => 'form-control']); ?>
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', $model->isNewRecord ? 'Create ID' : 'Update ID'), ['class' => 'btn btn-primary', 'id' => 'submit-auction-btn']) ?>

@@ -59,16 +59,7 @@ if($model->procurementMethodType == 'dgfOtherAssets'){
                             </div>
 
                             <div class="col-sm-5">
-                                <?= $form->field($files, 'file')->widget(FileInput::className(), [
-                                    'options' => [
-                                        'id' => 'file-type-input',
-                                        'multiple' => false,
-                                    ],
-                                    'pluginOptions' => [
-                                        'showUpload' => false,
-                                        'showPreview' => false,
-                                    ]
-                                ]); ?>
+                                <?= $form->field($files, 'file')->fileInput(['class' => 'form-control']); ?>
                             </div>
                             <div class="col-sm-3">
                                 <?= Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-success btn-block', 'style' => 'margin-top: 25px', 'id' => 'lot-document-upload-btn']); ?>

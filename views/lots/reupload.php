@@ -29,10 +29,7 @@ $this->title = Yii::t('app', 'Reupload lot document');
             </div>
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
             <div class="col-sm-8">
-                <?=$form->field($model, 'file')->widget(\kartik\file\FileInput::className(), [
-                    'options' => ['multiple' => false],
-                    'pluginOptions' => ['showUpload' => false, 'showPreview' => false],
-                ]); ?>
+                <?=$form->field($model, 'file')->fileInput(['class' => 'form-control']); ?>
             </div>
             <div class="col-sm-4">
                 <?=Html::submitButton(Yii::t('app', 'Reupload'), ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
