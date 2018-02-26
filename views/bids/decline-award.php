@@ -22,13 +22,7 @@ $this->title = Yii::t('app', 'Uploading disqualification reason');
 
             <?=$form->field($model, 'description')->textarea(['rows' => 3]); ?>
 
-            <?=$form->field($file, 'file')->widget(FileInput::className(), [
-                'options' => ['multiple' => false],
-                'pluginOptions' => [
-                    'showUpload' => false,
-                    'showPreview' => false,
-                ]
-            ]); ?>
+            <?=$form->field($file, 'file')->fileInput(['class' => 'form-control']); ?>
 
             <?=Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-primary', 'id' => 'upload-disqualification-btn']); ?>
 

@@ -20,13 +20,7 @@ $this->title = Yii::t('app', 'Uploading auction protocol');
             </div>
 
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])?>
-            <?=$form->field($model, 'file')->widget(FileInput::className(), [
-                'options' => ['multiple' => false],
-                'pluginOptions' => [
-                    'showUpload' => false,
-                    'showPreview' => false,
-                ]
-            ]); ?>
+            <?=$form->field($model, 'file')->fileInput(['class' => 'form-control']); ?>
             <?=Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-primary', 'id' => 'bid-upload-protocol']); ?>
             <?php ActiveForm::end(); ?>
         </div>

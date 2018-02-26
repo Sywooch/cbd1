@@ -18,13 +18,7 @@ $this->title = Yii::t('app', 'Uploading contract');
                 </div>
             </div>
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']])?>
-            <?=$form->field($model, 'file')->widget(FileInput::className(), [
-                'options' => ['multiple' => false],
-                'pluginOptions' => [
-                    'showUpload' => false,
-                    'showPreview' => false,
-                ]
-            ]); ?>
+            <?=$form->field($model, 'file')->fileInput(['class' => 'form-control']); ?>
             <?=Html::submitButton(Yii::t('app', 'Upload'), ['class' => 'btn btn-primary', 'id' => 'upload-contract-btn']); ?>
             <?php ActiveForm::end(); ?>
         </div>

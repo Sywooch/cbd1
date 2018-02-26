@@ -35,9 +35,7 @@ use kartik\file\FileInput;
         'data' => ArrayHelper::map(Categoriesblog::find()->all(), 'id', 'title')
     ]) ?>
 
-    <?= $form->field($model, 'picture')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-    ]);?>
+    <?= $form->field($model, 'picture')->fileInput(['class' => 'form-control']);?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 

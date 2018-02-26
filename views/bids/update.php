@@ -58,13 +58,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
                 <?=$form->field($file, 'type')->dropDownList($file->bidDocumentTypes()); ?>
             </div>
             <div class="col-md-6">
-                <?=$form->field($file, 'file')->widget(\kartik\file\FileInput::className(), [
-                    'options' => [],
-                    'pluginOptions' => [
-                        'showUpload' => false,
-                        'showPreview' => false,
-                    ]
-                ]); ?>
+                <?=$form->field($file, 'file')->fileInput(['class' => 'form-control']); ?>
             </div>
             <div class="col-md-2">
                 <?= Html::submitButton(Yii::t('app', 'Upload'), ['id' => 'document-upload-btn', 'class' => 'btn btn-primary btn-block', 'style' => 'margin-top: 25px']); ?>
