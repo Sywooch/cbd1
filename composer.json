@@ -36,7 +36,8 @@
         "mihaildev/yii2-ckeditor": "*",
         "mihaildev/yii2-elfinder": "*",
         "kartik-v/yii2-popover-x": "*",
-        "rmrevin/yii2-minify-view": "^2.0"
+        "rmrevin/yii2-minify-view": "^2.0",
+        "sergeymakinen/yii2-telegram-log": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

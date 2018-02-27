@@ -96,6 +96,14 @@ $components = [
                 'class' => 'yii\log\FileTarget',
                 'levels' => ['error', 'warning'],
             ],
+            [
+                'class' => 'sergeymakinen\yii\telegramlog\Target',
+                'token' => getenv('LOG_TOKEN'),
+                'chatId' => getenv('LOG_CHAT_ID'),
+                'levels' => ['error'],
+                'template' => "{text}",
+                'enabled' => (strlen(getenv('LOG_CHAT_ID') . getenv('LOG_TOKEN')) > 20) && !YII_DEBUG,
+            ],
         ],
     ],
     'i18n' => [
