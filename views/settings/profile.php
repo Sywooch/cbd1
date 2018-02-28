@@ -69,6 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $model->files ?></td>
                 </tr>
             </table>
+            <div class="form-group">
+                <?= Html::a(Yii::t('app', 'Редагувати'), ['/registration/organizer'], ['class' => 'btn btn-primary']); ?>
+                <?= Html::a(Yii::t('app', 'Змінити пароль'), ['/settings/account'], ['class' => 'btn btn-default']); ?>
+            </div>
 
         </div>
     </div>
