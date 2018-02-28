@@ -9,6 +9,7 @@ use yii\widgets\MaskedInput;
 /* @var $model app\models\OrganizerForm */
 /* @var $form ActiveForm */
 
+
 if(!Yii::$app->user->identity->confirmed_at){
     Yii::$app->session->setFlash('success', Yii::t('app', 'Очікується підтвердження реєстраційних даних зі сторони майданчика'));
 }
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->registerJS(<<<JS
     $('input[name="Profile[org_type]"]').on('change', function(e){
         var type = $(this).val();
-        if(type == 'individual'){
+        if(type === 'individual'){
             $('#profile-firma_full').parents('.form-group').hide();
             $('#profile-zkpo').parents('.form-group').hide();
             $('#profile-inn').parents('.form-group').show();

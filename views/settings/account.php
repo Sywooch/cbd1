@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
  * @var $model dektrium\user\models\SettingsForm
  */
 
-$this->title = Yii::t('app', 'Зміна паролю');
+$this->title = Yii::t('app', 'Зміна пароля');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-4 col-offset-4">
 
+            <div class="row">
+                <div class="col-4">
                     <?php $form = ActiveForm::begin([
                         'id'          => 'account-form',
                         'options'     => ['class' => 'form-horizontal'],

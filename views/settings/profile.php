@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
-
             <table class="table table-striped table-bordered">
                 <tr>
                     <td><b><?= Yii::t('app', 'Full organization name') ?></b></td>
@@ -69,11 +68,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $model->files ?></td>
                 </tr>
             </table>
-            <div class="form-group">
-                <?= Html::a(Yii::t('app', 'Редагувати'), ['/registration/organizer'], ['class' => 'btn btn-primary']); ?>
-                <?= Html::a(Yii::t('app', 'Змінити пароль'), ['/settings/account'], ['class' => 'btn btn-default']); ?>
-            </div>
 
+            <?= Html::a(Yii::t('app', 'Edit'), ['/registration/organizer'], ['class'=>'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Змінити пароль'), ['/settings/account'], ['class' => 'btn btn-default']); ?>
         </div>
     </div>
 </div>
