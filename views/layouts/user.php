@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row no-gutters">
             <div class="col-6 col-sm-4 col-lg-6 align-self-center">
-<!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
+                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="logo-prozorro" src="/images/logo-prozorro.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>
@@ -42,7 +42,8 @@ AppAsset::register($this);
                 <?php if(Yii::$app->user->isGuest): ?>
                     <a href="/user/login" class="btn btn-primary btn-signin">Вхід</a>
                     <a href="/registration/register" class="btn btn-warning btn-signup">Реєстрація</a>
-                    <?php else: ?>
+                <?php else: ?>
+                    <a href="/settings/profile" class="btn btn-primary btn-signin">Профіль</a>
                     <a href="/user/security/logout" class="btn btn-primary btn-signin" data-method="post">Вихід</a>
                 <?php endif; ?>
             </div>
@@ -102,7 +103,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 align-self-center">
-<!--                <a href="#"><img class="logo" src="/images/logo.png" alt=""></a>-->
+                <!--                <a href="#"><img class="logo" src="/images/logo.png" alt=""></a>-->
                 <img class="logo-prozorro" src="/images/logo-prozorro.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>

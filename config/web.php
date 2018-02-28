@@ -25,8 +25,6 @@ $config = [
             !Yii::$app->user->isGuest
             &&
             !Yii::$app->user->identity->confirmed_at
-            &&
-            Yii::$app->user->identity->role == '1'
         ){
             Yii::$app->response->redirect(['/registration/organizer']);
         }

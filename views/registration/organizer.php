@@ -8,8 +8,9 @@ use yii\widgets\MaskedInput;
 /* @var $this yii\web\View */
 /* @var $model app\models\OrganizerForm */
 /* @var $form ActiveForm */
-
-Yii::$app->session->setFlash('success', Yii::t('app', 'Очікується підтвердження реєстраційних даних зі сторони майданчика'));
+if(!Yii::$app->user->identity->confirmed_at){
+    Yii::$app->session->setFlash('success', Yii::t('app', 'Очікується підтвердження реєстраційних даних зі сторони майданчика'));
+}
 
 $this->title = Yii::t('app', 'Дані про організацію');
 $this->params['breadcrumbs'][] = $this->title;

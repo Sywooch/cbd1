@@ -111,6 +111,5 @@ class User extends \dektrium\user\models\User
             $this->_profile->link('user', $this);
         }
     }
-
 }
 
