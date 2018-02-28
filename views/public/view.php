@@ -101,8 +101,16 @@ JS
                                 <div class="col-12">
                                     <p id = "auction-description"><?= Html::encode($model->description)?></p>
                                 </div>
+                                <?php if($model->isEnded): ?>
+                                    <div class="col-md-5">
+                                        <p class="mb-1">Протокол торгів</p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <?= Html::a('HTML', "https://www.prozorro.sale/auction/{$model->auctionID}/print/protocol/html", ['target' => '_blank']) . ' | ' .  Html::a('PDF', "https://www.prozorro.sale/auction/{$model->auctionID}/print/protocol/pdf", ['target' => '_blank']); ?>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="col-md-5">
-                                    <p mb-1">Ідентифікатор аукціону</p>
+                                    <p class="mb-1">Ідентифікатор аукціону</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p class="mb-1"><span id = "auction-auctionID" ><?= $model->auctionID?></span></p>

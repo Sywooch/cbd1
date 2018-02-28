@@ -133,7 +133,7 @@ else
                     </div>
                     <?php if($model->apiAuction && $model->apiAuction->isEnded): ?>
                         <div class="row">
-                            <div class="col"><p>Протол торгів</p></div>
+                            <div class="col"><p>Протокол торгів</p></div>
                             <div class="col">
                                 <p>
                                     <?= $model->apiAuction ? Html::a('HTML', "https://www.prozorro.sale/auction/{$model->apiAuction->auctionID}/print/protocol/html", ['target' => '_blank']) . ' | ' .  Html::a('PDF', "https://www.prozorro.sale/auction/{$model->apiAuction->auctionID}/print/protocol/pdf", ['target' => '_blank']) : ''; ?>

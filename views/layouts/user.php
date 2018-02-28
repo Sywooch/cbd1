@@ -39,7 +39,8 @@ AppAsset::register($this);
                 <?php if(Yii::$app->user->isGuest): ?>
                     <a href="/user/login" class="btn btn-primary btn-signin">Вхід</a>
                     <a href="/registration/register" class="btn btn-warning btn-signup">Реєстрація</a>
-                    <?php else: ?>
+                <?php else: ?>
+                    <a href="/settings/profile" class="btn btn-outline-light btn-lg btn-signin">Профіль</a>
                     <a href="/user/security/logout" class="btn btn-outline-light btn-lg btn-signin" data-method="post">Вихід</a>
                 <?php endif; ?>
             </div>
@@ -53,7 +54,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 align-self-center">
-               <a href="#"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
+                <a href="#"><img class="logo" src="/images/strateg-logo.png" height="60" alt=""></a>
                 <img class="logo-prozorro" src="/images/prozorro-logo.png" alt="">
                 <p class="d-none d-lg-inline-block accredit">Акредитований<br>майданчик</p>
             </div>

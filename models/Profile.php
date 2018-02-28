@@ -17,9 +17,22 @@ class Profile extends \dektrium\user\models\Profile
 
     public function scenarios()
     {
-        return [
-            'organizer' => ['org_type', 'firma_full', 'region', 'city', 'postal_code', 'f_address', 'phone', 'member', 'inn', 'passport_number', 'licenseNumber', 'zkpo'],
+        $scenarios = parent::scenarios();
+        $scenarios['organizer'] = [
+            'org_type',
+            'firma_full',
+            'region',
+            'city',
+            'postal_code',
+            'f_address',
+            'phone',
+            'member',
+            'inn',
+            'passport_number',
+            'licenseNumber',
+            'zkpo',
         ];
+        return $scenarios;
     }
 
     public function rules()
