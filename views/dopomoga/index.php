@@ -11,7 +11,7 @@ use yii\widgets\ListView;
             <div class="col-md-5 col-md-offset-1">
                 <div class="dopomoga__category dopomoga__category--client">
                     <div class="dopomoga__layover">
-                        <h3><?= Html::a(Yii::t('app','ЗАМОВНИКАМ'),['/dopomoga/category/','slug' => 'zamovnikam']) ?></h3>
+                        <h3><?= Html::a(Yii::t('app','ЛіквідаторАМ'),['/dopomoga/category/','slug' => 'zamovnikam']) ?></h3>
                     </div>
                 </div>
             </div>
