@@ -25,13 +25,8 @@ use yii\widgets\DetailView;
                                 <p class="font-weight-bold mb-0">Телефон:</p>
                                 <p class="org-telephone"><?= Html::encode($model->procuringEntity->contactPoint_telephone)?></p>
                                 <p class="font-weight-bold mb-0">ЄДРПОУ:</p>
-<<<<<<< HEAD
                                 <p class="org-edrpou"><?= Html::encode($model->procuringEntity->identifier_id)?></p>
-                                <a href="<?=\yii\helpers\Url::to(['/public', 'Auctions' => ['organization' => Html::encode($model->procuringEntity->name)]])?>" class="link-primary">Всі аукціони організатора</a>
-=======
-                                <p class="org-edrpou"><?= $model->procuringEntity->identifier_id?></p>
-                                <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => $model->procuringEntity->name]])?>" class="link-primary">Всі аукціони організатора</a>
->>>>>>> master
+                                <a href="<?=\yii\helpers\Url::to(['/public', 'AuctionsSearch' => ['org_name' => Html::encode($model->procuringEntity->name)]])?>" class="link-primary">Всі аукціони організатора</a>
                             </div>
                         </div>
                     </div>
