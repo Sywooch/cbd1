@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= Html::activeInput('radio', $model, 'role', ['value' => '2']);?> Учасник
                                 </label>
                                 <label class="btn custom-radio">
-                                    <?= Html::activeInput('radio', $model, 'role', ['value' => '1']);?> Замовник
+                                    <?= Html::activeInput('radio', $model, 'role', ['value' => '1']);?> Ліквідатор
                                 </label>
                             </div>
                         </div>
