@@ -50,7 +50,7 @@ else{
     <div class="row no-gutters">
         <!-- logos -->
         <div class="col-6 col-sm-4 col-lg-5 align-self-center">
-            <a class="link-contacts" href="tel:+380442194747">044-219-47-47</a>
+            <a class="link-contacts" href="tel:+380442194747">Тел +38 044 219 47 47</a>
         </div>
         <!-- contact info -->
         <div class="col-12 col-sm-6 col-lg-7 align-self-center text-right d-none d-sm-inline-block">
@@ -102,9 +102,9 @@ else{
 
 <nav id="menuMiniList" class="menu-mini-list d-lg-none">
     <ul class="text-center">
-        <li><a href="#" class="link-primary">Про нас</a></li>
+        <li><a href="http://kme.net.ua/pro-birzhu/" class="link-primary">Про нас</a></li>
         <li><a href="/public" class="link-primary">Публікації</a></li>
-        <li><a href="#" class="link-primary">Контакти</a></li>
+        <li><a href="http://kme.net.ua/contacty/" class="link-primary">Контакти</a></li>
     </ul>
 
     <div class="contact-info-mini text-center">
@@ -154,7 +154,6 @@ else{
     </div>
     <?= $content ?>
 </main>
-<<<<<<< HEAD
 <footer class="site-footer align-items-center bg-dark-footer">
 <div class="container">
     <div class="row">
@@ -173,34 +172,23 @@ else{
                 </ul>
                 <button type="button" class="menu-mini-close-footer">
                     <img src="/images/icon-close.png" alt="">
-=======
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-            <div class="banner-footer col-12 col-lg-6 align-self-center">
-                <!--                <a href="/"><img class="logo" src="/images/logo.png" alt=""></a>-->
-                <img class="logo-prozorro d-none d-sm-inline-block" src="/images/logo-prozorro.png" alt="">
-                <p class="accredit d-none d-sm-inline-block">Акредитований<br>майданчик</p>
-                <button type="button" id="miniListCallFooter" class="btn btn-primary d-lg-none float-right mt-2">
-                    <img src="/images/menu-icon.png">
->>>>>>> master
                 </button>
             </nav>
 
         </div>
 
         <div class="col-12 col-lg-6 align-self-center text-right d-none d-lg-block">
-    <span class="contact-info text-left d-lg-inline-block">
-        <a class="link-contacts link-contacts-footer" href="tel:+380442194747">044-219-47-47</a><br>
-        <a class="link-contacts link-contacts-footer" href="mailto:info@capital.com">info@capital.com</a>
-      </span>
+            <span class="contact-info text-left d-lg-inline-block">
+                <a class="link-contacts link-contacts-footer" href="tel:+380442194747">+38 044 219 47 47</a><br>
+                <a class="link-contacts link-contacts-footer" href="mailto:welcome@kme.net.ua">welcome@kme.net.ua</a>
+            </span>
 
         </div>
     </div>
 
     <div style="padding: 30px 0 0; border-top: 1px solid #dcdde0; border-bottom: 1px solid #dcdde0" class="contact-info-mini text-center mt-3 d-lg-none">
-        <p><a class="link-contacts" href="tel:+380442194747">044-219-47-47</a></p>
-        <p><a class="link-contacts" href="mailto:info@capital.com">info@capital.com</a></p>
+        <p><a class="link-contacts" href="tel:+380442194747">+38 044 219 47 47</a></p>
+        <p><a class="link-contacts" href="mailto:welcome@kme.net.ua">welcome@kme.net.ua</a></p>
         <ul class="navbar-nav flex-row social justify-content-center">
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -218,7 +206,7 @@ else{
     <div class="copyright mt-2">
         <div class="row">
             <div class="col d-none d-lg-block">
-                <p>&copy; 2017, <a href="#" class="link-copyright">CAPITAL, </a>ALL RIGHTS RESERVED</p>
+                <p>&copy; 2017, <a href="/" class="link-copyright">KYIV MERCANTILE EXCHANGE, </a>ALL RIGHTS RESERVED</p>
             </div>
         </div>
     </div>
