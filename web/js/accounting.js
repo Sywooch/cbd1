@@ -424,7 +424,9 @@ var digitsForAccounting = [
     '.money_step',
     '.purple strong',
     '#auction_value_amount',
-    '.value_amount'
+    '.value_amount',
+    '#auction-guarantee_amount',
+    '.price'
 ];
 var options = {
     symbol : "",
@@ -435,5 +437,5 @@ var options = {
 };
 
 digitsForAccounting.forEach(function(item){
-    // $(item).html(accounting.formatMoney($(item).html(), options));
+    $(item).html(accounting.formatMoney($(item).html(), options));
 });

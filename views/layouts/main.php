@@ -69,6 +69,7 @@ else{
 
                 <?php else:?>
                     <a href="/lots" id="cabinet" class="btn btn-primary btn-signin">Кабінет</a>
+                    <a href="/user/logout" data-method="post" class="btn btn-primary btn-signin">Вихід</a>
                 <?php endif;?>
             </span>
         </div>
@@ -93,6 +94,7 @@ else{
         <a href="/registration/register" class="btn btn-warning btn-block btn-lg">Реєстрація</a>
     <?php else:?>
         <a href="/lots" id="cabinet" class="btn btn-primary btn-signin">Кабінет</a>
+        <a href="/user/logout" data-method="post" class="btn btn-primary btn-signin">Вихід</a>
     <?php endif;?>
 
     <button type="button" class="menu-mini-close">

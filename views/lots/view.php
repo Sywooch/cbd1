@@ -186,7 +186,7 @@ else
                         <div class="col">
                             <p>Початкова ціна, грн.</p>
                         </div>
-                        <div class="col">
+                        <div class="col price">
                             <p><?= $model->start_price?></p>
                         </div>
                     </div>
@@ -194,7 +194,7 @@ else
                         <div class="col">
                             <p>Початкова ціна, грн. (з ПДВ)</p>
                         </div>
-                        <div class="col">
+                        <div class="col price">
                             <p><?= $price_nds?></p>
                         </div>
                     </div>
@@ -202,7 +202,7 @@ else
                         <div class="col">
                             <p>Мін. крок торгів, грн.</p>
                         </div>
-                        <div class="col">
+                        <div class="col price">
                             <p><?=$model->step?></p>
                         </div>
                     </div>
@@ -212,14 +212,6 @@ else
                         </div>
                         <div class="col">
                             <p><?=$model->address?></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Мін. крок торгів, грн.</p>
-                        </div>
-                        <div class="col">
-                            <p>—</p>
                         </div>
                     </div>
                     <div class="row">
