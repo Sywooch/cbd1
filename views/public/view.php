@@ -30,7 +30,7 @@ JS
         <div class="container">
             <div class="row">
                 <div class="col-9">
-                    <p class="subtitle-primary">Номер лоту: <span class="text-uppercase"><?= $model->auctionID?></span></p>
+                    <p class="subtitle-primary">Лот: <span class="text-uppercase"><?= $model->auctionID?></span></p>
                     <h3 class="lot-title">
                         <span id = "auction-title"><?= Html::encode($model->title)?></span>
                         <?php if($model->access_token && Yii::$app->user->can('org')): ?>
@@ -38,6 +38,8 @@ JS
                             <?= Html::a('<i class="fa fa-pencil"></i>', ['/lots/update', 'id' => $model->baseAuction_id], ['id' => 'lot-update-btn']); ?>
                         <?php endif; ?>
                     </h3>
+
+                    <?php /* ?>
                     <?php if($model->typeName == 'dgfFinancialAssets'){
                         $image = 'publications-type-fa';
                     }else if($model->typeName == 'dgfOtherAssets'){
@@ -45,17 +47,20 @@ JS
                     }else{
                         $image = 'publications-type-mlb';
                     }?>
+
                     <div class=<?= $image?>>
                         <p><?= $model->typeName?></p>
                         <span id='auction-procurementMethodType' class='is_debug'><?=$model->procurementMethodType; ?></span>
                     </div>
+                    <?php */ ?>
+
                     <nav class="nav nav-tabs" id="myTab" role="tablist">
                         <a class="nav-item nav-link link-secondary active" id="nav-auction-tab" data-toggle="tab" href="#nav-auction" role="tab" aria-controls="nav-auction" aria-expanded="true">Аукціон</a>
                         <a class="nav-item nav-link link-secondary" id="tab-selector-2" data-toggle="tab" href="#nav-faq" role="tab" aria-controls="nav-faq">Питання та вiдповiдi <span class="faq-counter">(<?= count($model->questions)?>)</span></a>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-auction" role="tabpanel" aria-labelledby="nav-auction-tab">
-                            <h4 class="font-weight-bold mt-4 mb-3">Органiзатор</h4>
+                            <h3 class="font-weight-bold mt-4 mb-3">Органiзатор</h3>
                             <div class="row">
 
                                 <div class="col-md-5">
@@ -96,7 +101,7 @@ JS
                                 </div>
                                 <div class="w-100"></div>
                             </div>
-                            <h4 class="font-weight-bold mt-4 mb-3">Інформация про лот</h4>
+                            <h3 class="font-weight-bold mt-4 mb-3">Інформация про лот</h3>
                             <div class="row">
                                 <div class="col-12">
                                     <p id = "auction-description"><?= Html::encode($model->description); ?></p>
@@ -203,7 +208,7 @@ JS
 
                                 <div class="w-100"></div>
                             </div>
-                            <h4 class="font-weight-bold mt-4 mb-3">Список активів</h4>
+                            <h3 class="font-weight-bold mt-4 mb-3">Список активів</h3>
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
@@ -255,7 +260,7 @@ JS
                                 <?php endforeach; ?>
                                 </tbody>
                             </table>
-                            <h4 class="font-weight-bold mt-4 mb-3">Документи аукціону</h4>
+                            <h3 class="font-weight-bold mt-4 mb-3">Документи аукціону</h3>
                             <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)):?>
                                 <div id='auction-documents'>
                                     <table>
@@ -444,7 +449,7 @@ JS
                 <div class="col-3">
                     <div class="lot-info sticky-top p-4">
                         <div class="publications-starting-price mb-4">
-                            <p class="font-weight-bold mb-1">Початкова ціна</p>
+                            <p class="mb-1">Початкова ціна</p>
                             <p class="publications-starting-price-value font-weight-bold">
                                 <?= Html::tag('span', zeropad($model->value_amount), ['id' => 'auction_value_amount', 'class' => 'price-calculate'])." " . ' ' . Yii::t('app', $model->value_currency) . ' '.Html::tag('span', $model->value_currency, ['id' => 'auction-value_currency', 'class' => 'is_debug'])." ";
                                 if ($model->value_valueAddedTaxIncluded == 1){
@@ -455,9 +460,10 @@ JS
                             </p>
                         </div>
 
-                        <input type="checkbox" class="is_debug" checked="<?=$model->value_valueAddedTaxIncluded == 1 ? 'checked' : ''; ?>" id="auction-valueAddedTaxIncluded" disabled="disabled" readonly="readonly">
+                        <input type="checkbox" class="is_debug" checked="<?=$model->value_valueAddedTaxIncluded == 1 ? 'checked' : ''; ?>" id="auction-valueAddedTaxIncluded" disabled="disabled" readonly="readonly" hidden>
+
                         <div class="publications-status mb-4">
-                            <p class="font-weight-bold mb-2">Статус</p>
+                            <!-- <p class="font-weight-bold mb-2">Статус</p> -->
                             <p class="text-success font-weight-bold mb-4"><?= $model->statusName?></p>
                             <div class="col-md-12"><?= Html::tag('span', $model->status, ['id' => 'auction-status', 'class' => 'is_debug']);?></div>
                             <?php if($model->cancellation){?>
@@ -468,7 +474,7 @@ JS
                         </div>
                         <?php if(!$model->isEnded): ?>
                             <div class="publications-left">
-                                <p class="font-weight-bold mb-2">Залишилось</p>
+                                <p class="mb-1">Залишилось</p>
                                 <p class="publications-left-time font-weight-bold"><?php
                                     $diff = strtotime ($model->auctionPeriod_startDate) - time();
                                     if($diff < 0){

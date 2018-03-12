@@ -17,7 +17,7 @@ $messages_counter = \app\models\Messages::find()->where(['user_id' => Yii::$app-
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" href="/images/favicon.jpg" />
     <!-- <meta name="MobileOptimized" content="991"/>
     <meta name="HandheldFriendly" content="true"/> -->
     <?= Html::csrfMetaTags() ?>
@@ -55,10 +55,10 @@ else{
         <!-- contact info -->
         <div class="col-12 col-sm-6 col-lg-7 align-self-center text-right d-none d-sm-inline-block">
             <span class="contact-info text-left d-none d-lg-inline-block pr-4">
-                <a class="btn-link-social mr-3 align-self-center" href="#">
+                <a class="btn-link-social mr-3 align-self-center" href="https://twitter.com/KMEwelcome" target="_blank">
                     <img src="/img/twitter.png" alt="twitter">
                 </a>
-                <a class="btn-link-social align-self-center" href="#">
+                <a class="btn-link-social align-self-center" href="https://www.linkedin.com/company/kyivmercantileexchange/" target="_blank">
                     <img src="/img/linkedin.png" alt="linkedin">
                 </a>
             </span>
@@ -129,13 +129,13 @@ else{
         <div class="collapse navbar-collapse" id="bottom-menu">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Про нас</a>
+                    <a class="nav-link" href="http://kme.net.ua/pro-birzhu/">Про нас</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/public">Публікації</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Контакти</a>
+                    <a class="nav-link" href="http://kme.net.ua/contacty/">Контакти</a>
                 </li>
             </ul>
             <span style="display:none" class="contact-info-reg text-right">
@@ -168,9 +168,9 @@ else{
 
             <nav class="menu-mini-list-footer">
                 <ul class="text-center">
-                    <li><a href="#" class="link-primary">Про нас</a></li>
+                    <li><a href="http://kme.net.ua/pro-birzhu/" class="link-primary">Про нас</a></li>
                     <li><a href="/public" class="link-primary">Публікації</a></li>
-                    <li><a href="#" class="link-primary">Контакти</a></li>
+                    <li><a href="http://kme.net.ua/contacty/" class="link-primary">Контакти</a></li>
                 </ul>
                 <button type="button" class="menu-mini-close-footer">
                     <img src="/images/icon-close.png" alt="">
@@ -193,12 +193,12 @@ else{
         <p><a class="link-contacts" href="mailto:welcome@kme.net.ua">welcome@kme.net.ua</a></p>
         <ul class="navbar-nav flex-row social justify-content-center">
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://www.linkedin.com/company/kyivmercantileexchange/" target="_blank">
                     <img src="/img/social/linkedin.png" alt="linkedin">
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://twitter.com/KMEwelcome" target="_blank">
                     <img src="/img/social/twitter.png" alt="twitter">
                 </a>
             </li>
@@ -208,7 +208,7 @@ else{
     <div class="copyright mt-2">
         <div class="row">
             <div class="col d-none d-lg-block">
-                <p>&copy; 2017, <a href="/" class="link-copyright">KYIV MERCANTILE EXCHANGE, </a>ALL RIGHTS RESERVED</p>
+                <p>&copy; 2017, <a href="https://kme.net.ua" target="_blank" class="link-copyright">KYIV MERCANTILE EXCHANGE, </a>ALL RIGHTS RESERVED</p>
             </div>
         </div>
     </div>
