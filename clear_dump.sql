@@ -1977,7 +1977,7 @@ CREATE TABLE `help_category` (
 --
 
 INSERT INTO `help_category` (`id`, `title`, `description`, `key_words`, `slug`) VALUES
-(1, 'Замовникам', 'desc123', 'key123', 'zamovnikam'),
+(1, 'Ліквідаторам', 'desc123', 'key123', 'zamovnikam'),
 (2, 'Постачальникам', 'desc', 'key', 'postachalnikam');
 
 -- --------------------------------------------------------

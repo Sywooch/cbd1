@@ -144,7 +144,7 @@ else{
         <ul class="text-center">
             <li><a href="/" class="link-primary">Про нас</a></li>
             <li><a href="#" class="link-primary">Учасникам</a></li>
-            <li><a href="#" class="link-primary">Замовникам</a></li>
+            <li><a href="#" class="link-primary">Ліквідаторам</a></li>
             <li><a href="/public" class="link-primary">Публікації</a></li>
             <li><a href="/category/novini" class="link-primary">Новини</a></li>
             <li><a href="#" class="link-primary">Контакти</a></li>
@@ -173,7 +173,7 @@ else{
                     <a class="nav-link" href="#">Учасникам</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Замовникам</a>
+                    <a class="nav-link" href="#">Ліквідаторам</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/public">Публікації</a>
@@ -225,7 +225,7 @@ else{
                     <ul class="text-center">
                         <li><a href="/" class="link-primary">Про нас</a></li>
                         <li><a href="#" class="link-primary">Учасникам</a></li>
-                        <li><a href="#" class="link-primary">Замовникам</a></li>
+                        <li><a href="#" class="link-primary">Ліквідаторам</a></li>
                         <li><a href="/public" class="link-primary">Публікації</a></li>
                         <li><a href="/category/novini" class="link-primary">Новини</a></li>
                         <li><a href="#" class="link-primary">Контакти</a></li>
@@ -260,7 +260,7 @@ else{
                             <a class="nav-link" href="#">Учасникам</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Замовникам</a>
+                            <a class="nav-link" href="#">Ліквідаторам</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/public">Публікації</a>

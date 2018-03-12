@@ -63,7 +63,7 @@ AppAsset::register($this);
                     <a class="nav-link" href="#">Учасникам</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Замовникам</a>
+                    <a class="nav-link" href="#">Ліквідаторам</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/public">Публікації</a>
@@ -131,7 +131,7 @@ AppAsset::register($this);
                             <a class="nav-link" href="#">Учасникам</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Замовникам</a>
+                            <a class="nav-link" href="#">Ліквідаторам</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Публікації</a>
