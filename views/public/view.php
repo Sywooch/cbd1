@@ -466,7 +466,7 @@ JS
                             <!-- <p class="font-weight-bold mb-2">Статус</p> -->
                             <p class="text-success font-weight-bold mb-4"><?= $model->statusName?></p>
                             <div class="col-md-12"><?= Html::tag('span', $model->status, ['id' => 'auction-status', 'class' => 'is_debug']);?></div>
-                            <?php if($model->cancellation){?>
+                            <?php if($model->cancellation && ($model->status == 'cancelled')){?>
                                 <span><?= Yii::t("app", "Cancellation reason");?></span>
                                 <?=Html::tag('span', $model->cancellation->status, ['class' => 'is_debug', 'id' => 'cancellation-status']); ?>
                                 <p class="lead"><?= Html::tag('span', $model->cancellation->reason, ['id' => 'cancellation-reason']); ?></p>
