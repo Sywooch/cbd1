@@ -500,9 +500,9 @@ JS;
                             <div class="col">
                                 <div class="row">
                                     <?= Html::a(Files::documentType($document->type) . ' - (' . $document->name . ')',
-                                        $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) . ''// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']);   ?>
+                                        $document->url, ['id' => 'document-id', 'target' => '_blank', 'class' => 'link-primary']) . ' '// Html::a(Yii::t('app', 'Change'), ['/bids/reupload-document', 'id' => $model->unique_id, 'document_id' => $document->unique_id], ['class' => 'btn btn-sm btn-primary']);   ?>
                                     <?php if($document->file_id && (Yii::$app->user->can('org') || Yii::$app->user->can('admin') || (Yii::$app->user->id == $model->user_id))): ?>
-                                        <?= Html::a(' (запасная ссылка)' . Files::documentType($document->type) . ' - (' . $document->name . ')', ['/files/download', 'id' => $document->file_id], ['id' => 'document-id']); ?>
+                                        <?= Html::a(' (резервне посилання)' . Files::documentType($document->type) . ' - (' . $document->name . ')', ['/files/download', 'id' => $document->file_id], ['id' => 'document-id']); ?>
                                     <?php endif; ?>
                                 </div>
                             </div>
