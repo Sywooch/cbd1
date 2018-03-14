@@ -15,7 +15,7 @@ $apiVersion = getenv('API_VERSION');
 
 return [
     'id' => 'basic-console',
-    'name'  =>  'UISCE',
+    'name'  =>  'KME',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
