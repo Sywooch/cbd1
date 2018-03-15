@@ -236,7 +236,7 @@ class Awards extends ActiveRecord
     {
         parent::afterSave($insert, $changedAttributes);
         // first bid
-        if($insert && $this->status == 'pending.verification' && $this->bid && $this->bid->user){
+        if($insert && $this->status == 'pending' && $this->bid && $this->bid->user){
             $notes = Yii::t('app', 'Проводиться кваліфікація переможця аукціону. Ви зайняли перше місце в аукціоні та можете завантажити протокол торгів протягом 3-х діб: {link}', [
                 'link' => Html::a(Yii::t('app', 'Переглянути та завантажити протокол'), Url::to(['/bids/upload-protocol', 'id' => $this->bid->unique_id], true)),
             ]);
