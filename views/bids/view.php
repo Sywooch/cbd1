@@ -141,7 +141,7 @@ JS;
 
                 <?php if($model->award): ?>
                     <!-- VERIFICATION -->
-                    <?php if($model->award->status == 'pending.verification'): ?>
+                    <?php if($model->award->status == 'pending'): ?>
                         <?php if($model->orgAuctionProtocol && !$model->apiAuction->isEnded): ?>
                             <?= Html::a(Yii::t('app', 'Confirm protocol'),
                                 ['confirm-protocol', 'id' => $model->unique_id],
