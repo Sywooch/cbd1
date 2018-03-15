@@ -114,7 +114,9 @@ class Auctions extends ActiveRecord
             'description',
             'tenderAttempts' => function($model){ return $model->tenderAttempts > 0 ? $model->tenderAttempts : null; },
             'title',
-            'items',
+            'items' => function($model){
+                return Items::find()->where(['api_auction_id' => $model->unique_id])->all();
+            },
             'procurementMethodType',
             'value' => function($model){
                 return [
@@ -545,12 +547,11 @@ class Auctions extends ActiveRecord
             $question->save(false);
         }
 
-        foreach($this->_items as $item){
-            if(false == ($lot = Items::findOne(['description' => $item['description']]))){
-                $lot = new Items();
-            }
+        $items = $this->items;
+        foreach($this->_items as $index => $item){
+            $lot = isset($items[$index]) ? $items[$index] : new Items();
             $lot->load($item, '');
-            $lot->api_auction_id = $this->unique_id;
+            $lot->id = $item['id'];
             if(!$lot->save(false)){
                 echo "Item saving error\n";
                 print_r($lot->errors);

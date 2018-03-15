@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Messages;
 use app\traits\AjaxValidationTrait;
 use Yii;
 use app\models\RegistrationForm;
 use yii\filters\AccessControl;
 use app\models\Profile;
 use app\models\User;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\rbac\DbManager;
 
 // For api inject
@@ -67,6 +70,17 @@ class RegistrationController extends \dektrium\user\controllers\RegistrationCont
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
 
             $this->registerOrganization($model);
+
+            $admins = User::find()->leftJoin('auth_assignment', '`auth_assignment`.`user_id` = `user`.`id`')->where(['auth_assignment.item_name' => 'admin'])->all();
+            foreach($admins as $admin){
+                Yii::createObject(Messages::className())->sendMessage(
+                    $admin->id,
+                    Yii::t('app', 'Був зареєстрований новий користувач. {link}', [
+                        'link' => Html::a(Yii::t('app', 'Перейти'), Url::to(['/user/admin'], true)),
+                    ]),
+                    true
+                );
+            }
 
             Yii::$app->user->identity->updateAttributes(['confirmed_at' => null]);
             Yii::$app->session->setFlash('info', Yii::t('app', 'You must relogin for apply changes'));

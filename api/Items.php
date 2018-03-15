@@ -88,7 +88,6 @@ class Items extends ActiveRecord
 //                    'classification_id',
                     'unit_code',
                     'address_postalCode',
-                    'id',
                 ],
                 'string',
                 'max' => 25],
@@ -113,6 +112,7 @@ class Items extends ActiveRecord
             [
                 [
                     'classification',
+                    'id',
                 ],
                 'safe',
             ],

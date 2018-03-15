@@ -28,6 +28,8 @@ use Yii;
 class Contracts extends ActiveRecord
 {
 
+    public $_prolongations = [];
+
     public function behaviors()
     {
         return parent::behaviors();
@@ -62,17 +64,8 @@ class Contracts extends ActiveRecord
                 [
                     'id',
                     'awardID',
-//                    'contractID',
                     'contractNumber',
-//                    'title',
-//                    'description',
-//                    'value_amount',
-//                    'value_currency',
                     'status',
-//                    'period_startDate',
-//                    'period_endDate',
-//                    'dateSigned',
-//                    'date',
                 ],
                 'required',
             ],
@@ -136,7 +129,8 @@ class Contracts extends ActiveRecord
                 ],
                 'boolean',
             ],
-            ['dateSigned', 'checkDateSigned']
+            ['dateSigned', 'checkDateSigned'],
+            [['prolongations'], 'safe'],
         ];
     }
 
@@ -198,6 +192,29 @@ class Contracts extends ActiveRecord
 
     public function getAward(){
         return $this->hasOne(Awards::className(), ['id' => 'awardID']);
+    }
+
+    public function setProlongations($prolongations){
+        $this->_prolongations = $prolongations;
+    }
+
+    public function getProlongations(){
+        return !empty($this->_prolongations) ? $this->_prolongations : $this->hasMany(Prolongations::className(), ['contractID' => 'id']);
+    }
+
+    public function afterSave($insert, $changedAttributes){
+        foreach($this->_prolongations as $item){
+            if(false == ($prolongation = Prolongations::findOne(['id' => $item['id']]))){
+                $prolongation = new Prolongations();
+            }
+            $prolongation->load($item, '');
+            $prolongation->contractID = $this->id;
+            if(!$prolongation->save(false)){
+                echo "Prolongation save error\n:";
+                print_r($prolongation->errors);
+            }
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
 }
