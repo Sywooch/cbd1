@@ -393,7 +393,7 @@ class Api extends Component
             'auctions/' . $bid->apiAuction->id . '/awards/' . $bid->award->id . '?acc_token=' . $bid->apiAuction->access_token,
             'PATCH', [
             'data' => [
-                'status' => 'pending.payment',
+                'status' => 'active',
             ],
         ]);
         if(!isset($data['data']) && YII_DEBUG) {
