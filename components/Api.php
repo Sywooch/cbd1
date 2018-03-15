@@ -452,6 +452,15 @@ class Api extends Component
             ['data' => $data]
         );
 
+        if(!isset($response['data'])) {
+            if(YII_DEBUG){
+                DMF($response);
+            }
+            else {
+                return false;
+            }
+        }
+
         $contract = $bid->contract;
         $contract->load($response, '');
         return $contract->save(false);
