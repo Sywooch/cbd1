@@ -31,6 +31,7 @@ class HelperController extends Controller
         Yii::$app->db->createCommand('TRUNCATE api_items')->execute();
         Yii::$app->db->createCommand('TRUNCATE api_items_classifications')->execute();
         Yii::$app->db->createCommand('TRUNCATE api_questions')->execute();
+        Yii::$app->db->createCommand('TRUNCATE api_prolongations')->execute();
         Yii::$app->db->createCommand('TRUNCATE email_tasks')->execute();
         Yii::$app->db->createCommand('TRUNCATE files')->execute();
         Yii::$app->db->createCommand('TRUNCATE lots')->execute();
