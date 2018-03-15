@@ -251,7 +251,7 @@ class Awards extends ActiveRecord
         }
         if(!$insert && isset($changedAttributes['status']) && $this->status == 'unsuccessful' && $this->title == 'Disqualified' && $this->bid && $this->bid->user){
             if($this->description != ''){
-                $notes = t('app', 'Ваша ставка була дискваліфікована({link}). Причина: ' . $this->description, [
+                $notes = Yii::t('app', 'Ваша ставка була дискваліфікована({link}). Причина: ' . $this->description, [
                     'link' => Html::a(Yii::t('app', 'Переглянути'), Url::to(['/bids/view', 'id' => $this->bid->unique_id], true)),
                 ]);
             }
