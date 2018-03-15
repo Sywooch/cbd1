@@ -282,7 +282,7 @@ else
                                             break;
                                         default:
                                             $class = 'default';
-                                            $status = ' ';
+                                            $statusName = ' ';
                                     }
                                     ?>
                                     <?=Html::tag('li', Yii::t('app', $statusName) . ' ' . Html::a($bid->organization->name ?: $bid->organization->contactPoint_name, ['/bids/view', 'id' => $bid->unique_id], ['class' => 'btn btn-' . $class]), ['class' => 'list-group-item']); ?>
