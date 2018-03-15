@@ -400,6 +400,8 @@ class LotsController extends Controller
             ];
             if($model->publishAuction($insert)){
                 Yii::$app->session->setFlash('success', Yii::t('app', 'Auction succesfully published'));
+                $baseAuction = \api\Auctions::findOne(['baseAuction_id' => $model->id]);
+                Yii::$app->api->refreshAuction($baseAuction->id);
             }
             else{
                 Yii::$app->session->setFlash('warning', Yii::t('app', 'Oops. something went wrong.'));
@@ -409,7 +411,6 @@ class LotsController extends Controller
             $model->setAttribute('lot_lock','1');
             // save
             $model->save(false);
-            $baseAuction = \api\Auctions::findOne(['baseAuction_id' => $model->id]);
             // send message to org
             $notes_org = Yii::t('app','AuctionCreatedOnLot ID') .": " .
                 Html::a(
