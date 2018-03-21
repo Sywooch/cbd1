@@ -194,12 +194,12 @@ else{
         <ul class="navbar-nav flex-row social justify-content-center">
             <li class="nav-item">
                 <a class="nav-link" href="https://www.linkedin.com/company/kyivmercantileexchange/" target="_blank">
-                    <img src="/img/social/linkedin.png" alt="linkedin">
+                    <img src="/img/linkedin.png" alt="linkedin">
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="https://twitter.com/KMEwelcome" target="_blank">
-                    <img src="/img/social/twitter.png" alt="twitter">
+                    <img src="/img/twitter.png" alt="twitter">
                 </a>
             </li>
         </ul>
