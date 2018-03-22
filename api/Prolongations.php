@@ -59,4 +59,15 @@ class Prolongations extends ActiveRecord
             'reason' => Yii::t('app', 'Reason'),
         ];
     }
+
+    public function getReason(){
+        $reasons = [
+            'dgfPaymentImpossibility' => Yii::t('app', 'Відсутність оплати'),
+            'dgfLackOfDocuments' => Yii::t('app', 'Відсутні деякі з обов\'язкових документів'),
+            'dgfLegalObstacles' => Yii::t('app', 'Юридичні обставини'),
+            'other' => Yii::t('app', 'Інше'),
+        ];
+        return $reasons[$this->reason];
+
+    }
 }
