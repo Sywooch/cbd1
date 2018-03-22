@@ -211,7 +211,6 @@ JS
                                     <th width="20%">Кількість, од. виміру.</th>
                                     <th width="20%">Розташування об'екту</th>
                                     <th width="20%">Опис класифікації</th>
-                                    <th width="20%">Опис</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -247,15 +246,6 @@ JS
                                         </td>
                                         <td>
                                             <?= $modelItem->classification->description; ?>
-                                        </td>
-                                        <td>
-                                            <?= Html::tag('span',
-                                                isset(explode(': ', $modelItem->description)[1])
-                                                    ?
-                                                    explode(': ', $modelItem->description)[1]
-                                                    :
-                                                    $modelItem->description,
-                                                ['id' => "items[$n].classification_description"]); ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
