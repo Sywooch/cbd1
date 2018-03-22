@@ -400,23 +400,23 @@ JS
                                             <b><?= Yii::t('app', 'Період підписання контракту було продовжено'); ?></b>
 
                                             <table class="table table-striped table-responsive">
-                                            <tr>
-                                                <th><?= Yii::t('app', 'Номер рішення'); ?></th>
-                                                <th><?= Yii::t('app', 'Причина'); ?></th>
-                                                <th><?= Yii::t('app', 'Дата рішення ФГВФО'); ?></th>
-                                                <th><?= Yii::t('app', 'Опис'); ?></th>
-                                            </tr>
-                                            <?php foreach($prolongations as $prolongation):
-                                                /* @var \api\Prolongations $prolongation */
-                                                ?>
                                                 <tr>
-                                                    <td><?= $prolongation->decisionID; ?></td>
-                                                    <td><?= $prolongation->getReason(); ?></td>
-                                                    <td><?= Yii::$app->formatter->asDate($prolongation->dateCreated); ?></td>
-                                                    <td><?= $prolongation->description; ?></td>
+                                                    <th><?= Yii::t('app', 'Номер рішення'); ?></th>
+                                                    <th><?= Yii::t('app', 'Причина'); ?></th>
+                                                    <th><?= Yii::t('app', 'Дата рішення ФГВФО'); ?></th>
+                                                    <th><?= Yii::t('app', 'Опис'); ?></th>
                                                 </tr>
-                                                </table>
-                                            <?php endforeach; ?>
+                                                <?php foreach($prolongations as $prolongation):
+                                                    /* @var \api\Prolongations $prolongation */
+                                                    ?>
+                                                    <tr>
+                                                        <td><?= $prolongation->decisionID; ?></td>
+                                                        <td><?= $prolongation->getReason(); ?></td>
+                                                        <td><?= Yii::$app->formatter->asDate($prolongation->dateCreated); ?></td>
+                                                        <td><?= $prolongation->description; ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </table>
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <?php $bidNumber--;
