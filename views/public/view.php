@@ -376,35 +376,58 @@ JS
                                         }
                                         ?>
                                         <?= DetailView::widget([
-                                            'model' => $modelBid,
-                                            'attributes' => [
-                                                [
-                                                    'attribute' => 'award.description',
-                                                    'header' => 'Причина дискваліфікації',
-                                                    'visible' => $modelBid->award->status == 'unsuccessful',
-                                                ],
-                                                'date:datetime',
-                                                'value_amount',
-                                                [
-                                                    'attribute' => 'value_currency',
-                                                    'value' => Yii::t('app', $modelBid->value_currency),
-                                                ],
-                                                [
-                                                    'attribute' => 'documents',
-                                                    'format' => 'raw',
-                                                    'value' => $documents,
-                                                ],
-                                                [
-                                                    'attribute' => 'value_valueAddedTaxIncluded',
-                                                    'format' => 'raw',
-                                                    'value' => Html::checkbox('value_valueAddedTaxIncluded', $model->value_valueAddedTaxIncluded, ['disabled' => 'disabled']),
-                                                ],
+                                        'model' => $modelBid,
+                                        'attributes' => [
+                                            [
+                                                'attribute' => 'award.description',
+                                                'header' => 'Причина дискваліфікації',
+                                                'visible' => $modelBid->award->status == 'unsuccessful',
                                             ],
-                                        ]) ?>
+                                            'date:datetime',
+                                            'value_amount',
+                                            [
+                                                'attribute' => 'value_currency',
+                                                'value' => Yii::t('app', $modelBid->value_currency),
+                                            ],
+                                            [
+                                                'attribute' => 'documents',
+                                                'format' => 'raw',
+                                                'value' => $documents,
+                                            ],
+                                            [
+                                                'attribute' => 'value_valueAddedTaxIncluded',
+                                                'format' => 'raw',
+                                                'value' => Html::checkbox('value_valueAddedTaxIncluded', $model->value_valueAddedTaxIncluded, ['disabled' => 'disabled']),
+                                            ],
+                                        ],
+                                    ]) ?>
                                         <?php
                                         $awardNumber++;
                                         $bidNumber++;
                                         ?>
+                                        <?php $prolongations = $modelBid->award->prolongations; ?>
+                                        <?php if(count($prolongations)): ?>
+                                            <b><?= Yii::t('app', 'Період підписання контракту було продовжено'); ?></b>
+
+                                            <table class="table table-striped table-responsive">
+                                            <tr>
+                                                <th><?= Yii::t('app', 'Номер рішення'); ?></th>
+                                                <th><?= Yii::t('app', 'Причина'); ?></th>
+                                                <th><?= Yii::t('app', 'Дата рішення ФГВФО'); ?></th>
+                                                <th><?= Yii::t('app', 'Опис'); ?></th>
+                                            </tr>
+                                            <?php foreach($prolongations as $prolongation):
+                                                /* @var \api\Prolongations $prolongation*/
+                                                ?>
+                                                <tr>
+                                                    <td><?= $prolongation->decisionID;?></td>
+                                                    <td><?= $prolongation->getReason(); ?></td>
+                                                    <td><?= Yii::$app->formatter->asDate($prolongation->dateCreated); ?></td>
+                                                    <td><?= $prolongation->description; ?></td>
+                                                </tr>
+                                                </table>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     <?php else: ?>
                                         <?php $bidNumber--; $awardNumber--; $n--; ?>
                                     <?php endif; ?>
