@@ -26,6 +26,8 @@ use yii\helpers\Url;
  * @property string $lotID
  * @property integer $created_at
  * @property integer $updated_at
+ * @property Contracts $contract
+ * @property Prolongations $prolongations
  */
 class Awards extends ActiveRecord
 {
@@ -191,6 +193,14 @@ class Awards extends ActiveRecord
 
     public function getBid(){
         return $this->hasOne(Bids::className(), ['id' => 'bid_id']);
+    }
+
+    public function getContract(){
+        return $this->hasOne(Contracts::className(), ['awardID' => 'id']);
+    }
+
+    public function getProlongations(){
+        return $this->hasMany(Prolongations::className(), ['contractID' => 'id'])->via('contract');
     }
 
     public function getDocuments(){
