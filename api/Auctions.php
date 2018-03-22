@@ -552,6 +552,7 @@ class Auctions extends ActiveRecord
             $lot = isset($items[$index]) ? $items[$index] : new Items();
             $lot->load($item, '');
             $lot->id = $item['id'];
+            $lot->api_auction_id = $this->unique_id;
             if(!$lot->save(false)){
                 echo "Item saving error\n";
                 print_r($lot->errors);
