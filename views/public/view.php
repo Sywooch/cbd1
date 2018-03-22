@@ -438,7 +438,7 @@ JS
                             <?php if(count($model->questions) > 0): ?>
                                 <?php foreach($model->questions as $n => $question): $n++; ?>
                                     <div class="row">
-                                        <div class="col-xs-12">
+                                        <div class="col-12">
                                             <?php $item_id = explode(':', $question->title)[0];?>
                                             <article class="faq-item">
                                                 <header class="faq-item-header">
