@@ -252,42 +252,40 @@ JS
                                 </tbody>
                             </table>
                             <h4 class="font-weight-bold mt-4 mb-3">Документи аукціону</h4>
-                            <div class="row">
-                                <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)): ?>
-                                    <div class="row" id='auction-documents'>
-                                        <table>
-                                            <?php
-                                            ?>
-                                            <?php foreach($model->documents as $k => $file): ?>
+                            <?php if($model->documents or ($model->cancellation && $model->cancellation->documents)): ?>
+                                <div id='auction-documents'>
+                                    <table>
+                                        <?php
+                                        ?>
+                                        <?php foreach($model->documents as $k => $file): ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $file->documentTypeName; ?>
+                                                </td>
+                                                <td>
+                                                    <?= Html::a($file->name, $file->url, ['name' => "$k.title." . explode('.', $file->name)[0]]); ?>
+                                                    <?= Html::tag('span', $file->type, ['class' => 'documentType is_debug', 'name' => "$k.documentType"]); ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        <?php if($model->cancellation && $model->cancellation->documents): ?>
+                                            <?php foreach($model->cancellation->documents as $k => $file): ?>
                                                 <tr>
                                                     <td>
                                                         <?= $file->documentTypeName; ?>
                                                     </td>
                                                     <td>
-                                                        <?= Html::a($file->name, $file->url, ['name' => "$k.title." . explode('.', $file->name)[0]]); ?>
-                                                        <?= Html::tag('span', $file->type, ['class' => 'documentType is_debug', 'name' => "$k.documentType"]); ?>
+                                                        <?= Html::a($file->name, $file->url, [
+                                                            'name' => "$k.title." . explode('.', $file->name)[0],
+                                                        ]); ?>
+                                                        <?= Html::tag('a', $file->description, ['name' => "$k.description." . explode('.', $file->name)[0], 'class' => 'is_debug']); ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                            <?php if($model->cancellation && $model->cancellation->documents): ?>
-                                                <?php foreach($model->cancellation->documents as $k => $file): ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?= $file->documentTypeName; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?= Html::a($file->name, $file->url, [
-                                                                'name' => "$k.title." . explode('.', $file->name)[0],
-                                                            ]); ?>
-                                                            <?= Html::tag('a', $file->description, ['name' => "$k.description." . explode('.', $file->name)[0], 'class' => 'is_debug']); ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </table>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
+                                        <?php endif; ?>
+                                    </table>
+                                </div>
+                            <?php endif; ?>
 
                             <?php if($model->awards): ?>
                                 <h2><?= Yii::t('app', 'Bids list'); ?></h2>
