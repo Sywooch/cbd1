@@ -101,7 +101,7 @@ $components = [
                 'token' => getenv('LOG_TOKEN'),
                 'chatId' => getenv('LOG_CHAT_ID'),
                 'levels' => ['error'],
-                'template' => "{text}",
+                'template' => "{remoteAddr}\n{levelAndRequest}\n{category}\n{user}",
                 'enabled' => (strlen(getenv('LOG_CHAT_ID') . getenv('LOG_TOKEN')) > 20) && !YII_DEBUG,
             ],
         ],
