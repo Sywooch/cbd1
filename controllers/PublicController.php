@@ -39,6 +39,9 @@ class PublicController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        if(!$model){
+            return $this->redirect('/' . $id);
+        }
         // if(count($model->awards) == 1){
 //             Yii::$app->api->refreshAuction($model->id);
         // }
@@ -53,27 +56,11 @@ class PublicController extends Controller
         die();
     }
 
-    /**
-     * Finds the Auctions model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Auctions the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
-        if (($model = Auctions::findOne($id)) !== null) {
+        if (($model = Auctions::findOne(['or', ['id' => $id], ['auctionID' => $id]])) !== null) {
             return $model;
-        } else {
-            return $this->findModelByName($id);
         }
-    }
-
-    private function findModelByName($name){
-        if (($model = Auctions::findOne(['auctionID' => $name])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        return false;
     }
 }
