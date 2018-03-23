@@ -58,7 +58,7 @@ class PublicController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = Auctions::findOne(['or', ['id' => $id], ['auctionID' => $id]])) !== null) {
+        if (($model = Auctions::find()->where(['or', ['id' => $id], ['auctionID' => $id]])->one()) !== null) {
             return $model;
         }
         return false;
