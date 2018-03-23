@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model api\Auctions */
@@ -11,7 +12,44 @@ use yii\helpers\Url;
 $this->title = Html::encode($model->title);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Auctions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$bids = $model->bids;
+foreach($bids as $bid) {
+    if($bid->contract) {
+        Modal::begin(['id' => 'contract-modal']); ?>
+
+        <h3><?= Yii::t('app', 'Контракт'); ?></h3>
+        <hr>
+        <table class="table table-striped table-responsive">
+            <tr>
+                <td><?= Yii::t('app', 'Ідентифікатор контракту'); ?></td>
+                <td><?= $bid->contract->contractID; ?></td>
+            </tr>
+            <tr>
+                <td><?= Yii::t('app', 'Номер договору'); ?></td>
+                <td><?= $bid->contract->contractNumber; ?></td>
+            <tr>
+                <td><?= Yii::t('app', 'Дата сплати'); ?></td>
+                <td><?= $bid->contract->datePaid; ?></td>
+            </tr>
+            <tr>
+                <td><?= Yii::t('app', 'Дата підписання договору'); ?></td>
+                <td><?= $bid->contract->dateSigned; ?></td>
+            </tr>
+        </table>
+        <h4><?= Yii::t('app', 'Документи контракту'); ?></h4>
+        <?php foreach($bid->contract->documents as $document): ?>
+            <?= Html::a($document->name, $document->url); ?> (<?= Yii::t('app', 'Завантажено'); ?> - <?= Yii::$app->formatter->asDatetime($document->datePublished); ?>)
+        <?php endforeach; ?>
+
+        <?php Modal::end();
+    }
+}
+
 $this->registerJs(<<<JS
+$('.contract-modal-btn').on('click', function(e){
+    $('#contract-modal').modal('show');
+});
 $('.question-item').on('click', function() {
   var url = $(this).data('url');
   $('#question-form').attr('action', url);
@@ -375,6 +413,15 @@ JS
                                                     $modelBid->organization->contactPoint_name,
                                                     ['/bids/view', 'id' => $modelBid->unique_id],
                                                     ['class' => 'btn btn-' . $class]), ['class' => 'list-group-item']); ?>
+                                            <?php if($modelBid->contract): ?>
+                                                <?= Html::a(
+                                                    Yii::t('app', 'Контракт'),
+                                                    false,
+                                                    [
+                                                        'class' => 'btn btn-primary contract-modal-btn',
+                                                    ]
+                                                ); ?>
+                                            <?php endif; ?>
                                             <?= Html::tag('span', $modelBid->award->status, ['id' => "awards[{$awardNumber}].status", 'class' => 'is_debug']); ?>
                                         </h3>
                                         <?php
