@@ -23,6 +23,7 @@ use yii\helpers\Html;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $user_id
+ * @property Contracts $contract
  */
 class Bids extends ActiveRecord
 {
