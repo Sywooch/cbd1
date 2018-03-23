@@ -40,7 +40,7 @@ class PublicController extends Controller
     {
         $model = $this->findModel($id);
         if(!$model){
-            return $this->redirect('/' . $id);
+            return $this->redirect('http://statesale.kme.net.ua/' . $id);
         }
         // if(count($model->awards) == 1){
 //             Yii::$app->api->refreshAuction($model->id);
