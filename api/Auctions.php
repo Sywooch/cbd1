@@ -545,7 +545,6 @@ class Auctions extends ActiveRecord
                 echo "Question saving error\n";
                 print_r($question->errors);
             }
-            $question->save(false);
         }
 
         $items = $this->items;
