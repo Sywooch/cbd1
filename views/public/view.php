@@ -397,7 +397,12 @@ JS
                                         ?>
                                         <?php $prolongations = $modelBid->award->prolongations; ?>
                                         <?php if(count($prolongations)): ?>
-                                            <b><?= Yii::t('app', 'Період підписання контракту було продовжено'); ?></b>
+                                            <p class="lead">
+                                                <?= Yii::t('app', 'Період підписання контракту було продовжено'); ?>
+                                            </p>
+                                        <p>
+                                                <?= Yii::t('app', 'Наразі кінцева дата підписання договору'); ?> - <?= Yii::$app->formatter->asDatetime($modelBid->contract->signingPeriod_endDate); ?>
+                                            </p>
 
                                             <table class="table table-striped table-responsive">
                                                 <tr>
@@ -405,6 +410,7 @@ JS
                                                     <th><?= Yii::t('app', 'Причина'); ?></th>
                                                     <th><?= Yii::t('app', 'Дата рішення ФГВФО'); ?></th>
                                                     <th><?= Yii::t('app', 'Опис'); ?></th>
+                                                    <th><?= Yii::t('app', 'Документ рішення ФГВФО'); ?></th>
                                                 </tr>
                                                 <?php foreach($prolongations as $prolongation):
                                                     /* @var \api\Prolongations $prolongation */
@@ -414,6 +420,13 @@ JS
                                                         <td><?= $prolongation->getReason(); ?></td>
                                                         <td><?= Yii::$app->formatter->asDate($prolongation->dateCreated); ?></td>
                                                         <td><?= $prolongation->description; ?></td>
+                                                        <td>
+                                                            <?php foreach($prolongation->documents as $document): ?>
+                                                                <p>
+                                                                    <?= Html::a($document->name, $document->url); ?>
+                                                                </p>
+                                                            <?php endforeach; ?>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </table>
