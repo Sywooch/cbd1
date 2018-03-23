@@ -31,29 +31,18 @@ class PublicController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Auctions model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if(!$model){
-            return $this->redirect('http://sets.org.ua/public/view/' . $id);
+        if($model) {
+            Yii::$app->session->remove('redirected');
+        }else{
+            return $this->softRedirect($id);
         }
-        // if(count($model->awards) == 1){
-//             Yii::$app->api->refreshAuction($model->id);
-        // }
-
         Url::remember(['/public/view', 'id' => $id]);
         return $this->render('view', [
             'model' => $model,
         ]);
-    }
-
-    public function actionQuestion(){
-        die();
     }
 
     protected function findModel($id)
@@ -62,5 +51,14 @@ class PublicController extends Controller
             return $model;
         }
         return false;
+    }
+
+    public function softRedirect($id){
+        if(Yii::$app->session->has('redirected')){
+            Yii::$app->session->remove('redirected');
+            throw new NotFoundHttpException();
+        }
+        Yii::$app->session->set('redirected', true);
+        return $this->redirect(getenv('BRO_URL') . '/public/view/' . $id);
     }
 }
