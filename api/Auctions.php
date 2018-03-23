@@ -324,6 +324,8 @@ class Auctions extends ActiveRecord
                     'dgfDecisionDate',
                     'dgfID',
                     'tenderAttempts',
+                    'auctionParameters_dutchSteps',
+                    'auctionParameters',
                 ],
                 'safe',
             ],
@@ -394,6 +396,16 @@ class Auctions extends ActiveRecord
 
     public function getAuction(){
         return $this;
+    }
+
+    public function setAuctionParameters($value){
+        if(isset($value['dutchSteps'])){
+            $this->auctionParameters_dutchSteps = $value['dutchSteps'];
+        }
+    }
+
+    public function getAuctionParameters(){
+        return null;
     }
 
     public function setItems($values){
