@@ -165,6 +165,17 @@ JS
                                     <p class="mb-1"><span id="auction-minimalStep_amount"><?= $model->minimalStep_amount ?></span> <?= Yii::t('app', $model->guarantee_currency) ?>.</p>
                                 </div>
                                 <div class="w-100"></div>
+
+                                <?php if($model->auctionParameters_dutchSteps): ?>
+                                    <div class="col-md-5">
+                                        <p class="subtitle-secondary mb-1">Кількість кроків голландського аукціону</p>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <p class="mb-1"><span id="auction-dutchSteps"><?= $model->auctionParameters_dutchSteps; ?></span></p>
+                                    </div>
+                                    <div class="w-100"></div>
+                                <?php endif; ?>
+
                                 <div class="col-md-5">
                                     <p class="subtitle-secondary mb-1">Гарантійний внесок</p>
                                 </div>
