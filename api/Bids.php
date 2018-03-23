@@ -229,7 +229,11 @@ class Bids extends ActiveRecord
     }
 
     public function getDocuments(){
-        return Documents::find()->where(['relatedItem' => [$this->id, $this->unique_id]])->andWhere(['!=', 'id', ''])->all();
+        return Documents::find()
+            ->where(['relatedItem' => [$this->id, $this->unique_id]])
+            ->andWhere(['!=', 'id', ''])
+            ->andWhere(['documentOf' => 'bid'])
+            ->all();
     }
 
     public function setTenderers($values){
