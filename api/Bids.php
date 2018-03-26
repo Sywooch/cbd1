@@ -279,19 +279,19 @@ class Bids extends ActiveRecord
     }
 
     public function getOrgAuctionProtocol(){
-        return Documents::findOne([
-            'relatedItem' => [$this->unique_id, $this->id],
+        return Documents::find()->where([
+            'relatedItem' => [$this->unique_id, $this->id, $this->award->id],
             'documentType' => 'auctionProtocol',
             'author' => 'auction_owner',
-        ]);
+        ])->all();
     }
 
     public function getMemberAuctionProtocol(){
-        return Documents::findOne([
-            'relatedItem' => [$this->unique_id, $this->id],
+        return Documents::find()->where([
+            'relatedItem' => [$this->unique_id, $this->id, $this->award->id],
             'documentType' => 'auctionProtocol',
             'author' => 'bid_owner',
-        ]);
+        ])->all();
     }
 
     public function getAuctionProtocol(){

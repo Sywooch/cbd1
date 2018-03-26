@@ -33,6 +33,7 @@ class Awards extends ActiveRecord
 {
 
     private $_suppliers = [];
+    public $_documents = [];
 
 
     public function behaviors()
@@ -139,6 +140,7 @@ class Awards extends ActiveRecord
                     'auction_id',
                     'complaintPeriod_startDate',
                     'complaintPeriod_endDate',
+                    'documents',
                 ],
                 'safe',
             ],
@@ -203,8 +205,12 @@ class Awards extends ActiveRecord
         return $this->hasMany(Prolongations::className(), ['contractID' => 'id'])->via('contract');
     }
 
+    public function setDocuments($values){
+        $this->_documents = $values;
+    }
+
     public function getDocuments(){
-        return $this->hasMany(Documents::className(), ['relatedItem' => 'unique_id'])->andOnCondition(['documentOf' => 'award']);
+        return $this->hasMany(Documents::className(), ['relatedItem' => 'id'])->andOnCondition(['documentOf' => 'award']);
     }
 
     public function getUser(){
@@ -288,6 +294,16 @@ class Awards extends ActiveRecord
                 echo "AwardOrganization save error";
                 print_r($link->errors);
             }
+        }
+
+        foreach($this->_documents as $item) {
+            if(false == ($document = Documents::findOne(['id' => $item['id']]))){
+                $document = new Documents();
+            }
+            $document->load($item, '');
+            $document->documentOf = 'award';
+            $document->relatedItem = $this->id;
+            $document->save(false);
         }
     }
 
