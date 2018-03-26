@@ -162,7 +162,7 @@ class Documents extends ActiveRecord
                 'max' => 40,
             ],
             [['id'], 'unique'],
-            [['relatedItem'/*, 'author'*/], 'safe'],
+            [['relatedItem', 'author'/*, 'author'*/], 'safe'],
         ];
     }
 
