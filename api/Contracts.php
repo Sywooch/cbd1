@@ -132,7 +132,7 @@ class Contracts extends ActiveRecord
                 'boolean',
             ],
             ['dateSigned', 'checkDateSigned'],
-            [['prolongations', 'documents'], 'safe'],
+            [['prolongations', 'documents', 'datePaid'], 'safe'],
         ];
     }
 
