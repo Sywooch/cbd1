@@ -28,19 +28,24 @@ use yii\helpers\Html;
 class Bids extends ActiveRecord
 {
 
-    private $_documents = [];
     public $lotName;
     public $oferta;
     public $_tenderers = [];
     public $accept;
+    private $_documents = [];
 
-    public function behaviors()
-    {
+    /**
+     * @inheritdoc
+     */
+    public static function tableName(){
+        return 'api_bids';
+    }
+
+    public function behaviors(){
         return parent::behaviors();
     }
 
-    public function scenarios()
-    {
+    public function scenarios(){
         $scenarios = parent::scenarios();
         $scenarios['dgfOtherAssets'] = $scenarios[ActiveRecord::SCENARIO_DEFAULT];
         $scenarios['dgfFinancialAssets'] = $scenarios[ActiveRecord::SCENARIO_DEFAULT];
@@ -51,14 +56,6 @@ class Bids extends ActiveRecord
         }
         $scenarios['dgfInsider'] = $insiderScenario;
         return $scenarios;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'api_bids';
     }
 
     public function fields(){
@@ -74,12 +71,14 @@ class Bids extends ActiveRecord
                 return [
                     $model->organization,
                 ];
-            }
+            },
         ];
-        if(in_array($this->lot->procurementMethodType, ['dgfFinancialAssets', 'dgfInsider'])){
-            $data['eligible'] = function($model){ return true; };
+        if(in_array($this->lot->procurementMethodType, ['dgfFinancialAssets', 'dgfInsider'])) {
+            $data['eligible'] = function($model){
+                return true;
+            };
         }
-        if($this->scenario !== 'dgfInsider'){
+        if($this->scenario !== 'dgfInsider') {
             $data['value'] = function($model){
                 return [
                     'amount' => $model->value_amount,
@@ -93,15 +92,14 @@ class Bids extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules(){
         return [
             [
                 [
 //                    'status',
                     'value_amount',
                     'accept',
-                    'oferta'
+                    'oferta',
                 ],
                 'required',
             ],
@@ -152,7 +150,7 @@ class Bids extends ActiveRecord
             [
                 [
                     'documents',
-                    'user_id','lot_id','file_id','accepted', 'access_token', 'participationUrl', 'auction_id',
+                    'user_id', 'lot_id', 'file_id', 'accepted', 'access_token', 'participationUrl', 'auction_id',
                 ],
                 'safe',
             ],
@@ -167,8 +165,8 @@ class Bids extends ActiveRecord
     }
 
     public function validateSum($attribute, $params = []){
-        if($this->lot){
-            if($this->$attribute < $this->lot->start_price){
+        if($this->lot) {
+            if($this->$attribute < $this->lot->start_price) {
                 $this->addError($attribute, Yii::t('app', 'Сума заявки повинна бути більшою, ніж початкова ціна аукціону ({sum}). {sum}', [
                     'sum' => $this->lot->start_price . ' грн',
                 ]));
@@ -179,8 +177,7 @@ class Bids extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels(){
         return [
             'unique_id' => Yii::t('app', 'Our ID'),
             'id' => Yii::t('app', 'ID'),
@@ -197,7 +194,7 @@ class Bids extends ActiveRecord
             'lotName' => Yii::t('app', 'Auction'),
             'statusName' => Yii::t('app', 'Auction status'),
             'organizationName' => Yii::t('app', 'Organization name'),
-            'oferta' => Yii::t('app', 'Accept {agreement}',['agreement' => Html::a(Yii::t('app', 'license agreement'), ['/oferta.pdf'], ['target' => '_blank'])]),
+            'oferta' => Yii::t('app', 'Accept {agreement}', ['agreement' => Html::a(Yii::t('app', 'license agreement'), ['/oferta.pdf'], ['target' => '_blank'])]),
             'documents' => Yii::t('app', 'Documents'),
             'accept' => Yii::t('app', 'Зобов\'язуюся сплатити гарантійний внесок'),
             'auctionID' => Yii::t('app', 'ID Аукціону'),
@@ -209,10 +206,9 @@ class Bids extends ActiveRecord
     }
 
     public function getOrganization(){
-        if($this->user_id != '0'){
+        if($this->user_id != '0') {
             return $this->hasOne(Organizations::className(), ['user_id' => 'id'])->via('user');
-        }
-        else{
+        } else {
             return $this->hasOne(Organizations::className(), ['unique_id' => 'organization_id']);
         }
     }
@@ -225,10 +221,6 @@ class Bids extends ActiveRecord
         return $this->hasMany(Parameters::className(), ['id' => 'parameter_id'])->via('bidParameters');
     }
 
-    public function setDocuments($values){
-        $this->_documents = $values;
-    }
-
     public function getDocuments(){
         return Documents::find()
             ->where(['relatedItem' => [$this->id, $this->unique_id]])
@@ -237,25 +229,27 @@ class Bids extends ActiveRecord
             ->all();
     }
 
-    public function setTenderers($values){
-        $this->_tenderers = $values;
+    public function setDocuments($values){
+        $this->_documents = $values;
     }
 
     public function getTenderers(){
         return $this->_tenderers;
     }
 
+    public function setTenderers($values){
+        $this->_tenderers = $values;
+    }
+
     public function getFinancialLicense(){
         return Files::findOne(['bid_id' => $this->unique_id, 'type' => 'financialLicense']);
     }
 
-    public function getLot()
-    {
+    public function getLot(){
         return $this->hasOne(BaseLots::className(), ['id' => 'lot_id']);
     }
 
-    public function getApiAuction()
-    {
+    public function getApiAuction(){
         return $this->hasOne(Auctions::className(), ['unique_id' => 'auction_id']);
     }
 
@@ -263,19 +257,24 @@ class Bids extends ActiveRecord
         return $this->apiAuction ? $this->apiAuction->auctionID : '';
     }
 
-    public function getOrganizator()
-    {
+    public function getOrganizator(){
         return $this->hasOne(User::className(), ['id' => 'user_id'])->via('lot');
     }
 
-    public function getFile()
-    {
+    public function getFile(){
         return $this->hasOne(Files::className(), ['id' => 'file_id']);
     }
 
-    public function getDocument()
-    {
+    public function getDocument(){
         return $this->hasOne(Files::className(), ['id' => 'file_id']);
+    }
+
+    public function getAuctionProtocol(){
+        if(Yii::$app->user->can('org')) {
+            return $this->getOrgAuctionProtocol();
+        } else {
+            return $this->getMemberAuctionProtocol();
+        }
     }
 
     public function getOrgAuctionProtocol(){
@@ -283,7 +282,7 @@ class Bids extends ActiveRecord
             'relatedItem' => [$this->unique_id, $this->id, $this->award->id],
             'documentType' => 'auctionProtocol',
             'author' => 'auction_owner',
-        ])->all();
+        ])->one();
     }
 
     public function getMemberAuctionProtocol(){
@@ -291,16 +290,7 @@ class Bids extends ActiveRecord
             'relatedItem' => [$this->unique_id, $this->id, $this->award->id],
             'documentType' => 'auctionProtocol',
             'author' => 'bid_owner',
-        ])->all();
-    }
-
-    public function getAuctionProtocol(){
-        if(Yii::$app->user->can('org')){
-            return $this->getOrgAuctionProtocol();
-        }
-        else{
-            return $this->getMemberAuctionProtocol();
-        }
+        ])->one();
     }
 
     public function getContractDocuments(){
@@ -335,7 +325,6 @@ class Bids extends ActiveRecord
         return $this->award ? in_array($this->award->status, ['pending.waiting']) : false;
     }
 
-
     public function getAwards(){
         return $this->hasOne(Awards::className(), ['bid_id' => 'id']);
     }
@@ -348,32 +337,28 @@ class Bids extends ActiveRecord
         return $this->accepted == '2';
     }
 
-    public function getAccepted()
-    {
+    public function getAccepted(){
 
-        if($this->accepted==0)
-        {
+        if($this->accepted == 0) {
             return "Не узгоджено";
         }
-        if($this->accepted==1)
-        {
+        if($this->accepted == 1) {
             return "Узгоджено";
         }
-        if($this->accepted==2)
-        {
+        if($this->accepted == 2) {
             return "Відхилено";
         }
     }
 
     public function getIsAwarded(){
-        if($this->award && $this->award->status === 'active'){
+        if($this->award && $this->award->status === 'active') {
             return true;
         }
         return false;
     }
 
     public function getIsPublished(){
-        return (bool) $this->id;
+        return (bool)$this->id;
     }
 
     public function getStatusName(){
@@ -387,8 +372,8 @@ class Bids extends ActiveRecord
     public function afterSave($insert, $changedAttributes){
         parent::afterSave($insert, $changedAttributes);
 
-        foreach($this->_documents as $item){
-            if(false == ($document = Documents::findOne(['id' => $item['id']]))){
+        foreach($this->_documents as $item) {
+            if(false == ($document = Documents::findOne(['id' => $item['id']]))) {
                 $document = new Documents();
             }
             $document->load($item, '');
@@ -396,8 +381,8 @@ class Bids extends ActiveRecord
             $document->relatedItem = $this->unique_id;
             $document->save(false);
         }
-        foreach($this->_tenderers as $item){
-            if(false == ($organization = Organizations::findOne(['name' => $item['name']]))){
+        foreach($this->_tenderers as $item) {
+            if(false == ($organization = Organizations::findOne(['name' => $item['name']]))) {
                 $organization = new Organizations();
             }
             $organization->load($item, '');
