@@ -513,26 +513,12 @@ JS;
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
-                                        <?= Html::a(Files::documentType($document->type) . ' - (' . $document->name . ')',
+                                        <?= Html::a(Files::documentType($document->type) . ' - (' . $document->name . ')' . ($document->author == 'auction_owner' ? 'Завантажено організаторов торгів' : 'Завантажено переможцем торгів'),
                                             $document->url, ['id' => 'document-id']); ?>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    <?php endif; ?>
-                    <?php if($model->memberAuctionProtocol): ?>
-                        <div class="row">
-                            <div class="col">
-                                <div class="row">
-                                    <?= Html::a(Files::documentType($model->memberAuctionProtocol->type)
-                                        . ' - (' . $model->memberAuctionProtocol->name . ') '
-                                        . Html::tag('span', 'Завантажено переможцем торгів', ['class' => 'lead']),
-                                        $model->memberAuctionProtocol->url,
-                                        ['id' => 'document-id']); ?>
-
-                                </div>
-                            </div>
-                        </div>
                     <?php endif; ?>
                 </div>
             </div>
