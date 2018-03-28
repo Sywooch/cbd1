@@ -19,6 +19,7 @@ use yii\widgets\MaskedInput;
  * @var dektrium\user\models\User $user
  * @var dektrium\user\Module      $module
  */
+/* @var $model \app\models\RegistrationForm|object */
 
 $js = <<< JS
     $('.show-password').on('click', function(e) {
