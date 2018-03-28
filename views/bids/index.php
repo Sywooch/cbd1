@@ -126,7 +126,7 @@ JS
                 },
                 'filter' => [
                     '1' => Yii::t('app', 'Прийнята'),
-                    '0' => Yii::t('app', 'Не приянята'),
+                    '0' => Yii::t('app', 'Не прийнята'),
                 ],
                 'visible' => getenv('TRICK') && (Yii::$app->user->can('org') || Yii::$app->user->can('admin')),
             ],
