@@ -349,7 +349,7 @@ JS
                             <?php endif; ?>
 
                             <?php if($model->awards): ?>
-                                <h2><?= Yii::t('app', 'Bids list'); ?></h2>
+                                <h3 class="font-weight-bold mt-4 mb-3"><?= Yii::t('app', 'Bids list'); ?></h3>
                                 <?php
                                 $awardNumber = 0;
                                 $bidNumber = 0;
@@ -436,6 +436,7 @@ JS
                                         }
                                         ?>
                                         <?= DetailView::widget([
+                                        'template' => '<tr><th width=50%>{label}</th><td width=50%>{value}</td></tr>',
                                         'model' => $modelBid,
                                         'attributes' => [
                                             [
