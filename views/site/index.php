@@ -99,7 +99,6 @@ JS
                                         <?= Html::activeInput('text', $searchModel, 'cav',
                                             ['class' => 'form-control', 'placeholder'=>'CAV', 'id' =>'search-filter-region'])?>
                                     </div>
-
                                     <div class="form-group col-md-6 mb-0">
                                         <?= Html::activeInput('text', $searchModel, 'org_name',
                                             ['class' => 'form-control', 'placeholder'=>'Організатор', 'id' =>'search-filter-region'])?>

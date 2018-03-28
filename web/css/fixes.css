@@ -106,3 +106,7 @@ body {
 .table td, .table th {
     padding: 2px;
 }
+
+.filter-link.active {
+    color: black;
+}
