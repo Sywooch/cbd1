@@ -148,7 +148,7 @@ class QuestionsController extends Controller
                         , true);
             }
 
-            return $this->redirect(['/public/view', 'id' => $model->auction->auction->unique_id]);
+            return $this->redirect(['/public/view', 'id' => $model->auction->auction->id]);
         } else {
             return $this->render('answer', [
                 'model' => $model,

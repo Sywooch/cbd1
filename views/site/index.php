@@ -1,6 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $searchModel \app\models\AuctionsSearch */
+/* @var $dataProvider \yii\data\ActiveDataProvider */
 use yii\widgets\ListView;
 use app\models\Posts;
 use app\models\Lots;

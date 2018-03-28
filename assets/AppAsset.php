@@ -36,4 +36,11 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
     ];
+
+    public function init(){
+        if(!YII_DEBUG){
+            $this->js[] = 'js/accounting.js';
+        }
+        parent::init();
+    }
 }

@@ -21,3 +21,7 @@
 .fade {
     opacity: inherit!important;
 }
+
+.filter-link.active {
+    color: black;
+}

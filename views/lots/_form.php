@@ -11,8 +11,7 @@ use app\models\Lots;
 /* @var $model app\models\Lots */
 /* @var $form yii\widgets\ActiveForm */
 
-
-if(!$model->bidding_date){
+if(!$model->bidding_date) {
     $model->bidding_date = date('Y-m-d H:i:s', time());
 }
 $js = <<<JS
@@ -53,17 +52,16 @@ $js = <<<JS
     $('#lots-start_price').on('change', recalculateSum);
     $('#step-percent').on('change', recalculateSum);
     $('#lots-step').on('change', function(){ recalculateSum(false, 'byValue'); });
-JS
-;
+JS;
 $this->registerJs($js, 4);
 ?>
 
 <div class="row well">
     <div class="col-md-12">
         <?php if(!$model->apiAuction): ?>
-            <h3><?=Yii::t('app', 'Auction details'); ?></h3>
-        <?php else:?>
-            <h3><?=Yii::t('app', 'Additional Auction Documents'); ?></h3>
+            <h3><?= Yii::t('app', 'Auction details'); ?></h3>
+        <?php else: ?>
+            <h3><?= Yii::t('app', 'Additional Auction Documents'); ?></h3>
         <?php endif; ?>
     </div>
     <div class="col-md-12">
@@ -75,31 +73,31 @@ $this->registerJs($js, 4);
 
         <?php if(!$model->apiAuction): ?>
 
-            <?=$form->field($model, 'ownerName')->textInput(); ?>
+            <?= $form->field($model, 'ownerName')->textInput(); ?>
 
             <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255])->label(Yii::t('app','LotName ID')) ?>
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255])->label(Yii::t('app', 'LotName ID')) ?>
                 </div>
                 <div class="col-md-3">
-                    <?=$form->field($model, 'auction_date')->widget(DatePicker::className(),[
+                    <?= $form->field($model, 'auction_date')->widget(DatePicker::className(), [
                         'dateFormat' => 'dd.MM.yyyy',
-                        'options' => ['class' => 'form-control']
+                        'options' => ['class' => 'form-control'],
                     ]); ?>
                 </div>
                 <div class="col-md-3">
-                    <?=$form->field($model, 'auction_time')->widget(TimePicker::className(),[
+                    <?= $form->field($model, 'auction_time')->widget(TimePicker::className(), [
                         'pluginOptions' => [
                             'showSeconds' => false,
                             'showMeridian' => false,
-                        ]
-                    ]);?>
+                        ],
+                    ]); ?>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3">
-                    <?=$form->field($model, 'procurementMethodType')
+                    <?= $form->field($model, 'procurementMethodType')
                         ->dropDownList(
                             ArrayHelper::merge(
                                 ['' => Yii::t('app', 'Choose procurement type')],
@@ -108,19 +106,19 @@ $this->registerJs($js, 4);
                             ['class' => 'form-control']); ?>
                 </div>
                 <div class="col-sm-3">
-                    <?= $form->field($model, 'num')->textInput(['maxlength' => 255])->label(Yii::t('app','LotNumber ID')) ?>
+                    <?= $form->field($model, 'num')->textInput(['maxlength' => 255])->label(Yii::t('app', 'LotNumber ID')) ?>
                 </div>
                 <div class="col-sm-3">
-                    <?=$form->field($model, 'dgfDecisionID'); ?>
+                    <?= $form->field($model, 'dgfDecisionID'); ?>
                 </div>
                 <div class="col-sm-3">
-                    <?=$form->field($model, 'dgfDecisionDate')->widget(DatePicker::className(), [
-                        'options' => ['class' => 'form-control']
-                    ]);?>
+                    <?= $form->field($model, 'dgfDecisionDate')->widget(DatePicker::className(), [
+                        'options' => ['class' => 'form-control'],
+                    ]); ?>
                 </div>
             </div>
 
-            <?=$form->field($model, 'tenderAttempts')->dropDownList([
+            <?= $form->field($model, 'tenderAttempts')->dropDownList([
                 '' => Yii::t('app', 'Not known'),
                 '1' => Yii::t('app', '1'),
                 '2' => Yii::t('app', '2'),
@@ -140,9 +138,15 @@ $this->registerJs($js, 4);
             <?= $form->field($model, 'vdr')->textInput(['maxlength' => 255]); ?>
         </div>
 
-        <?=$form->field($model, 'passport')->textInput(['maxlength' => true]); ?>
+        <?= $form->field($model, 'passport')->textInput(['maxlength' => true]); ?>
 
         <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'delivery_time'); ?>
+
+        <?= $form->field($model, 'delivery_term'); ?>
+
+        <?= $form->field($model, 'requires')->textarea(); ?>
 
         <?php if(!$model->apiAuction): ?>
 
@@ -151,13 +155,13 @@ $this->registerJs($js, 4);
                     <?= $form->field($model, 'start_price')->textInput() ?>
                 </div>
                 <div class="col-sm-3">
-                    <div class = "form-group">
+                    <div class="form-group">
                         <label><?= Yii::t("app", "The size of the guarantee fee"); ?></label>
-                        <?= Html::input("text", "dgf_sum", $model->start_price/100*5, ["id"=> "dgf_sum", "class" => "form-control", "disabled" => true]) ?>
+                        <?= Html::input("text", "dgf_sum", $model->start_price / 100 * 5, ["id" => "dgf_sum", "class" => "form-control", "disabled" => true]) ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
-                    <?= $form->field($model, 'nds')->checkbox()  ?>
+                    <?= $form->field($model, 'nds')->checkbox() ?>
                 </div>
                 <div class="col-sm-2">
                     <?= $form->field($model, 'step')->textInput(['maxlength' => true]) ?>

@@ -94,6 +94,17 @@ class AuctionsSearch extends Auctions
         $query->andFilterWhere(['like', 'api_items.address_region', $this->region]);
         $query->andFilterWhere(['like', 'api_items.classification_id', $this->cav]);
         $query->andFilterWhere(['api_auctions.procurementMethodType' => $this->type]);
+        if($this->category){
+            $categories = $this->categories()[$this->category];
+            $conditions = ['or'];
+            foreach($categories as$category){
+                $conditions[] = ['like', 'api_items.classification_id', $category . '%', false];
+            }
+            $query->andWhere($conditions);
+        }
+        if(!YII_DEBUG){
+            $query->andWhere(['not like', 'api_auctions.title', '[тестування]']);
+        }
 
 
         if($this->category){

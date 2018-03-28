@@ -428,12 +428,14 @@ var digitsForAccounting = [
 ];
 var options = {
     symbol : "",
-    decimal : ",",
+    decimal : ".",
     thousand: " ",
     precision : 2,
     format: "%s%v"
 };
 
-digitsForAccounting.forEach(function(item){
-    // $(item).html(accounting.formatMoney($(item).html(), options));
+digitsForAccounting.forEach(function(item, i){
+    $(item).each(function(k, kitem){
+        $(kitem).html(accounting.formatMoney($(kitem).html(), options));
+    });
 });
