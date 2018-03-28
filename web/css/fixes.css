@@ -53,3 +53,7 @@ a:hover {
 .grid-view .table thead tr th a {
     color: #005b72;
 }
+
+.hidden {
+    display: none;
+}
