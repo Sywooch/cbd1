@@ -430,7 +430,7 @@ var digitsForAccounting = [
 ];
 var options = {
     symbol : "",
-    decimal : ",",
+    decimal : ".",
     thousand: " ",
     precision : 2,
     format: "%s%v"
