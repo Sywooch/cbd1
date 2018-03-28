@@ -91,7 +91,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-12">
                                 <?= $form->field($model, 'oferta', ['options' => ['class' => 'form-check mb-4']])->checkbox(['label' => $model->getAttributeLabel('oferta'), 'labelOptions' => ['class' => 'form-check-label']]); ?>
                                 <?= Html::submitButton(Yii::t('app', 'Зареєструватися'), ['class' => 'btn btn-warning']); ?>
-                                <?= Html::a(Yii::t('app', 'Інструкція'), '/registration.pdf', ['class' => 'btn btn-info', 'target' => '_blank']); ?>
                             </div>
                         </div>
                         <?php $form->end(); ?>
