@@ -90,6 +90,14 @@ JS
                 </div>
                 <?php ActiveForm::end();?>
             </div>
+            <p class="" style="text-align:center; width: 100%">
+                <?= Html::a(Yii::t('app', 'Транспорт'), ['/public', 'AuctionsSearch' => ['category' => 'transport']], ['class' => 'filter-link ' . ($searchModel->category == 'transport' ? 'active' : '')]);?> |
+                <?= Html::a(Yii::t('app', 'Житлова нерухомість'), ['/public', 'AuctionsSearch' => ['category' => 'live']], ['class' => 'filter-link ' . ($searchModel->category == 'live' ? 'active' : '')]);?> |
+                <?= Html::a(Yii::t('app', 'Нежитлова нерухомість'), ['/public', 'AuctionsSearch' => ['category' => 'notlive']], ['class' => 'filter-link ' . ($searchModel->category == 'notlive' ? 'active' : '')]);?> |
+                <?= Html::a(Yii::t('app', 'Промислова нерухомість'), ['/public', 'AuctionsSearch' => ['category' => 'commercial']], ['class' => 'filter-link ' . ($searchModel->category == 'commercial' ? 'active' : '')]);?> |
+                <?= Html::a(Yii::t('app', 'Земельні ділянки'), ['/public', 'AuctionsSearch' => ['category' => 'areas']], ['class' => 'filter-link ' . ($searchModel->category == 'areas' ? 'active' : '')]);?> |
+                <?= Html::a(Yii::t('app', 'Комп`ютерна і офісна техніка'), ['/public', 'AuctionsSearch' => ['category' => 'techs']], ['class' => 'filter-link ' . ($searchModel->category == 'techs' ? 'active' : '')]);?>
+            </p>
 
             <section class="content bordered">
                 <?= ListView::widget([
