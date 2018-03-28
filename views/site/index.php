@@ -1,6 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $searchModel \app\models\AuctionsSearch */
+/* @var $dataProvider \yii\data\ActiveDataProvider */
 use yii\widgets\ListView;
 use app\models\Lots;
 use api\Auctions;
@@ -85,7 +87,6 @@ JS
                                             ]) ?>
                                     </div>
 
-
                                     <div class="form-group col-md-6 col-lg-3 mb-0">
                                         <label for="search-filter-type">CAV</label>
                                         <?= Html::activeInput('text', $searchModel, 'cav',
@@ -110,8 +111,17 @@ JS
                     <?php ActiveForm::end();?>
                 </div>
 
+                <p class="" style="text-align:center; width: 100%">
+                    <?= Html::a(Yii::t('app', 'Транспорт'), ['/public', 'AuctionsSearch' => ['category' => 'transport']], ['class' => 'filter-link ' . ($searchModel->category == 'transport' ? 'active' : '')]);?> |
+                    <?= Html::a(Yii::t('app', 'Житлова нерухомість'), ['/public', 'AuctionsSearch' => ['category' => 'live']], ['class' => 'filter-link ' . ($searchModel->category == 'live' ? 'active' : '')]);?> |
+                    <?= Html::a(Yii::t('app', 'Нежитлова нерухомість'), ['/public', 'AuctionsSearch' => ['category' => 'notlive']], ['class' => 'filter-link ' . ($searchModel->category == 'notlive' ? 'active' : '')]);?> |
+                    <?= Html::a(Yii::t('app', 'Промислова нерухомість'), ['/public', 'AuctionsSearch' => ['category' => 'commercial']], ['class' => 'filter-link ' . ($searchModel->category == 'commercial' ? 'active' : '')]);?> |
+                    <?= Html::a(Yii::t('app', 'Земельні ділянки'), ['/public', 'AuctionsSearch' => ['category' => 'areas']], ['class' => 'filter-link ' . ($searchModel->category == 'areas' ? 'active' : '')]);?> |
+                    <?= Html::a(Yii::t('app', 'Комп`ютерна і офісна техніка'), ['/public', 'AuctionsSearch' => ['category' => 'techs']], ['class' => 'filter-link ' . ($searchModel->category == 'techs' ? 'active' : '')]);?>
+                </p>
+
                 <?= ListView::widget([
-                    'dataProvider'=>$dataProvider ,
+                    'dataProvider'=>$dataProvider,
                     'itemView' => '@app/views/public/_forms/_auctions',
                     'layout' => "{items}",
                 ]) ?>

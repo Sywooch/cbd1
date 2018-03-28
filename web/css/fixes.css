@@ -57,3 +57,10 @@ a:hover {
 .hidden {
     display: none;
 }
+.fade {
+    opacity: inherit!important;
+}
+
+.filter-link.active {
+    color: black;
+}

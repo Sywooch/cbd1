@@ -69,6 +69,7 @@ JS
             <div class="row">
                 <div class="col-9">
                     <p class="subtitle-primary">Номер лоту: <span class="text-uppercase"><?= $model->auctionID ?></span></p>
+                    <span id='auction-procurementMethodType' class='is_debug'><?=$model->procurementMethodType; ?></span>
                     <h3 class="lot-title">
                         <span id="auction-title"><?= $model->title ?></span>
                         <?php if($model->access_token && Yii::$app->user->can('org')): ?>
