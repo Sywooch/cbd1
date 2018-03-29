@@ -23,7 +23,7 @@ use yii\db\ActiveRecord;
 class Prolongations extends ActiveRecord
 {
 
-    public $_documents;
+    public $_documents = [];
     /**
      * @inheritdoc
      */
