@@ -56,7 +56,10 @@ class PublicController extends Controller
     public function softRedirect($id){
         if(Yii::$app->session->has('redirected')){
             Yii::$app->session->remove('redirected');
-            throw new NotFoundHttpException();
+            return $this->render('/site/error', [
+                'name' => 'Не знайдено',
+                'message' => 'Аукціон, який ви намагаєтеся знайти, не знайдено на даному майданчику',
+            ]);
         }
         Yii::$app->session->set('redirected', true);
         return $this->redirect(getenv('BRO_URL') . '/public/view/' . $id);
