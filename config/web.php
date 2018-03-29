@@ -4,7 +4,7 @@ Yii::setAlias('api', __DIR__ . '/../api/');
 
 $config = [
     'id' => 'etm',
-    'name'  =>  'UISCE',
+    'name'  =>  'ZUPB',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['mailer'],
     'charset'   =>  'utf-8',
