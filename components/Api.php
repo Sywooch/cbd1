@@ -28,19 +28,24 @@ use yii\httpclient\Client;
  * @property string $path
  * @property string $apiKey
  * @property string $fullPath
- * @property string $fullpath
+ * @property string $fullPublicPath
  **/
 class Api extends Component
 {
 
     public $url;
+    public $public_url;
     public $path;
     public $apiKey;
 
     public $count = 0;
 
-    public function getFullpath(){
+    public function getFullPath(){
         return $this->url . $this->path;
+    }
+
+    public function getFullPublicPath(){
+        return $this->public_url . $this->path;
     }
 
     public function createBid(Bids $bid){
@@ -54,8 +59,11 @@ class Api extends Component
         return $bid->save(false);
     }
 
-    public function request($address, $method = 'GET', $data = [], $additionalHeaders = []){
-        $client = new Client(['baseUrl' => $this->fullpath]);
+    public function request($address, $method = 'GET', $data = [], $additionalHeaders = [], $ap = 'main'){
+        $client = new Client(['baseUrl' => ($ap == 'main' ? $this->fullPath : $this->fullPublicPath)]);
+
+        DMF($client->baseUrl);
+
         $request = $client->createRequest()
             ->setMethod($method)
             ->setUrl($address)
@@ -519,14 +527,20 @@ class Api extends Component
         return $cancellation->updateAttributes(['status' => 'active']) && $cancellation->auction->updateAttributes(['status' => 'unsuccessful']);
     }
 
+
     public function parseAuctions($offset = '2015-01-01T21%3A00%3A03.340891%2B03%3A00', $resave = false, $rewind = false){
         do {
             ob_implicit_flush(true);
 
             echo $offset . "\n";
 
-            $temp = $this->request('auctions?offset=' . $offset . '&mode=_all_' . ($rewind == true ? '&descending=True' : ''));
-//            $temp = $this->request('auctions?offset=' . $offset . ($rewind == true ? '&descending=True' : ''));
+            if(YII_DEBUG){
+                $temp = $this->request('auctions?offset=' . $offset . '&mode=_all_' . ($rewind == true ? '&descending=True' : ''), 'GET', [], [], 'public');
+            }
+            else{
+                $temp = $this->request('auctions?offset=' . $offset . ($rewind == true ? '&descending=True' : ''), 'GET', [], [], 'public');
+            }
+
 
             $data = $temp['data'];
             foreach($data as $item) {

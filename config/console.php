@@ -81,6 +81,7 @@ return [
         'api' => [
             'class' => '\app\components\Api',
             'url' => getenv('API_URL'),
+            'public_url' => getenv('PUBLIC_API_URL'),
             'path' => "/api/{$apiVersion}/",
             'apiKey' => getenv('API_KEY'),
         ],
