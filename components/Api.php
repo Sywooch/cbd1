@@ -547,7 +547,7 @@ class Api extends Component
 
                 if(false != ($auction = ApiAuctions::find()->where(['id' => $item['id']])->one())) {
                     if(($auction->dateModified != $item['dateModified']) || $resave == true) {
-                        $auctiondata = $this->request('auctions/' . $item['id'])['data'];
+                        $auctiondata = $this->request('auctions/' . $item['id'], 'GET', [], [], 'public')['data'];
 
 //                        if($auction->status == 'active.tendering' && $auctiondata['status'] == 'active.auction' && $auction->bids){
                         $this->parseBids($auction);
