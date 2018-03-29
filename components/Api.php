@@ -61,9 +61,7 @@ class Api extends Component
 
     public function request($address, $method = 'GET', $data = [], $additionalHeaders = [], $ap = 'main'){
         $client = new Client(['baseUrl' => ($ap == 'main' ? $this->fullPath : $this->fullPublicPath)]);
-
-        DMF($client->baseUrl);
-
+        
         $request = $client->createRequest()
             ->setMethod($method)
             ->setUrl($address)
