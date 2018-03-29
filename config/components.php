@@ -158,7 +158,8 @@ $components = [
     'api' => [
         'class' => '\app\components\Api',
         'url' => getenv('API_URL'),
-        'path' => "/api/{$apiVersion}/",
+        'public_url' => getenv('PUBLIC_API_URL'),
+        'path' => "/api/{$apiVersion}",
         'apiKey' => getenv('API_KEY'),
     ],
     'apiUpload' => [
