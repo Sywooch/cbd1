@@ -47,6 +47,7 @@ use app\models\Lots as BaseAuctions;
  * @property integer $updated_at
  * @property string $procurementMethodType
  * @property Bids[] $bids
+ * @property Items[] $items
  */
 
 class Auctions extends ActiveRecord
@@ -412,10 +413,8 @@ class Auctions extends ActiveRecord
         $this->_items = $values;
     }
 
-
-    /** @returns ActiveQuery|Items[] */
     public function getItems(){
-        return $this->hasMany(Items::className(), ['api_auction_id' => 'unique_id']);
+        return Items::find()->where(['api_auction_id' => $this->unique_id])->all();
     }
 
     public function getItemsClassifications(){
