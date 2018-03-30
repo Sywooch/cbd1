@@ -164,6 +164,7 @@ class Api extends Component
 
         if(YII_DEBUG) {
             $auctionData['procurementMethodDetails'] = 'quick, accelerator=1440';
+            //$auctionData['submissionMethodDetails'] = 'quick(mode:no-auction)';
             $auctionData['submissionMethodDetails'] = 'quick';
         }
 
