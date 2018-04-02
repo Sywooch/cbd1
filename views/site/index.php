@@ -37,7 +37,7 @@ JS
         <div class="container jumbotron-content text-center text-lg-left">
             <div class="row justify-content-between">
                 <div class="col-lg-8">
-                    <h1 class="jumbotron-title"><span style="color: #5c6bc0;">СЕТС</span> &mdash; сучасні електронні торгові системи</h1>
+                    <h1 class="jumbotron-title"><span style="color: #5c6bc0;">MyTender Україна</span> &mdash; торгівельний майданчик</h1>
                     <p class="jumbotron-subtitle">Продаж майна банків, що ліквідуються</p>
                 </div>
                 <aside class="col-lg-4 align-self-center jumbotron-factoid justify-content-end">
