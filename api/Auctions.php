@@ -417,6 +417,10 @@ class Auctions extends ActiveRecord
         return Items::find()->where(['api_auction_id' => $this->unique_id])->all();
     }
 
+    public function getApiItems(){
+        return $this->hasMany(Items::class, ['api_auction_id' => 'id']);
+    }
+
     public function getItemsClassifications(){
         return $this->hasMany(ItemsClassifications::className(), ['item_id' => 'id'])->via('items');
     }
