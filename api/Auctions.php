@@ -418,7 +418,7 @@ class Auctions extends ActiveRecord
     }
 
     public function getApiItems(){
-        return $this->hasMany(Items::class, ['api_auction_id' => 'id']);
+        return $this->hasMany(Items::class, ['api_auction_id' => 'unique_id']);
     }
 
     public function getItemsClassifications(){
