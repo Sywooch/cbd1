@@ -117,6 +117,8 @@ class BidsSearch extends Bids
             ->andFilterWhere(['like', 'api_organizations.name', $this->organizationName])
         ;
 
+        $query->andWhere(['!=', 'api_bids.user_id', 0]);
+
         return $dataProvider;
     }
 

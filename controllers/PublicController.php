@@ -31,49 +31,37 @@ class PublicController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Auctions model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        // if(count($model->awards) == 1){
-//             Yii::$app->api->refreshAuction($model->id);
-        // }
-
+        if($model) {
+            Yii::$app->session->remove('redirected');
+        }else{
+            return $this->softRedirect($id);
+        }
         Url::remember(['/public/view', 'id' => $id]);
         return $this->render('view', [
             'model' => $model,
         ]);
     }
 
-    public function actionQuestion(){
-        die();
-    }
-
-    /**
-     * Finds the Auctions model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Auctions the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
-        if (($model = Auctions::findOne($id)) !== null) {
+        if (($model = Auctions::find()->where(['or', ['id' => $id], ['auctionID' => $id]])->one()) !== null) {
             return $model;
-        } else {
-            return $this->findModelByName($id);
         }
+        return false;
     }
 
-    private function findModelByName($name){
-        if (($model = Auctions::findOne(['auctionID' => $name])) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+    public function softRedirect($id){
+        if(Yii::$app->session->has('redirected')){
+            Yii::$app->session->remove('redirected');
+            return $this->render('/site/error', [
+                'name' => 'Не знайдено',
+                'message' => 'Аукціон, який ви намагаєтеся знайти, не знайдено на даному майданчику',
+            ]);
         }
+        Yii::$app->session->set('redirected', true);
+        return $this->redirect(getenv('BRO_URL') . '/public/view/' . $id);
     }
 }

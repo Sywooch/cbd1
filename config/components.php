@@ -83,7 +83,7 @@ $components = [
                 'token' => getenv('LOG_TOKEN'),
                 'chatId' => getenv('LOG_CHAT_ID'),
                 'levels' => ['error'],
-                'template' => "{text}",
+                'template' => "{remoteAddr}\n{levelAndRequest}\n{category}\n{user}",
                 'enabled' => (strlen(getenv('LOG_CHAT_ID') . getenv('LOG_TOKEN')) > 20) && !YII_DEBUG,
             ],
         ],
@@ -140,7 +140,8 @@ $components = [
     'api' => [
         'class' => '\app\components\Api',
         'url' => getenv('API_URL'),
-        'path' => "/api/{$apiVersion}/",
+        'public_url' => getenv('PUBLIC_API_URL'),
+        'path' => "/api/{$apiVersion}",
         'apiKey' => getenv('API_KEY'),
     ],
     'apiUpload' => [

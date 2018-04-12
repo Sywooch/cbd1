@@ -49,7 +49,6 @@ class AppAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js',
         'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js',
         'https://cdn.jsdelivr.net/jquery.webui-popover/1.2.1/jquery.webui-popover.min.js',
-        'js/accounting.js',
         'dist/scripts.min.js'
 
     ];

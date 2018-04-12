@@ -500,6 +500,7 @@ class BidsController extends Controller
 
     public function actionUploadContract($id){
         $model = $this->findModel($id);
+        Yii::$app->api->refreshAuction($model->apiAuction->id);
         $files = new Files();
         $files->load(Yii::$app->request->post());
         if(!Yii::$app->user->can('org') || ($model->lot && $model->lot->user_id != Yii::$app->user->id) || ($model->apiAuction && $model->apiAuction->isEnded)){

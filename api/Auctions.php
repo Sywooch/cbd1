@@ -46,6 +46,8 @@ use app\models\Lots as BaseAuctions;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $procurementMethodType
+ * @property Bids[] $bids
+ * @property Items[] $items
  */
 
 class Auctions extends ActiveRecord
@@ -323,6 +325,8 @@ class Auctions extends ActiveRecord
                     'dgfDecisionDate',
                     'dgfID',
                     'tenderAttempts',
+                    'auctionParameters_dutchSteps',
+                    'auctionParameters',
                 ],
                 'safe',
             ],
@@ -395,14 +399,22 @@ class Auctions extends ActiveRecord
         return $this;
     }
 
+    public function setAuctionParameters($value){
+        if(isset($value['dutchSteps'])){
+            $this->auctionParameters_dutchSteps = $value['dutchSteps'];
+        }
+    }
+
+    public function getAuctionParameters(){
+        return null;
+    }
+
     public function setItems($values){
         $this->_items = $values;
     }
 
-
-    /** @returns ActiveQuery|Items[] */
     public function getItems(){
-        return $this->hasMany(Items::className(), ['api_auction_id' => 'unique_id']);
+        return Items::find()->where(['api_auction_id' => $this->unique_id])->all();
     }
 
     public function getItemsClassifications(){
@@ -544,7 +556,6 @@ class Auctions extends ActiveRecord
                 echo "Question saving error\n";
                 print_r($question->errors);
             }
-            $question->save(false);
         }
 
         $items = $this->items;
@@ -552,6 +563,7 @@ class Auctions extends ActiveRecord
             $lot = isset($items[$index]) ? $items[$index] : new Items();
             $lot->load($item, '');
             $lot->id = $item['id'];
+            $lot->api_auction_id = $this->unique_id;
             if(!$lot->save(false)){
                 echo "Item saving error\n";
                 print_r($lot->errors);

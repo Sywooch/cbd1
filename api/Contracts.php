@@ -3,6 +3,7 @@
 namespace api;
 
 use api\base\ActiveRecord;
+use Couchbase\Document;
 use Yii;
 
 /**
@@ -24,38 +25,39 @@ use Yii;
  * @property string $date
  * @property integer $created_at
  * @property integer $updated_at
+ * @property Document[] $documents
+ * @property Awards $award
+ * @property string $hint
+ * @property Prolongations[] $prolongations
  */
 class Contracts extends ActiveRecord
 {
 
     public $_prolongations = [];
+    public $_documents = [];
 
-    public function behaviors()
-    {
+    /**
+     * @inheritdoc
+     */
+    public static function tableName(){
+        return 'api_contracts';
+    }
+
+    public function behaviors(){
         return parent::behaviors();
     }
 
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
-        return 'api_contracts';
-    }
 
-    /**
-     * @inheritdoc
-     */
-
-    public function scenarios()
-    {
+    public function scenarios(){
         return array_merge(parent::scenarios(), [
             'confirm' => ['dateSigned', 'status', 'contractNumber'],
         ]);
     }
 
-    public function rules()
-    {
+    public function rules(){
         return [
             [['title'], 'string'],
             [['value_valueAddedTaxIncluded',], 'boolean'],
@@ -130,20 +132,19 @@ class Contracts extends ActiveRecord
                 'boolean',
             ],
             ['dateSigned', 'checkDateSigned'],
-            [['prolongations'], 'safe'],
+            [['prolongations', 'documents', 'datePaid'], 'safe'],
         ];
     }
 
     public function checkDateSigned($attribute, $params = []){
         $start = strtotime($this->award->complaintPeriod_startDate);
-        if(!$this->award->complaintPeriod_endDate){
+        if(!$this->award->complaintPeriod_endDate) {
             $end = time();
-        }
-        else{
+        } else {
             $end = strtotime($this->award->complaintPeriod_endDate);
         }
         $dateSigned = strtotime($this->$attribute);
-        if(($dateSigned < $start) || ($dateSigned > $end)){
+        if(($dateSigned < $start) || ($dateSigned > $end)) {
             $this->addError($attribute, Yii::t('app', 'Дата підписання контракту має бути між {start} та {end}', [
                 'start' => Yii::$app->formatter->asDatetime($start),
                 'end' => Yii::$app->formatter->asDatetime($end),
@@ -153,10 +154,9 @@ class Contracts extends ActiveRecord
 
     public function getHint(){
         $start = strtotime($this->award->complaintPeriod_startDate);
-        if(!$this->award->complaintPeriod_endDate){
+        if(!$this->award->complaintPeriod_endDate) {
             $end = time();
-        }
-        else{
+        } else {
             $end = strtotime($this->award->complaintPeriod_endDate);
         }
         return Yii::t('app', 'Дата підписання контракту має бути між {start} та {end}', [
@@ -168,8 +168,7 @@ class Contracts extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels(){
         return [
             'id' => Yii::t('app', 'ID'),
             'awardID' => Yii::t('app', 'Award ID'),
@@ -194,24 +193,46 @@ class Contracts extends ActiveRecord
         return $this->hasOne(Awards::className(), ['id' => 'awardID']);
     }
 
-    public function setProlongations($prolongations){
-        $this->_prolongations = $prolongations;
-    }
-
     public function getProlongations(){
         return !empty($this->_prolongations) ? $this->_prolongations : $this->hasMany(Prolongations::className(), ['contractID' => 'id']);
     }
 
+    public function setProlongations($prolongations){
+        $this->_prolongations = $prolongations;
+    }
+
+    public function setDocuments($values){
+        $this->_documents = $values;
+    }
+
+    public function getDocuments(){
+        if(!empty($this->_documents)){
+            return $this->_documents;
+        }
+        return $this->hasMany(Documents::className(), ['relatedItem' => 'contractID']);
+    }
+
     public function afterSave($insert, $changedAttributes){
-        foreach($this->_prolongations as $item){
-            if(false == ($prolongation = Prolongations::findOne(['id' => $item['id']]))){
+        foreach($this->_prolongations as $item) {
+            if(false == ($prolongation = Prolongations::findOne(['id' => $item['id']]))) {
                 $prolongation = new Prolongations();
             }
             $prolongation->load($item, '');
             $prolongation->contractID = $this->id;
-            if(!$prolongation->save(false)){
+            if(!$prolongation->save(false)) {
                 echo "Prolongation save error\n:";
                 print_r($prolongation->errors);
+            }
+        }
+        foreach($this->_documents as $item){
+            if(false == ($document = Documents::findOne(['id' => $item['id']]))){
+                $document = new Documents();
+                $document->load($item, '');
+                $document->relatedItem = $this->contractID;
+                if(!$document->save(false)){
+                    echo "Contract documents saving error\n";
+                    print_r($document->errors);
+                }
             }
         }
         parent::afterSave($insert, $changedAttributes);
